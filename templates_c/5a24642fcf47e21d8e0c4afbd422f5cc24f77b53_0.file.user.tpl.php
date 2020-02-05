@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-05 04:59:21
+/* Smarty version 3.1.34-dev-7, created on 2020-02-05 06:56:24
   from 'D:\ugm\xampp\htdocs\web11\templates\user.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e3a3d998c73c3_63728160',
+  'unifunc' => 'content_5e3a59081d38b7_80098562',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5a24642fcf47e21d8e0c4afbd422f5cc24f77b53' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\user.tpl',
-      1 => 1580875158,
+      1 => 1580881492,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:tpl/login.tpl' => 1,
   ),
 ),false)) {
-function content_5e3a3d998c73c3_63728160 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e3a59081d38b7_80098562 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
   <head>
@@ -54,7 +54,6 @@ bootstrap/bootstrap.min.js"><?php echo '</script'; ?>
 	<?php if ($_SESSION['admin']) {?>
 		<?php $_smarty_tpl->_subTemplateRender("file:tpl/admin.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-
 	<?php } else { ?>
 		<?php $_smarty_tpl->_subTemplateRender("file:tpl/login.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>

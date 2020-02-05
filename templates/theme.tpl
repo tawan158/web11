@@ -48,6 +48,23 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
           </li>
+
+          <{if $smarty.session.admin}>
+            <{* 管理員   *}>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="user.php">管理員</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="user.php?op=logout">登出</a>
+            </li>
+          <{else}>
+            <{* 未登入  *}>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="user.php">登入</a>
+            </li>
+            
+          <{/if}>
+
         </ul>
       </div>
     </div>
