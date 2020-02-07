@@ -28,7 +28,7 @@
 						<input type="hidden" name="op" id="op" value="login">
 						<button class="btn btn-lg btn-primary btn-block" type="submit">會員登入</button>
 						<div>
-								您還沒還沒註冊嗎？請 <a href="#">點選此處註冊您的新帳號</a>。
+								您還沒還沒註冊嗎？請 <a href="user.php?op=reg_form">點選此處註冊您的新帳號</a>。
 						</div>
 				</form>
 		</div>

@@ -3,15 +3,20 @@
 require_once 'head.php';
  
 /* 過濾變數，設定預設值 */
-$op = system_CleanVars($_REQUEST, 'op', 'op_form', 'string');
+$op = system_CleanVars($_REQUEST, 'op', 'login_form', 'string');
 $sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
 // echo $op;die();
  
 /* 程式流程 */
 switch ($op){
-  case "op_form" :
-    $msg = op_form();
+  case "reg_form" :
+    $msg = reg_form();
     break;
+
+  case "reg" :
+    $msg = reg();
+    header("location:index.php");//注意前面不可以有輸出
+    exit;
 
   case "logout" :
     $msg = logout();
@@ -24,8 +29,8 @@ switch ($op){
     exit;
  
   default:
-    $op = "op_list";
-    op_list();
+    $op = "login_form";
+    login_form();
     break;  
 }
  
@@ -37,13 +42,24 @@ $smarty->assign("op", $op);
 $smarty->display('user.tpl');
  
 /*---- 函數區-----*/
+function reg(){
+  global $db;
+
+  $sql="INSERT INTO `users` (`uname`, `pass`, `name`, `tel`, `email`)
+  VALUES ('{$_POST['uname']}', '{$_POST['pass']}', '{$_POST['name']}', '{$_POST['tel']}', '{$_POST['email']}');";
+
+  $db->query($sql) or die($db->error() . $sql);
+  $uid = $db->insert_id;
+
+
+}
+
 function logout(){
   $_SESSION['admin']="";
   setcookie("name", "", time()- 3600 * 24 * 365); 
   setcookie("token", "", time()- 3600 * 24 * 365);
 }
-
-function op_form(){
+function reg_form(){
   global $smarty;
  
 }
@@ -69,7 +85,7 @@ function login(){
   }
 }
  
-function op_list(){
+function login_form(){
   global $smarty;
 }
 
