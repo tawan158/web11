@@ -11,9 +11,13 @@
 					管理員
 				</div>
 				<ul class="list-group list-group-flush">
-					<a href="index.php">
-						<li class="list-group-item">首頁</li>
-					</a>
+					<li class="list-group-item">
+						<a href="index.php" style="display:block;">首頁</a>
+					</li>
+					<li class="list-group-item">
+						<a href="user.php?op=logout" class="btn-block">登出</a>
+					</li>
+					
 				</ul>
 			</div>
 
