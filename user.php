@@ -42,8 +42,21 @@ $smarty->assign("op", $op);
 $smarty->display('user.tpl');
  
 /*---- 函數區-----*/
+/*=======================
+註冊函式(寫入資料庫)
+=======================*/
 function reg(){
   global $db;
+  
+  $_POST['uname'] = $db->real_escape_string($_POST['uname']);
+  $_POST['pass'] = $db->real_escape_string($_POST['pass']);
+  $_POST['chk_pass'] = $db->real_escape_string($_POST['chk_pass']);
+  $_POST['name'] = $db->real_escape_string($_POST['name']);
+  $_POST['tel'] = $db->real_escape_string($_POST['tel']);
+  $_POST['email'] = $db->real_escape_string($_POST['email']);
+  #加密處理
+  if($_POST['pass'] != $_POST['chk_pass'])die("密碼不一致");
+  $_POST['pass']  = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 
   $sql="INSERT INTO `users` (`uname`, `pass`, `name`, `tel`, `email`)
   VALUES ('{$_POST['uname']}', '{$_POST['pass']}', '{$_POST['name']}', '{$_POST['tel']}', '{$_POST['email']}');";
