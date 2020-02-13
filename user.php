@@ -33,7 +33,6 @@ switch ($op){
     login_form();
     break;  
 }
- 
 /*---- 將變數送至樣版----*/
 $smarty->assign("WEB", $WEB);
 $smarty->assign("op", $op);

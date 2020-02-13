@@ -17,6 +17,9 @@
 					<li class="list-group-item">
 						<a href="user.php?op=logout" class="btn-block">登出</a>
 					</li>
+					<li class="list-group-item">
+						<a href="<{$op1}>" class="btn-block">育將電腦工作室</a>
+					</li>
 					
 				</ul>
 			</div>
