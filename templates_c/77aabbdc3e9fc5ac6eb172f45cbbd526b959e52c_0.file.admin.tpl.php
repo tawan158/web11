@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-10 11:10:00
+/* Smarty version 3.1.34-dev-7, created on 2020-02-13 02:48:19
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\admin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e412bf8a118f4_28083158',
+  'unifunc' => 'content_5e44aae3928442_72057378',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '77aabbdc3e9fc5ac6eb172f45cbbd526b959e52c' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\admin.tpl',
-      1 => 1581329386,
+      1 => 1581558459,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e412bf8a118f4_28083158 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e44aae3928442_72057378 (Smarty_Internal_Template $_smarty_tpl) {
 ?><h1 class="text-center mt-2">育將電腦工作室 後台</h1>
 <div class="container">
 	<div class="row">
@@ -41,8 +41,7 @@ function content_5e412bf8a118f4_28083158 (Smarty_Internal_Template $_smarty_tpl)
 						<a href="user.php?op=logout" class="btn-block">登出</a>
 					</li>
 					<li class="list-group-item">
-						<a href="<?php echo $_smarty_tpl->tpl_vars['op1']->value;?>
-" class="btn-block">育將電腦工作室</a>
+						<a href="http://localhost/adminer/adminer.php" class="btn-block" target="_blank">資料庫管理</a>
 					</li>
 					
 				</ul>

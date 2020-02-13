@@ -34,7 +34,7 @@ require_once _WEB_PATH . '/function.php';
 
 $_SESSION['admin'] = isset($_SESSION['admin']) ? $_SESSION['admin'] : false;
 
-// 為了cookie使用
+# 為了cookie使用
 if(!$_SESSION['admin']){
   $_COOKIE['token'] = isset($_COOKIE['token']) ? $_COOKIE['token'] : "";
   $_COOKIE['name'] = isset($_COOKIE['name']) ? $_COOKIE['name'] : "";
@@ -42,3 +42,16 @@ if(!$_SESSION['admin']){
     $_SESSION['admin'] = true;
   }
 }
+
+#轉向用
+$_SESSION['redirect'] = isset($_SESSION['redirect']) ? $_SESSION['redirect'] : "";
+$_SESSION['message'] = isset($_SESSION['message']) ? $_SESSION['message'] : "";
+$_SESSION['time'] = isset($_SESSION['time']) ? $_SESSION['time'] : "";
+
+$smarty->assign("redirect",$_SESSION['redirect']);  //<{$redirect}>
+$smarty->assign("message",$_SESSION['message']);  
+$smarty->assign("time",$_SESSION['time']); 
+
+$_SESSION['redirect'] = "";
+$_SESSION['message'] = "";
+$_SESSION['time'] = "";

@@ -20,12 +20,13 @@ switch ($op){
 
   case "logout" :
     $msg = logout();
-    header("location:index.php");//注意前面不可以有輸出
+    //(轉向頁面,訊息,時間)
+    redirect_header("user.php", '登出成功', 3000);
     exit; 
 
   case "login" :
     $msg = login();
-    header("location:index.php");//注意前面不可以有輸出
+    redirect_header("index.php", $msg , 3000);
     exit;
  
   default:
@@ -41,6 +42,17 @@ $smarty->assign("op", $op);
 $smarty->display('user.tpl');
  
 /*---- 函數區-----*/
+
+/*############################################
+  轉向函數
+############################################*/
+function redirect_header($url = "index.php", $message = '訊息', $time = 3000) {  
+  $_SESSION['redirect'] = true;
+  $_SESSION['message'] = $message;
+  $_SESSION['time'] = $time;
+  header("location:{$url}");//注意前面不可以有輸出
+}
+
 /*=======================
 註冊函式(寫入資料庫)
 =======================*/
@@ -71,6 +83,7 @@ function logout(){
   setcookie("name", "", time()- 3600 * 24 * 365); 
   setcookie("token", "", time()- 3600 * 24 * 365);
 }
+
 function reg_form(){
   global $smarty;
  
@@ -90,10 +103,9 @@ function login(){
       setcookie("name", $name, time()+ 3600 * 24 * 365); 
       setcookie("token", $token, time()+ 3600 * 24 * 365); 
     }
-
-    header("location:index.php");//注意前面不可以有輸出
-  }else{      
-    header("location:user.php");//注意前面不可以有輸出
+    return "登入成功";
+  }else{ 
+    return "登入失敗";
   }
 }
  

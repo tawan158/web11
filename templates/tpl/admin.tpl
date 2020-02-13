@@ -18,7 +18,7 @@
 						<a href="user.php?op=logout" class="btn-block">登出</a>
 					</li>
 					<li class="list-group-item">
-						<a href="<{$op1}>" class="btn-block">育將電腦工作室</a>
+						<a href="http://localhost/adminer/adminer.php" class="btn-block" target="_blank">資料庫管理</a>
 					</li>
 					
 				</ul>

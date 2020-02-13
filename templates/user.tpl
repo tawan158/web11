@@ -16,19 +16,37 @@
     <script src="<{$xoImgUrl}>bootstrap/bootstrap.min.js"></script>
   </head>
   <body>
-  <{if $smarty.session.admin}>
-    <{* 管理員 *}>
-		<{include file="tpl/admin.tpl"}>
-	<{else}>
-    <{* 訪客 *}>
-
-    <{if $op=="login_form"}>
-      <{include file="tpl/login_form.tpl"}>
-    <{elseif $op=="reg_form"}>
-      <{include file="tpl/reg_form.tpl"}>
+    <{* sweetalert2 *}>
+    <{if $redirect}>
+      <!-- sweetalert2 -->
+      <link rel="stylesheet" href="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.css">
+      <script src="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.js"></script>
+      <script>
+        window.onload = function(){
+          Swal.fire({
+            //position: 'top-end',
+            icon: 'success',
+            title: "<{$message}>",
+            showConfirmButton: false,
+            timer: <{$time}>
+          })
+        }    
+      </script>
     <{/if}>
 
-	<{/if}>
+    <{if $smarty.session.admin}>
+      <{* 管理員 *}>
+      <{include file="tpl/admin.tpl"}>
+    <{else}>
+      <{* 訪客 *}>
+
+      <{if $op=="login_form"}>
+        <{include file="tpl/login_form.tpl"}>
+      <{elseif $op=="reg_form"}>
+        <{include file="tpl/reg_form.tpl"}>
+      <{/if}>
+
+    <{/if}>
 
   </body>
 </html>
