@@ -19,6 +19,10 @@ switch ($op){
     case "login_form" :
       $msg = login_form();
       break;
+
+    case "reg_form" :
+      $msg = reg_form();
+      break;
   
     case "reg" :
       $msg = reg();
@@ -45,5 +49,9 @@ function ok(){
 }
 
 function login_form(){
+
+}
+
+function reg_form(){
 
 }

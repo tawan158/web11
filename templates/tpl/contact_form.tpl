@@ -1,6 +1,6 @@
 
-		<div class="container mt-5">
-			<h1 class="text-center">聯絡我們</h1>
+    <div class="container mt-5" style="margin-top: 100px!important;>
+        <h1 class="text-center">聯絡我們</h1>
 			
         <!-- 表單返回頁，記得在表單加「 target='returnWin' 」 -->
         <iframe name="returnWin" style="display: none;" onload="this.onload=function(){window.location='index.php?op=ok'}"></iframe>
@@ -45,4 +45,47 @@
                 <button type="submit" class="btn btn-primary">送出</button>
             </div>
         </form>
-		</div>
+    </div>
+    
+    <!-- 表單驗證 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+    <!-- 調用方法 -->
+    <style>
+    .error{
+        color:red;
+    }
+    </style>
+    <script>
+    
+    $(function(){
+        $("#myForm").validate({
+        submitHandler: function(form) {
+            form.submit();
+        },
+        rules: {
+            'entry.1597864916' : {
+            required: true
+            },
+            'entry.2110810376' : {
+            required: true
+            },
+            'entry.1402899655' : {
+            required: true
+            }
+        },
+        messages: {
+            'entry.1597864916' : {
+            required: "必填"
+            },
+            'entry.2110810376' : {
+            required: "必填"
+            },
+            'entry.1402899655' : {
+            required: "必填"
+            }
+        }
+        });
+
+    });
+    </script>
+    

@@ -9,13 +9,10 @@ $sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
  
 /* 程式流程 */
 switch ($op){
-  case "reg_form" :
-    $msg = reg_form();
-    break;
 
   case "reg" :
     $msg = reg();
-    header("location:index.php");//注意前面不可以有輸出
+    redirect_header("index.php", '註冊成功', 3000);
     exit;
 
   case "logout" :
@@ -30,8 +27,8 @@ switch ($op){
     exit;
  
   default:
-    $op = "login_form";
-    login_form();
+    $op = "op_list";
+    op_list();
     break;  
 }
 /*---- 將變數送至樣版----*/
@@ -84,10 +81,6 @@ function logout(){
   setcookie("token", "", time()- 3600 * 24 * 365);
 }
 
-function reg_form(){
-  global $smarty;
- 
-}
 
 function login(){
   global $smarty;
@@ -109,7 +102,7 @@ function login(){
   }
 }
  
-function login_form(){
+function op_list(){
   global $smarty;
 }
 

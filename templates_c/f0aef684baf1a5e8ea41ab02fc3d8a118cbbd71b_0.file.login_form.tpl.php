@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-14 07:18:00
+/* Smarty version 3.1.34-dev-7, created on 2020-02-14 08:34:54
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\login_form.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e463b98ad0e35_40804656',
+  'unifunc' => 'content_5e464d9eabfac3_08784484',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f0aef684baf1a5e8ea41ab02fc3d8a118cbbd71b' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\login_form.tpl',
-      1 => 1581652658,
+      1 => 1581665690,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e463b98ad0e35_40804656 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e464d9eabfac3_08784484 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 		<style>
 			.form-signin {
@@ -30,7 +30,7 @@ function content_5e463b98ad0e35_40804656 (Smarty_Internal_Template $_smarty_tpl)
 					margin: 0 auto;
 			}      
 		</style>
-		<div class="container mt-5">
+		<div class="container mt-5" style="margin-top: 100px!important;">
 				<form class="form-signin" action="user.php" method="post">
 						<h1 class="h3 mb-3 font-weight-normal">會員登入</h1>
 						<div class="mb-3">
@@ -51,7 +51,7 @@ function content_5e463b98ad0e35_40804656 (Smarty_Internal_Template $_smarty_tpl)
 						<input type="hidden" name="op" id="op" value="login">
 						<button class="btn btn-lg btn-primary btn-block" type="submit">會員登入</button>
 						<div>
-								您還沒還沒註冊嗎？請 <a href="user.php?op=reg_form">點選此處註冊您的新帳號</a>。
+								您還沒還沒註冊嗎？請 <a href="index.php?op=reg_form">點選此處註冊您的新帳號</a>。
 						</div>
 				</form>
 		</div><?php }

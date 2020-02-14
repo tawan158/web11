@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-14 06:41:12
+/* Smarty version 3.1.34-dev-7, created on 2020-02-14 08:49:15
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\contact_form.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e4632f8203e10_44992852',
+  'unifunc' => 'content_5e4650fb9e2dd1_80044838',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '86a30fed771f42d29f32e05a139f30c121144cf1' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\contact_form.tpl',
-      1 => 1581657617,
+      1 => 1581666552,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e4632f8203e10_44992852 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e4650fb9e2dd1_80044838 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
-		<div class="container mt-5">
-			<h1 class="text-center">聯絡我們</h1>
+    <div class="container mt-5" style="margin-top: 100px!important;>
+        <h1 class="text-center">聯絡我們</h1>
 			
         <!-- 表單返回頁，記得在表單加「 target='returnWin' 」 -->
         <iframe name="returnWin" style="display: none;" onload="this.onload=function(){window.location='index.php?op=ok'}"></iframe>
@@ -68,5 +68,52 @@ function content_5e4632f8203e10_44992852 (Smarty_Internal_Template $_smarty_tpl)
                 <button type="submit" class="btn btn-primary">送出</button>
             </div>
         </form>
-		</div><?php }
+    </div>
+    
+      <!-- 表單驗證 -->
+      <?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"><?php echo '</script'; ?>
+>
+      <!-- 調用方法 -->
+      <style>
+        .error{
+          color:red;
+        }
+      </style>
+      <?php echo '<script'; ?>
+>
+        
+        $(function(){
+          $("#myForm").validate({
+            submitHandler: function(form) {
+              form.submit();
+            },
+            rules: {
+              'entry.1597864916' : {
+                required: true
+              },
+              'entry.2110810376' : {
+                required: true
+              },
+              'entry.1402899655' : {
+                required: true
+              }
+            },
+            messages: {
+              'entry.1597864916' : {
+                required: "必填"
+              },
+              'entry.2110810376' : {
+                required: "必填"
+              },
+              'entry.1402899655' : {
+                required: "必填"
+              }
+            }
+          });
+
+        });
+      <?php echo '</script'; ?>
+>
+    <?php }
 }
