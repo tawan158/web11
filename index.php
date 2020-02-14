@@ -15,6 +15,10 @@ switch ($op){
     case "ok" :
         $msg = ok();
         break;
+
+    case "login_form" :
+      $msg = login_form();
+      break;
   
     case "reg" :
       $msg = reg();
@@ -36,7 +40,10 @@ $smarty->display('theme.tpl');
 function contact_form(){
 
 }
-
 function ok(){
+
+}
+
+function login_form(){
 
 }
