@@ -36,11 +36,13 @@
   
   <{if $op == "contact_form"}>
     <{include file="tpl/contact_form.tpl"}>
+  <{elseif  $op == "ok"}> 
+  <{include file="tpl/ok.tpl"}>
+
   <{else}>
     
     <{* body.tpl *}>
-    <{include file="tpl/body.tpl"}>  
-
+    <{include file="tpl/body.tpl"}> 
 
   <{/if}>
 

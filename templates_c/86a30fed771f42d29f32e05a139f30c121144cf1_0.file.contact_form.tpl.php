@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-14 04:54:34
+/* Smarty version 3.1.34-dev-7, created on 2020-02-14 06:41:12
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\contact_form.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e4619fa448692_66622716',
+  'unifunc' => 'content_5e4632f8203e10_44992852',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '86a30fed771f42d29f32e05a139f30c121144cf1' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\contact_form.tpl',
-      1 => 1581652465,
+      1 => 1581657617,
       2 => 'file',
     ),
   ),
@@ -20,14 +20,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e4619fa448692_66622716 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e4632f8203e10_44992852 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 		<div class="container mt-5">
 			<h1 class="text-center">聯絡我們</h1>
 			
         <!-- 表單返回頁，記得在表單加「 target='returnWin' 」 -->
-        <iframe name="returnWin" style="display: none;" onload="this.onload=function(){window.location='<?php echo $_smarty_tpl->tpl_vars['xoAppUrl']->value;?>
-ok.html'}"></iframe>
+        <iframe name="returnWin" style="display: none;" onload="this.onload=function(){window.location='index.php?op=ok'}"></iframe>
 
         <form  target='returnWin' role="form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdEdFVM05z1TaxO2rdqukwPVKC3RqG3G70cdgznjX3xbCHOTg/formResponse" method="post" id="myForm" >
             

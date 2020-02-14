@@ -3,7 +3,7 @@
 			<h1 class="text-center">聯絡我們</h1>
 			
         <!-- 表單返回頁，記得在表單加「 target='returnWin' 」 -->
-        <iframe name="returnWin" style="display: none;" onload="this.onload=function(){window.location='<{$xoAppUrl}>ok.html'}"></iframe>
+        <iframe name="returnWin" style="display: none;" onload="this.onload=function(){window.location='index.php?op=ok'}"></iframe>
 
         <form  target='returnWin' role="form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdEdFVM05z1TaxO2rdqukwPVKC3RqG3G70cdgznjX3xbCHOTg/formResponse" method="post" id="myForm" >
             

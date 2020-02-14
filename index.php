@@ -11,6 +11,10 @@ switch ($op){
     case "contact_form" :
       $msg = contact_form();
       break;
+
+    case "ok" :
+        $msg = ok();
+        break;
   
     case "reg" :
       $msg = reg();
@@ -30,5 +34,9 @@ $smarty->display('theme.tpl');
 
 //----函數區
 function contact_form(){
-    
+
+}
+
+function ok(){
+
 }
