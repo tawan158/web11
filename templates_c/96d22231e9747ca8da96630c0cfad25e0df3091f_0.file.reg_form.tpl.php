@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-14 08:28:10
+/* Smarty version 3.1.34-dev-7, created on 2020-02-14 09:25:41
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\reg_form.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e464c0a2bbfc6_38507607',
+  'unifunc' => 'content_5e4659851b7997_89039470',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '96d22231e9747ca8da96630c0cfad25e0df3091f' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\reg_form.tpl',
-      1 => 1581665286,
+      1 => 1581668735,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e464c0a2bbfc6_38507607 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e4659851b7997_89039470 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <style>
   .box{
@@ -101,7 +101,7 @@ function content_5e464c0a2bbfc6_38507607 (Smarty_Internal_Template $_smarty_tpl)
 
         });
         $(function(){
-          $("#myForm").validate({
+          $("#myForm1").validate({
             submitHandler: function(form) {
               form.submit();
             },
