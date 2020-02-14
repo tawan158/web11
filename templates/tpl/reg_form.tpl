@@ -75,7 +75,7 @@
 
         });
         $(function(){
-          $("#myForm1").validate({
+          $("#myForm").validate({
             submitHandler: function(form) {
               form.submit();
             },
