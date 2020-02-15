@@ -8,7 +8,7 @@
   <div class="container box">
       <h1 class="text-center">註冊表單</h1>
       
-      <form action="user.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
+      <form action="index.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
       
         <div class="row">         
           <!--帳號-->              

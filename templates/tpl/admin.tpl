@@ -15,7 +15,7 @@
 						<a href="index.php" style="display:block;">首頁</a>
 					</li>
 					<li class="list-group-item">
-						<a href="user.php?op=logout" class="btn-block">登出</a>
+						<a href="index.php?op=logout" class="btn-block">登出</a>
 					</li>
 					<li class="list-group-item">
 						<a href="http://localhost/adminer/adminer.php" class="btn-block" target="_blank">資料庫管理</a>
