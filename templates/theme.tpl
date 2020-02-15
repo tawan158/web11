@@ -35,6 +35,7 @@
   <{include file="tpl/head.tpl"}>
   
   <{if $op == "contact_form"}>
+    
     <{include file="tpl/contact_form.tpl"}>
   <{elseif  $op == "ok"}> 
     <{include file="tpl/ok.tpl"}>

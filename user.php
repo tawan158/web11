@@ -21,10 +21,6 @@ switch ($op){
     redirect_header("user.php", '登出成功', 3000);
     exit; 
 
-  case "login" :
-    $msg = login();
-    redirect_header("index.php", $msg , 3000);
-    exit;
  
   default:
     $op = "op_list";
@@ -78,26 +74,6 @@ function logout(){
 }
 
 
-function login(){
-  global $smarty;
-  $name="admin";
-  $pass="111111";
-  $token="xxxxxx";
-
-  if($name == $_POST['name'] and $pass == $_POST['pass']){
-    $_SESSION['admin'] = true; 
-    $_POST['remember'] = isset($_POST['remember']) ? $_POST['remember'] : "";
-    
-    if($_POST['remember']){
-      setcookie("name", $name, time()+ 3600 * 24 * 365); 
-      setcookie("token", $token, time()+ 3600 * 24 * 365); 
-    }
-    return "登入成功";
-  }else{ 
-    return "登入失敗";
-  }
-}
- 
 function op_list(){
   global $smarty;
 }
