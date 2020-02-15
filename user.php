@@ -39,8 +39,12 @@ function op_list(){
   $result = $db->query($sql) or die($db->error() . $sql);
   $rows=[];//array();
   while($row = $result->fetch_assoc()){
-    //Array ( [uid] => 2 [uname] => 1111 [pass] => $2y$10$q0HZPPfgltzI4sIujmZXheLwxzrf3DB2jjRbqo6PnjLko1f2ltFg. [name] => 1 [tel] => 1 [email] => adsfasdf@1111 [kind] => 0 [token] => )
-    
+    $row['uname'] = htmlspecialchars($row['uname']);//字串
+    $row['uid'] = (int)$row['uid'];//整數
+    $row['kind'] = (int)$row['kind'];//整數
+    $row['name'] = htmlspecialchars($row['name']);//字串
+    $row['tel'] = htmlspecialchars($row['tel']);//字串
+    $row['email'] = htmlspecialchars($row['email']);//字串    
     $rows[] = $row;
   }
   $smarty->assign("rows",$rows);  
