@@ -2,6 +2,8 @@
 /* 引入檔頭，每支程都會引入 */
 require_once 'head.php';
  
+if(!$_SESSION['admin'])redirect_header("index.php", '您沒有權限', 3000);
+
 /* 過濾變數，設定預設值 */
 $op = system_CleanVars($_REQUEST, 'op', 'login_form', 'string');
 $sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
@@ -21,7 +23,7 @@ $smarty->assign("WEB", $WEB);
 $smarty->assign("op", $op);
  
 /*---- 程式結尾-----*/
-$smarty->display('user.tpl');
+$smarty->display('admin.tpl');
  
 /*---- 函數區-----*/
 
