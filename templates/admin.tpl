@@ -23,6 +23,10 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-9">
+          <{if $WEB.file_name == "user.php"}>
+            <{include file="tpl/user.tpl"}>
+          <{/if}>
+          
 
         </div>
         <div class="col-sm-3">
