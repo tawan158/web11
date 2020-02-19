@@ -18,7 +18,9 @@
                     <td><{$row.tel}></td>
                     <td><{$row.email}></td>
                     <td><{$row.kind}></td>
-                    <td></td>
+                    <td>
+                        <a href="user.php?op=op_form&uid=<{$row.uid}>"><i class="far fa-edit"></i></a>
+                    </td>
                 </tr>
             <{foreachelse}>
                 <tr>

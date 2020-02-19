@@ -34,7 +34,7 @@ function op_list(){
   
   $sql = "SELECT *
           FROM `users`
-  ";
+  ";//die($sql);
 
   $result = $db->query($sql) or die($db->error() . $sql);
   $rows=[];//array();

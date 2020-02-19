@@ -7,6 +7,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<{$xoImgUrl}>bootstrap/bootstrap.min.css">
+    <!-- Font Awesome Icons -->
+    <link href="<{$xoImgUrl}>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <title>會員管理</title>
     <!-- Optional JavaScript -->
