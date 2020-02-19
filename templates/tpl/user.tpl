@@ -17,7 +17,7 @@
                     <td><{$row.name}></td>
                     <td><{$row.tel}></td>
                     <td><{$row.email}></td>
-                    <td><{$row.kind}></td>
+                    <td><{if $row.kind}><i class="fas fa-user-check"></i><{/if}></td>
                     <td>
                         <a href="user.php?op=op_form&uid=<{$row.uid}>"><i class="far fa-edit"></i></a>
                     </td>
