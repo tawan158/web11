@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-19 06:47:19
+/* Smarty version 3.1.34-dev-7, created on 2020-02-19 07:55:10
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\user.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e4ccbe75083d2_17766034',
+  'unifunc' => 'content_5e4cdbceb2bab1_52837276',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5896a3e43df6cee7f5111e531ae63244189cdcd1' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\user.tpl',
-      1 => 1582091235,
+      1 => 1582095306,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e4ccbe75083d2_17766034 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e4cdbceb2bab1_52837276 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
@@ -68,6 +68,135 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
         </tbody>
     </table>
+<?php }?>
+
+<?php if ($_smarty_tpl->tpl_vars['op']->value == "op_form") {?>
+    
+<div class="container">
+    <h1 class="text-center">會員表單</h1>
+    
+    <form action="user.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
+    
+        <div class="row">         
+            <!--帳號-->              
+            <div class="col-sm-4">
+                <div class="form-group">
+                <label>帳號<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="uname" id="uname" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['uname'];?>
+">
+                </div>
+            </div>         
+            <!--密碼-->              
+            <div class="col-sm-4">
+                <div class="form-group">
+                <label>密碼</label>
+                <input type="text" class="form-control" name="pass" id="pass" value="">
+                </div>
+            </div>
+              <!-- 會員狀態  -->
+            <div class="col-sm-4">
+                <div class="form-group">
+                  <label style="display:block;">會員狀態</label>
+                  <input type="radio" name="kind" id="kind_1" value="1" <?php if ($_smarty_tpl->tpl_vars['row']->value['kind'] == '1') {?>checked<?php }?>>
+                  <label for="kind_1" style="display:inline;">管理員</label>&nbsp;&nbsp;
+                  <input type="radio" name="kind" id="kind_0" value="0" <?php if ($_smarty_tpl->tpl_vars['row']->value['kind'] == '0') {?>checked<?php }?>>
+                  <label for="kind_0" style="display:inline;">會員</label>
+                </div>
+            </div>  
+
+            <!--姓名-->              
+            <div class="col-sm-6">
+                <div class="form-group">
+                <label>姓名<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="name" id="name" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['name'];?>
+">
+                </div>
+            </div>         
+            <!--電話-->              
+            <div class="col-sm-6">
+                <div class="form-group">
+                <label>電話<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="tel" id="tel" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['tel'];?>
+">
+                </div>
+            </div>             
+            <!--信箱-->              
+            <div class="col-sm-12">
+                <div class="form-group">
+                <label>信箱<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="email" id="email" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['email'];?>
+">
+                </div>
+            </div> 
+        </div>
+
+        <div class="text-center pb-20">
+        <input type="hidden" name="op" value="op_update">
+        <input type="hidden" name="uid" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['uid'];?>
+">
+        <button type="submit" class="btn btn-primary">送出</button>
+        </div>
+    
+    </form>
+    <!-- 表單驗證 -->
+    <?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"><?php echo '</script'; ?>
+>
+    <!-- 調用方法 -->
+    <style>
+        .error{
+        color:red;
+        }
+    </style>
+    <?php echo '<script'; ?>
+>
+        $(function(){
+
+        });
+        $(function(){
+        $("#myForm").validate({
+            submitHandler: function(form) {
+                form.submit();
+            },
+            rules: {
+                'uname' : {
+                    required: true
+                },
+                'name' : {
+                    required: true
+                },
+                'tel' : {
+                    required: true
+                },
+                'email' : {
+                    required: true,
+                    email:true
+                }
+            },
+            messages: {
+                'uname' : {
+                    required: "必填"
+                },
+                'name' : {
+                    required: "必填"
+                },
+                'tel' : {
+                    required: "必填"
+                },
+                'email' : {
+                    required: "必填",
+                    email: "請填正確email"
+                }
+
+            }
+        });
+
+        });
+    <?php echo '</script'; ?>
+>
+    
+</div>
+
 <?php }
 }
 }

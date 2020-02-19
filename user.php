@@ -32,6 +32,23 @@ $smarty->display('admin.tpl');
 function op_form($uid=""){
   global $smarty,$db;
 
+  if($uid){
+    $sql="SELECT *
+          FROM `users`
+          WHERE `uid` = '{$uid}'
+    ";//die($sql);
+    
+    $result = $db->query($sql) or die($db->error() . $sql);
+    $row = $result->fetch_assoc(); 
+  }
+  $row['uid'] = isset($row['uid']) ? $row['uid'] : "";
+  $row['uname'] = isset($row['uname']) ? $row['uname'] : "";
+  $row['name'] = isset($row['name']) ? $row['name'] : "";
+  $row['tel'] = isset($row['tel']) ? $row['tel'] : "";
+  $row['email'] = isset($row['email']) ? $row['email'] : "";
+  $row['kind'] = isset($row['kind']) ? $row['kind'] : "0";
+
+  $smarty->assign("row",$row);
 }
 
 
