@@ -89,20 +89,20 @@ if (!function_exists("mk_dir")) {
 
 //檢查並傳回欲拿到資料使用的變數
 //$title = '' 則非必填
-function db_filter($var, $title = '', $filter = ''){
+function db_filter($var, $title = '', $filter = '',$url = _WEB_URL){
   global $db;
   #寫入資料庫過濾
   $var = $db->real_escape_string($var);
 
   if($title){
     if($var === ""){
-      redirect_header("index.php?op=reg_form", $title . '為必填！');
+      redirect_header($url, $title . '為必填！');
     }
   }
 
   if ($filter) {
     $var = filter_var($var, $filter);
-    if (!$var) redirect_header("index.php?op=reg_form", "不合法的{$title}", 3000);
+    if (!$var) redirect_header($url, "不合法的{$title}", 3000);
   }
   return $var;
 }

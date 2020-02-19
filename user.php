@@ -11,6 +11,11 @@ $uid = system_CleanVars($_REQUEST, 'uid', '', 'int');
  
 /* 程式流程 */
 switch ($op){
+  case "op_update" :
+    $msg = op_update($uid);
+    redirect_header("user.php", $msg, 3000);
+    exit;
+
   case "op_form" :
     $msg = op_form($uid);
     break;
@@ -28,6 +33,36 @@ $smarty->assign("op", $op);
 $smarty->display('admin.tpl');
  
 /*---- 函數區-----*/
+function op_update($uid=""){
+  global $db; 
+   
+  $_POST['uname'] = db_filter($_POST['uname'], '帳號');
+  $_POST['pass'] = db_filter($_POST['pass'], '');//密碼
+  $_POST['name'] = db_filter($_POST['name'], '姓名');
+  $_POST['tel'] = db_filter($_POST['tel'], '電話');
+  $_POST['email'] = db_filter($_POST['email'], 'email',FILTER_SANITIZE_EMAIL);
+  $_POST['kind'] = db_filter($_POST['kind'], '會員狀態');
+  
+  $and_col = "";
+  if($_POST['pass']){    
+    $_POST['pass']  = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+    //更新密碼
+    $and_col = "`pass` = '{$_POST['pass']}',";
+  }
+
+  $sql="UPDATE `users` SET
+        `uname` = '{$_POST['uname']}',
+        {$and_col}
+        `name` = '{$_POST['name']}',
+        `tel` = '{$_POST['tel']}',
+        `email` = '{$_POST['email']}',
+        `kind` = '{$_POST['kind']}'
+        WHERE `uid` = '{$uid}';  
+  ";//die($sql);
+  $db->query($sql) or die($db->error() . $sql);
+  return "會員資料更新成功";
+
+}
 
 function op_form($uid=""){
   global $smarty,$db;
