@@ -6,12 +6,14 @@ if(!$_SESSION['admin'])redirect_header("index.php", '您沒有權限', 3000);
 
 /* 過濾變數，設定預設值 */
 $op = system_CleanVars($_REQUEST, 'op', 'op_list', 'string');
-$sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
+$uid = system_CleanVars($_REQUEST, 'uid', '', 'int');
 // echo $op;die();
  
 /* 程式流程 */
 switch ($op){
-
+  case "op_form" :
+    $msg = op_form($uid);
+    break;
  
   default:
     $op = "op_list";
@@ -27,6 +29,10 @@ $smarty->display('admin.tpl');
  
 /*---- 函數區-----*/
 
+function op_form($uid=""){
+  global $smarty,$db;
+
+}
 
 
 function op_list(){
