@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-20 06:45:53
+/* Smarty version 3.1.34-dev-7, created on 2020-02-20 08:56:10
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\head.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e4e1d113d3be6_90273986',
+  'unifunc' => 'content_5e4e3b9a214917_45114812',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1c81d9f12f6477d49039367a2a0b1e2549b0696f' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\head.tpl',
-      1 => 1582177548,
+      1 => 1582185344,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e4e1d113d3be6_90273986 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e4e3b9a214917_45114812 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-secondary fixed-top py-3" id="mainNav">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" style="background:rgba(108, 117, 125,0.8);">
     <div class="container">
       <a class="navbar-brand js-scroll-trigger" href="index.php#page-top">Start Bootstrap</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

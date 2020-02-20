@@ -33,7 +33,6 @@ require_once _WEB_PATH.'/sqlConfig.php';
 require_once _WEB_PATH . '/function.php';
 
 $_SESSION['user']['kind'] = isset($_SESSION['user']['kind']) ? $_SESSION['user']['kind'] : "";
-
 # 為了cookie使用
 if($_SESSION['user']['kind'] === ""){
   $_COOKIE['token'] = isset($_COOKIE['token']) ? $_COOKIE['token'] : "";
@@ -46,7 +45,7 @@ if($_SESSION['user']['kind'] === ""){
     $sql="SELECT *
           FROM `users`
           WHERE `uname` = '{$_COOKIE['uname']}'
-    ";
+    ";//die($sql);
   
     $result = $db->query($sql);
     $row = $result->fetch_assoc();
