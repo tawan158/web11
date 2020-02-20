@@ -119,8 +119,14 @@ function login(){
   }
 }
 
-function logout(){
+function logout(){   
+  $_SESSION['user']['uid'] = "";
+  $_SESSION['user']['uname'] = "";
+  $_SESSION['user']['name'] = "";
+  $_SESSION['user']['tel'] = "";
+  $_SESSION['user']['email'] = "";
   $_SESSION['user']['kind'] = "";
+  
   setcookie("uname", "", time()- 3600 * 24 * 365); 
   setcookie("token", "", time()- 3600 * 24 * 365);
 }

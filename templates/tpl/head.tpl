@@ -33,7 +33,7 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="index.php?op=logout">登出</a>
             </li>
-          <{elseif  $smarty.session.user.kind === 0}> 
+          <{elseif $smarty.session.user.kind === 0}> 
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="index.php?op=logout">登出</a>
             </li> 
