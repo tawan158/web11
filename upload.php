@@ -11,11 +11,11 @@ for ($i = 0; $i < $fileCount; $i++) {
     echo '暫存名稱: ' . $_FILES['my_file']['tmp_name'][$i] . '<br/>';
 
     # 檢查檔案是否已經存在
-    if (file_exists('upload/' . $_FILES['my_file']['name'][$i])){
+    if (file_exists('uploads/' . $_FILES['my_file']['name'][$i])){
       echo '檔案已存在。<br/>';
     } else {
       $file = $_FILES['my_file']['tmp_name'][$i];
-      $dest = 'upload/' . $_FILES['my_file']['name'][$i];
+      $dest = 'uploads/' . $_FILES['my_file']['name'][$i];
 
       # 將檔案移至指定位置
       move_uploaded_file($file, $dest);
@@ -25,4 +25,3 @@ for ($i = 0; $i < $fileCount; $i++) {
   }
   echo '<br/><br/>';
 }
-© 2020 GitHub, Inc.
