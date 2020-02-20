@@ -40,7 +40,11 @@ $smarty->display('admin.tpl');
 /*---- 函數區-----*/
 function op_delete($uid){
   global $db; 
-  print_r($_GET);DIE();
+  $sql="DELETE FROM `users`
+        WHERE `uid` = '{$uid}'
+  ";
+  $db->query($sql) or die($db->error() . $sql);
+  return "會員資料刪除成功";
 }
 
 function op_update($uid=""){
