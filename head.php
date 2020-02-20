@@ -35,33 +35,40 @@ require_once _WEB_PATH . '/function.php';
 
 $_SESSION['user']['kind'] = isset($_SESSION['user']['kind']) ? $_SESSION['user']['kind'] : "";
 
-// $_SESSION['user']['kind'] = ""
 # 為了cookie使用
 if($_SESSION['user']['kind'] === ""){
-  // $_COOKIE['token'] = isset($_COOKIE['token']) ? $_COOKIE['token'] : "";
-  // $_COOKIE['uname'] = isset($_COOKIE['uname']) ? $_COOKIE['uname'] : "";
+  $_COOKIE['token'] = isset($_COOKIE['token']) ? $_COOKIE['token'] : "";
+  $_COOKIE['uname'] = isset($_COOKIE['uname']) ? $_COOKIE['uname'] : "";
   
-  // $_COOKIE['uname'] = db_filter($_COOKIE['uname'], '');
-  // $_COOKIE['token'] = db_filter($_COOKIE['token'], '');
+  $_COOKIE['uname'] = db_filter($_COOKIE['uname'], '');
+  $_COOKIE['token'] = db_filter($_COOKIE['token'], '');
 
-  // $sql="SELECT *
-  //       FROM `users`
-  //       WHERE `uname` = '{$_COOKIE['uname']}'
-  // ";
+  $sql="SELECT *
+        FROM `users`
+        WHERE `uname` = '{$_COOKIE['uname']}'
+  ";
 
-  // $result = $db->query($sql);
-  // $row = $result->fetch_assoc();
-  // print_r($row);die();
-  
-  // $row['uname'] = htmlspecialchars($row['uname']);//字串
-  // $row['uid'] = (int)$row['uid'];//整數
-  // $row['kind'] = (int)$row['kind'];//整數
-  // $row['name'] = htmlspecialchars($row['name']);//字串
-  // $row['tel'] = htmlspecialchars($row['tel']);//字串
-  // $row['email'] = htmlspecialchars($row['email']);//字串 
-  // $row['pass'] = htmlspecialchars($row['pass']);//字串 
-  // $row['token'] = htmlspecialchars($row['token']);//字串
-  $_SESSION['admin'] = true;
+  $result = $db->query($sql);
+  $row = $result->fetch_assoc();
+
+  if($_COOKIE['token'] === $row['token']){
+    
+    $row['uname'] = htmlspecialchars($row['uname']);//字串
+    $row['uid'] = (int)$row['uid'];//整數
+    $row['kind'] = (int)$row['kind'];//整數
+    $row['name'] = htmlspecialchars($row['name']);//字串
+    $row['tel'] = htmlspecialchars($row['tel']);//字串
+    $row['email'] = htmlspecialchars($row['email']);//字串 
+    $row['pass'] = htmlspecialchars($row['pass']);//字串 
+    $row['token'] = htmlspecialchars($row['token']);//字串
+    
+    $_SESSION['user']['uid'] = $row['uid'];
+    $_SESSION['user']['uname'] = $row['uname'];
+    $_SESSION['user']['name'] = $row['name'];
+    $_SESSION['user']['tel'] = $row['tel'];
+    $_SESSION['user']['email'] = $row['email'];
+    $_SESSION['user']['kind'] = $row['kind'];
+  }
  
 }
 

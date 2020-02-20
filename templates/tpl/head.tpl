@@ -25,14 +25,18 @@
             <a class="nav-link js-scroll-trigger" href="index.php?op=contact_form">聯絡我們</a>
           </li>
 
-          <{if $smarty.session.admin}>
+          <{if $smarty.session.user.kind === 1}>
             <{* 管理員   *}>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="user.php">管理員</a>
+              <a class="nav-link js-scroll-trigger" href="user.php">後台</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="index.php?op=logout">登出</a>
             </li>
+          <{elseif  $smarty.session.user.kind === 0}> 
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="index.php?op=logout">登出</a>
+            </li> 
           <{else}>
             <{* 未登入  *}>
             <li class="nav-item">

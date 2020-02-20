@@ -2,7 +2,7 @@
 /* 引入檔頭，每支程都會引入 */
 require_once 'head.php';
  
-if(!$_SESSION['admin'])redirect_header("index.php", '您沒有權限', 3000);
+if($_SESSION['user']['kind'] !== 1)redirect_header("index.php", '您沒有權限', 3000);
 
 /* 過濾變數，設定預設值 */
 $op = system_CleanVars($_REQUEST, 'op', 'op_list', 'string');

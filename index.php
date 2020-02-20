@@ -71,7 +71,6 @@ function reg_form(){
 
 function login(){
   global $db;
-  
   $_POST['uname'] = db_filter($_POST['uname'], '帳號');
   $_POST['pass'] = db_filter($_POST['pass'], '密碼');
 
@@ -92,7 +91,6 @@ function login(){
   $row['pass'] = htmlspecialchars($row['pass']);//字串 
   $row['token'] = htmlspecialchars($row['token']);//字串
 
-
   if(password_verify($_POST['pass'], $row['pass'])){
     //登入成功
     $_SESSION['user']['uid'] = $row['uid'];
@@ -100,7 +98,7 @@ function login(){
     $_SESSION['user']['name'] = $row['name'];
     $_SESSION['user']['tel'] = $row['tel'];
     $_SESSION['user']['email'] = $row['email'];
-    $_SESSION['user']['kind'] = $row['kind'];//$_SESSION['admin'] $smarty.session.admin
+    $_SESSION['user']['kind'] = $row['kind'];
     
     $_POST['remember'] = isset($_POST['remember']) ? $_POST['remember'] : "";
     
@@ -116,13 +114,14 @@ function login(){
     $_SESSION['user']['tel'] = "";
     $_SESSION['user']['email'] = "";
     $_SESSION['user']['kind'] = "";
+
     return "登入失敗";
   }
 }
 
 function logout(){
-  $_SESSION['admin']="";
-  setcookie("name", "", time()- 3600 * 24 * 365); 
+  $_SESSION['user']['kind'] = "";
+  setcookie("uname", "", time()- 3600 * 24 * 365); 
   setcookie("token", "", time()- 3600 * 24 * 365);
 }
  
