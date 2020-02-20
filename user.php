@@ -11,6 +11,11 @@ $uid = system_CleanVars($_REQUEST, 'uid', '', 'int');
  
 /* 程式流程 */
 switch ($op){
+  case "op_delete" :
+    $msg = op_delete($uid);
+    redirect_header("user.php", $msg, 3000);
+    exit;
+
   case "op_update" :
     $msg = op_update($uid);
     redirect_header("user.php", $msg, 3000);
@@ -33,6 +38,11 @@ $smarty->assign("op", $op);
 $smarty->display('admin.tpl');
  
 /*---- 函數區-----*/
+function op_delete($uid){
+  global $db; 
+  print_r($_GET);DIE();
+}
+
 function op_update($uid=""){
   global $db; 
    
