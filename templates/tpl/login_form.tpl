@@ -12,7 +12,7 @@
 				<h1 class="h3 mb-3 font-weight-normal">會員登入</h1>
 				<div class="mb-3">
 					<label for="name" class="sr-only">帳號</label>
-					<input type="text" name="name" id="name" class="form-control" placeholder="請輸入帳號"  required>
+					<input type="text" name="uname" id="uname" class="form-control" placeholder="請輸入帳號"  required>
 				</div>
 				<div class="mb-3">
 					<label for="pass" class="sr-only">密碼</label>

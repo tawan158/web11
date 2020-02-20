@@ -70,7 +70,21 @@ function reg_form(){
 }
 
 function login(){
-  global $smarty;
+  global $db;
+  
+  $_POST['uname'] = db_filter($_POST['uname'], '帳號');
+  $_POST['pass'] = db_filter($_POST['pass'], '密碼');
+
+  $sql="SELECT *
+        FROM `users`
+        WHERE `uname` = '{$_POST['uname']}'
+  ";
+
+  $result = $db->query($sql) or die($db->error() . $sql);
+  $row = $result->fetch_assoc();
+
+  //Array ( [uname] => ugm [pass] => 111111 [remember] => on [op] => login )
+  print_r($row);DIE();
   $name="admin";
   $pass="111111";
   $token="xxxxxx";
