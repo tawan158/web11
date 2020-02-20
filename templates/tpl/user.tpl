@@ -20,7 +20,7 @@
                     <td><{if $row.kind}><i class="fas fa-user-check"></i><{/if}></td>
                     <td>
                         <a href="user.php?op=op_form&uid=<{$row.uid}>"><i class="far fa-edit"></i></a>
-                        <a href="#" onclick="op_delete(<{$row.uid}>);"><i class="far fa-trash-alt"></i></a>
+                        <a href="javascript:void(0)" onclick="op_delete(<{$row.uid}>);"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
             <{foreachelse}>

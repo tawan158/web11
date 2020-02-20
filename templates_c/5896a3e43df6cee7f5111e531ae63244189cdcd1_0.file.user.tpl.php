@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-20 03:19:26
+/* Smarty version 3.1.34-dev-7, created on 2020-02-20 03:43:42
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\user.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e4decae6d7701_40218701',
+  'unifunc' => 'content_5e4df25e606af4_20941941',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5896a3e43df6cee7f5111e531ae63244189cdcd1' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\user.tpl',
-      1 => 1582165003,
+      1 => 1582166615,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e4decae6d7701_40218701 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e4df25e606af4_20941941 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
@@ -52,7 +52,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
                     <td>
                         <a href="user.php?op=op_form&uid=<?php echo $_smarty_tpl->tpl_vars['row']->value['uid'];?>
 "><i class="far fa-edit"></i></a>
-                        <a href="#" onclick="op_delete(<?php echo $_smarty_tpl->tpl_vars['row']->value['uid'];?>
+                        <a href="javascript:void(0)" onclick="op_delete(<?php echo $_smarty_tpl->tpl_vars['row']->value['uid'];?>
 );"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
