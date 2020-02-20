@@ -81,24 +81,41 @@ function login(){
   ";
 
   $result = $db->query($sql) or die($db->error() . $sql);
-  $row = $result->fetch_assoc();
+  $row = $result->fetch_assoc() or redirect_header("index.php", "帳號輸入錯誤" , 3000);
+  
+  $row['uname'] = htmlspecialchars($row['uname']);//字串
+  $row['uid'] = (int)$row['uid'];//整數
+  $row['kind'] = (int)$row['kind'];//整數
+  $row['name'] = htmlspecialchars($row['name']);//字串
+  $row['tel'] = htmlspecialchars($row['tel']);//字串
+  $row['email'] = htmlspecialchars($row['email']);//字串 
+  $row['pass'] = htmlspecialchars($row['pass']);//字串 
+  $row['token'] = htmlspecialchars($row['token']);//字串
 
-  //Array ( [uname] => ugm [pass] => 111111 [remember] => on [op] => login )
-  print_r($row);DIE();
-  $name="admin";
-  $pass="111111";
-  $token="xxxxxx";
 
-  if($name == $_POST['name'] and $pass == $_POST['pass']){
-    $_SESSION['admin'] = true; 
+  if(password_verify($_POST['pass'], $row['pass'])){
+    //登入成功
+    $_SESSION['user']['uid'] = $row['uid'];
+    $_SESSION['user']['uname'] = $row['uname'];
+    $_SESSION['user']['name'] = $row['name'];
+    $_SESSION['user']['tel'] = $row['tel'];
+    $_SESSION['user']['email'] = $row['email'];
+    $_SESSION['user']['kind'] = $row['kind'];//$_SESSION['admin'] $smarty.session.admin
+    
     $_POST['remember'] = isset($_POST['remember']) ? $_POST['remember'] : "";
     
     if($_POST['remember']){
-      setcookie("name", $name, time()+ 3600 * 24 * 365); 
-      setcookie("token", $token, time()+ 3600 * 24 * 365); 
+      setcookie("uname",$row['uname'], time()+ 3600 * 24 * 365); 
+      setcookie("token", $row['token'], time()+ 3600 * 24 * 365); 
     }
     return "登入成功";
-  }else{ 
+  }else{    
+    $_SESSION['user']['uid'] = "";
+    $_SESSION['user']['uname'] = "";
+    $_SESSION['user']['name'] = "";
+    $_SESSION['user']['tel'] = "";
+    $_SESSION['user']['email'] = "";
+    $_SESSION['user']['kind'] = "";
     return "登入失敗";
   }
 }
