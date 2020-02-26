@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.css">
     <script src="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.js"></script>
     <script>
-        function op_delete(uid){
+        function op_delete(sn){
             Swal.fire({
                 title: '你確定嗎？',
                 text: "您將無法還原！",
@@ -50,7 +50,7 @@
                 cancelButtonText: '取消'
                 }).then((result) => {
                 if (result.value) {
-                    document.location.href="user.php?op=op_delete&uid="+uid;
+                    document.location.href="user.php?op=op_delete&sn="+sn;
                 }
             })
         }
@@ -60,33 +60,33 @@
 <{if $op=="op_form"}>
     
     <div class="container">
-        <h1 class="text-center">會員表單</h1>
+        <h1 class="text-center">商品管理表單</h1>
         
-        <form action="user.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
-        
+        <form action="prod.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
+            <!-- sn	 title	content	price		date	sort	counter -->
             <div class="row">         
-                <!--帳號-->              
+                <!--標題-->              
                 <div class="col-sm-4">
                     <div class="form-group">
-                    <label>帳號<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="uname" id="uname" value="<{$row.uname}>" readonly>
+                        <label>標題<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="title" id="title" value="<{$row.title}>" >
                     </div>
                 </div>         
-                <!--密碼-->              
+                <!--分類-->              
                 <div class="col-sm-4">
                     <div class="form-group">
-                    <label>密碼</label>
-                    <input type="text" class="form-control" name="pass" id="pass" value="">
+                        <label>分類</label>
+                        <input type="text" class="form-control" name="kind_sn" id="kind_sn" value="<{$row.kind_sn}>">
                     </div>
                 </div>
-                <!-- 會員狀態  -->
+                <!-- 商品狀態  -->
                 <div class="col-sm-4">
                     <div class="form-group">
-                    <label style="display:block;">會員狀態</label>
-                    <input type="radio" name="kind" id="kind_1" value="1" <{if $row.kind=='1'}>checked<{/if}>>
-                    <label for="kind_1" style="display:inline;">管理員</label>&nbsp;&nbsp;
-                    <input type="radio" name="kind" id="kind_0" value="0" <{if $row.kind=='0'}>checked<{/if}>>
-                    <label for="kind_0" style="display:inline;">會員</label>
+                    <label style="display:block;">商品狀態</label>
+                    <input type="radio" name="enable" id="enable_1" value="1" <{if $row.enable=='1'}>checked<{/if}>>
+                    <label for="enable_1" style="display:inline;">啟用</label>&nbsp;&nbsp;
+                    <input type="radio" name="enable" id="enable_0" value="0" <{if $row.enable=='0'}>checked<{/if}>>
+                    <label for="enable_0" style="display:inline;">停用</label>
                     </div>
                 </div>  
 
@@ -114,8 +114,8 @@
             </div>
 
             <div class="text-center pb-20">
-            <input type="hidden" name="op" value="op_update">
-            <input type="hidden" name="uid" value="<{$row.uid}>">
+            <input type="hidden" name="op" value="<{$row.op}>">
+            <input type="hidden" name="sn" value="<{$row.sn}>">
             <button type="submit" class="btn btn-primary">送出</button>
             </div>
         

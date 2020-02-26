@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-26 04:20:17
+/* Smarty version 3.1.34-dev-7, created on 2020-02-26 04:57:07
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\prod.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e55e3f1cd1137_93438649',
+  'unifunc' => 'content_5e55ec9370f9a5_26764298',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd2c800ea23d8b398f3f44db2a09c410b26ec0ca9' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\prod.tpl',
-      1 => 1582687213,
+      1 => 1582689422,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e55e3f1cd1137_93438649 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e55ec9370f9a5_26764298 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
@@ -81,7 +81,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
 >
-        function op_delete(uid){
+        function op_delete(sn){
             Swal.fire({
                 title: '你確定嗎？',
                 text: "您將無法還原！",
@@ -93,7 +93,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                 cancelButtonText: '取消'
                 }).then((result) => {
                 if (result.value) {
-                    document.location.href="user.php?op=op_delete&uid="+uid;
+                    document.location.href="user.php?op=op_delete&sn="+sn;
                 }
             })
         }
@@ -104,34 +104,35 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
 <?php if ($_smarty_tpl->tpl_vars['op']->value == "op_form") {?>
     
     <div class="container">
-        <h1 class="text-center">會員表單</h1>
+        <h1 class="text-center">商品管理表單</h1>
         
-        <form action="user.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
-        
+        <form action="prod.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
+            <!-- sn	 title	content	price		date	sort	counter -->
             <div class="row">         
-                <!--帳號-->              
+                <!--標題-->              
                 <div class="col-sm-4">
                     <div class="form-group">
-                    <label>帳號<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="uname" id="uname" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['uname'];?>
-" readonly>
+                        <label>標題<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="title" id="title" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+" >
                     </div>
                 </div>         
-                <!--密碼-->              
+                <!--分類-->              
                 <div class="col-sm-4">
                     <div class="form-group">
-                    <label>密碼</label>
-                    <input type="text" class="form-control" name="pass" id="pass" value="">
+                        <label>分類</label>
+                        <input type="text" class="form-control" name="kind_sn" id="kind_sn" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['kind_sn'];?>
+">
                     </div>
                 </div>
-                <!-- 會員狀態  -->
+                <!-- 商品狀態  -->
                 <div class="col-sm-4">
                     <div class="form-group">
-                    <label style="display:block;">會員狀態</label>
-                    <input type="radio" name="kind" id="kind_1" value="1" <?php if ($_smarty_tpl->tpl_vars['row']->value['kind'] == '1') {?>checked<?php }?>>
-                    <label for="kind_1" style="display:inline;">管理員</label>&nbsp;&nbsp;
-                    <input type="radio" name="kind" id="kind_0" value="0" <?php if ($_smarty_tpl->tpl_vars['row']->value['kind'] == '0') {?>checked<?php }?>>
-                    <label for="kind_0" style="display:inline;">會員</label>
+                    <label style="display:block;">商品狀態</label>
+                    <input type="radio" name="enable" id="enable_1" value="1" <?php if ($_smarty_tpl->tpl_vars['row']->value['enable'] == '1') {?>checked<?php }?>>
+                    <label for="enable_1" style="display:inline;">啟用</label>&nbsp;&nbsp;
+                    <input type="radio" name="enable" id="enable_0" value="0" <?php if ($_smarty_tpl->tpl_vars['row']->value['enable'] == '0') {?>checked<?php }?>>
+                    <label for="enable_0" style="display:inline;">停用</label>
                     </div>
                 </div>  
 
@@ -162,8 +163,9 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
             </div>
 
             <div class="text-center pb-20">
-            <input type="hidden" name="op" value="op_update">
-            <input type="hidden" name="uid" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['uid'];?>
+            <input type="hidden" name="op" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['op'];?>
+">
+            <input type="hidden" name="sn" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
 ">
             <button type="submit" class="btn btn-primary">送出</button>
             </div>

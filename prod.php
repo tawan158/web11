@@ -88,8 +88,12 @@ function op_form($sn=""){
     ";//die($sql);
     
     $result = $db->query($sql) or die($db->error() . $sql);
-    $row = $result->fetch_assoc(); 
+    $row = $result->fetch_assoc();
+    $row['op'] = "op_update"; 
+  }else{
+    $row['op'] = "op_insert";
   }
+
   $row['sn'] = isset($row['sn']) ? $row['sn'] : "";
   $row['kind_sn'] = isset($row['kind_sn']) ? $row['kind_sn'] : "1";
   $row['title'] = isset($row['title']) ? $row['title'] : "";
