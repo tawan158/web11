@@ -123,6 +123,11 @@
                     <div class="form-group">
                         <label>圖片</label>
                         <input type="file" class="form-control" name="prod" id="prod">
+                        <label class="mt-1">
+                            <{if $row.prod}>
+                                <img src="<{$row.prod}>" alt="<{$row.title}>" class="img-fluid">
+                            <{/if}>
+                        </label>
                     </div>
                 </div> 
             </div>

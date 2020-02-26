@@ -130,6 +130,22 @@ function op_insert($sn=""){
 
 }
 
+function getFilesByKindColsnSort($kind,$col_sn,$sort=1,$url=true){
+    global $db; 
+    $sql="SELECT *
+                 FROM `files`
+                 WHERE `kind` = '{$kind}' AND `col_sn` = '{$col_sn}' AND `sort` = '{$sort}'
+    ";     
+    $result = $db->query($sql) or die($db->error() . $sql);
+    $row = $result->fetch_assoc();
+    if($url){
+        $file_name = _WEB_URL . "/uploads" . $row['sub_dir'] . "/" . $row['name'];
+    }else{
+        $file_name = _WEB_PATH . "/uploads" . $row['sub_dir'] . "/" . $row['name'];
+    }
+    return $file_name;
+}
+
 function op_form($sn=""){
   global $smarty,$db;
 
@@ -141,9 +157,11 @@ function op_form($sn=""){
     
     $result = $db->query($sql) or die($db->error() . $sql);
     $row = $result->fetch_assoc();
-    $row['op'] = "op_update"; 
+    $row['op'] = "op_update";
+    $row['prod'] = getFilesByKindColsnSort("prod",$sn);
   }else{
     $row['op'] = "op_insert";
+    $row['prod'] = "";
   }
 
   $row['sn'] = isset($row['sn']) ? $row['sn'] : "";
