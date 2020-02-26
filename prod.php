@@ -56,7 +56,10 @@ function op_insert($sn=""){
   $_POST['content'] = db_filter($_POST['content'], '');
   $_POST['price'] = db_filter($_POST['price'], '');
   $_POST['enable'] = db_filter($_POST['enable'], '');
+
   $_POST['date'] = db_filter($_POST['date'], '');
+  $_POST['date'] = strtotime($_POST['date']);
+
   $_POST['sort'] = db_filter($_POST['sort'], '');  
   $_POST['counter'] = db_filter($_POST['counter'], '');
 
@@ -70,21 +73,39 @@ function op_insert($sn=""){
     "; //die($sql);
     $db->query($sql) or die($db->error() . $sql);
     $sn = $db->insert_id;
-
+    $msg = "商品資料新增成功";    
 
   }
+  if($_FILES['prod']['name']){
+    if ($_FILES['prod']['error'] === UPLOAD_ERR_OK){
+        echo '檔案名稱: ' . $_FILES['prod']['name'] . '<br/>';
+        echo '檔案類型: ' . $_FILES['prod']['type'] . '<br/>';
+        echo '檔案大小: ' . ($_FILES['prod']['size']) . ' <br/>';
+        echo '暫存名稱: ' . $_FILES['prod']['tmp_name'] . '<br/>';
+        
+        die();
 
-  $sql="UPDATE `prods` SET
-        `uname` = '{$_POST['uname']}',
-        {$and_col}
-        `name` = '{$_POST['name']}',
-        `tel` = '{$_POST['tel']}',
-        `email` = '{$_POST['email']}',
-        `kind` = '{$_POST['kind']}'
-        WHERE `sn` = '{$sn}';  
-  ";//die($sql);
-  $db->query($sql) or die($db->error() . $sql);
-  return "會員資料更新成功";
+        # 檢查檔案是否已經存在
+        if (file_exists('uploads/' . $_FILES['prod']['name'][$i])){
+        echo '檔案已存在。<br/>';
+        } else {
+        $file = $_FILES['prod']['tmp_name'][$i];
+        $dest = 'uploads/' . $_FILES['prod']['name'][$i];
+
+        # 將檔案移至指定位置
+        move_uploaded_file($file, $dest);
+        }
+    } else {
+        echo '錯誤代碼：' . $_FILES['prod']['error'] . '<br/>';
+    }
+  }
+  
+
+
+
+
+
+  return $msg;
 
 }
 
