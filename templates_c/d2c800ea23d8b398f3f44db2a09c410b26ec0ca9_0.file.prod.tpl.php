@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-26 03:39:21
+/* Smarty version 3.1.34-dev-7, created on 2020-02-26 03:52:16
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\prod.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e55da5912cab4_07533119',
+  'unifunc' => 'content_5e55dd604de365_05946522',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd2c800ea23d8b398f3f44db2a09c410b26ec0ca9' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\prod.tpl',
-      1 => 1582683774,
+      1 => 1582685522,
       2 => 'file',
     ),
   ),
@@ -20,17 +20,17 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e55da5912cab4_07533119 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e55dd604de365_05946522 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
-        <tr>
-            <th scope="col">帳號</th>
-            <th scope="col">姓名</th>
-            <th scope="col">電話</th>
-            <th scope="col">EMAIL</th>
+        <tr> 
+            <th scope="col">標題</th>
+            <th scope="col">分類</th>
+            <th scope="col">價格</th>
             <th scope="col">狀態</th>
-            <th scope="col">功能</th>
+            <th scope="col">計數</th>
+            <th scope="col">新增</th>
         </tr>
         </thead>
         <tbody>
@@ -40,19 +40,19 @@ if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
 ?>
                 <tr>
-                    <td><?php echo $_smarty_tpl->tpl_vars['row']->value['uname'];?>
+                    <td><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
 </td>
-                    <td><?php echo $_smarty_tpl->tpl_vars['row']->value['name'];?>
+                    <td><?php echo $_smarty_tpl->tpl_vars['row']->value['kind_sn'];?>
 </td>
-                    <td><?php echo $_smarty_tpl->tpl_vars['row']->value['tel'];?>
+                    <td><?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
 </td>
-                    <td><?php echo $_smarty_tpl->tpl_vars['row']->value['email'];?>
+                    <td><?php if ($_smarty_tpl->tpl_vars['row']->value['enable']) {?><i class="fas fa-user-check"></i><?php }?></td>
+                    <td><?php echo $_smarty_tpl->tpl_vars['row']->value['counter'];?>
 </td>
-                    <td><?php if ($_smarty_tpl->tpl_vars['row']->value['kind']) {?><i class="fas fa-user-check"></i><?php }?></td>
                     <td>
-                        <a href="user.php?op=op_form&uid=<?php echo $_smarty_tpl->tpl_vars['row']->value['uid'];?>
+                        <a href="?op=op_form&sn=<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
 "><i class="far fa-edit"></i></a>
-                        <a href="javascript:void(0)" onclick="op_delete(<?php echo $_smarty_tpl->tpl_vars['row']->value['uid'];?>
+                        <a href="javascript:void(0)" onclick="op_delete(<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
 );"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>

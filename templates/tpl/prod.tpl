@@ -1,26 +1,26 @@
 <{if $op=="op_list"}>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
-        <tr>
-            <th scope="col">帳號</th>
-            <th scope="col">姓名</th>
-            <th scope="col">電話</th>
-            <th scope="col">EMAIL</th>
+        <tr> 
+            <th scope="col">標題</th>
+            <th scope="col">分類</th>
+            <th scope="col">價格</th>
             <th scope="col">狀態</th>
-            <th scope="col">功能</th>
+            <th scope="col">計數</th>
+            <th scope="col">新增</th>
         </tr>
         </thead>
         <tbody>
             <{foreach $rows as $row}>
                 <tr>
-                    <td><{$row.uname}></td>
-                    <td><{$row.name}></td>
-                    <td><{$row.tel}></td>
-                    <td><{$row.email}></td>
-                    <td><{if $row.kind}><i class="fas fa-user-check"></i><{/if}></td>
+                    <td><{$row.title}></td>
+                    <td><{$row.kind_sn}></td>
+                    <td><{$row.price}></td>
+                    <td><{if $row.enable}><i class="fas fa-user-check"></i><{/if}></td>
+                    <td><{$row.counter}></td>
                     <td>
-                        <a href="user.php?op=op_form&uid=<{$row.uid}>"><i class="far fa-edit"></i></a>
-                        <a href="javascript:void(0)" onclick="op_delete(<{$row.uid}>);"><i class="far fa-trash-alt"></i></a>
+                        <a href="?op=op_form&sn=<{$row.sn}>"><i class="far fa-edit"></i></a>
+                        <a href="javascript:void(0)" onclick="op_delete(<{$row.sn}>);"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
             <{foreachelse}>

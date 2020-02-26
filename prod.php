@@ -6,7 +6,7 @@ if($_SESSION['user']['kind'] !== 1)redirect_header("index.php", '您沒有權限
 
 /* 過濾變數，設定預設值 */
 $op = system_CleanVars($_REQUEST, 'op', 'op_list', 'string');
-$uid = system_CleanVars($_REQUEST, 'uid', '', 'int');
+$sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
 // echo $op;die();
  
 /* 程式流程 */
@@ -105,18 +105,17 @@ function op_list(){
   global $smarty,$db;
   
   $sql = "SELECT *
-          FROM `users`
+          FROM `prods`
   ";//die($sql);
 
   $result = $db->query($sql) or die($db->error() . $sql);
   $rows=[];//array();
   while($row = $result->fetch_assoc()){
-    $row['uname'] = htmlspecialchars($row['uname']);//字串
-    $row['uid'] = (int)$row['uid'];//整數
-    $row['kind'] = (int)$row['kind'];//整數
-    $row['name'] = htmlspecialchars($row['name']);//字串
-    $row['tel'] = htmlspecialchars($row['tel']);//字串
-    $row['email'] = htmlspecialchars($row['email']);//字串    
+    $row['title'] = htmlspecialchars($row['title']);//標題
+    $row['kind_sn'] = (int)$row['kind_sn'];//分類
+    $row['price'] = (int)$row['price'];//價格
+    $row['enable'] = (int)$row['enable'];//狀態
+    $row['counter'] = (int)$row['counter'];//計數  
     $rows[] = $row;
   }
   $smarty->assign("rows",$rows);  
