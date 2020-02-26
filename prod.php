@@ -101,7 +101,7 @@ function op_form($sn=""){
   $row['price'] = isset($row['price']) ? $row['price'] : "";
   $row['enable'] = isset($row['enable']) ? $row['enable'] : "1";
   
-  $row['date'] = isset($row['date']) ? $row['date'] : date("Y-m-d H:i:s",strtotime("now"));
+  $row['date'] = isset($row['date']) ? date("Y-m-d H:i:s",strtotime($row['date'])) : date("Y-m-d H:i:s",strtotime("now"));
   $row['sort'] = isset($row['sort']) ? $row['sort'] : "";
   $row['counter'] = isset($row['counter']) ? $row['counter'] : "";
 

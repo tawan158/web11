@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-26 06:11:45
+/* Smarty version 3.1.34-dev-7, created on 2020-02-26 14:16:30
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\prod.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e55fe1105ede1_37536817',
+  'unifunc' => 'content_5e560d3e7f8934_85358751',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd2c800ea23d8b398f3f44db2a09c410b26ec0ca9' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\prod.tpl',
-      1 => 1582693901,
+      1 => 1582697783,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e55fe1105ede1_37536817 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e560d3e7f8934_85358751 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
@@ -149,7 +149,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                     <div class="form-group">
                         <label>建立日期<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="date" id="date" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['date'];?>
-">
+" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
                     </div>
                 </div>             
                 <!--排序-->              
@@ -166,6 +166,13 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                         <label>計數<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="counter" id="counter" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['counter'];?>
 ">
+                    </div>
+                </div>             
+                <!--圖片-->              
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>圖片</label>
+                        <input type="file"" class="form-control" name="prod" id="prod">
                     </div>
                 </div> 
             </div>
@@ -245,6 +252,11 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
 
             });
         <?php echo '</script'; ?>
+>
+
+        <?php echo '<script'; ?>
+ type='text/javascript' src='<?php echo $_smarty_tpl->tpl_vars['xoAppUrl']->value;?>
+class/My97DatePicker/WdatePicker.js'><?php echo '</script'; ?>
 >
         
     </div>

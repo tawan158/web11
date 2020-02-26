@@ -101,7 +101,7 @@
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label>建立日期<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="date" id="date" value="<{$row.date}>">
+                        <input type="text" class="form-control" name="date" id="date" value="<{$row.date}>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
                     </div>
                 </div>             
                 <!--排序-->              
@@ -116,6 +116,13 @@
                     <div class="form-group">
                         <label>計數<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="counter" id="counter" value="<{$row.counter}>">
+                    </div>
+                </div>             
+                <!--圖片-->              
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>圖片</label>
+                        <input type="file" class="form-control" name="prod" id="prod">
                     </div>
                 </div> 
             </div>
@@ -189,6 +196,8 @@
 
             });
         </script>
+
+        <script type='text/javascript' src='<{$xoAppUrl}>class/My97DatePicker/WdatePicker.js'></script>
         
     </div>
 
