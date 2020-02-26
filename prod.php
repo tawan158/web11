@@ -12,17 +12,17 @@ $sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
 /* 程式流程 */
 switch ($op){
   case "op_delete" :
-    $msg = op_delete($uid);
+    $msg = op_delete($sn);
     redirect_header("user.php", $msg, 3000);
     exit;
 
   case "op_update" :
-    $msg = op_update($uid);
+    $msg = op_update($sn);
     redirect_header("user.php", $msg, 3000);
     exit;
 
   case "op_form" :
-    $msg = op_form($uid);
+    $msg = op_form($sn);
     break;
  
   default:
@@ -38,16 +38,16 @@ $smarty->assign("op", $op);
 $smarty->display('admin.tpl');
  
 /*---- 函數區-----*/
-function op_delete($uid){
+function op_delete($sn){
   global $db; 
-  $sql="DELETE FROM `users`
-        WHERE `uid` = '{$uid}'
+  $sql="DELETE FROM `prods`
+        WHERE `sn` = '{$sn}'
   ";
   $db->query($sql) or die($db->error() . $sql);
   return "會員資料刪除成功";
 }
 
-function op_update($uid=""){
+function op_update($sn=""){
   global $db; 
    
   $_POST['uname'] = db_filter($_POST['uname'], '帳號');
@@ -64,38 +64,41 @@ function op_update($uid=""){
     $and_col = "`pass` = '{$_POST['pass']}',";
   }
 
-  $sql="UPDATE `users` SET
+  $sql="UPDATE `prods` SET
         `uname` = '{$_POST['uname']}',
         {$and_col}
         `name` = '{$_POST['name']}',
         `tel` = '{$_POST['tel']}',
         `email` = '{$_POST['email']}',
         `kind` = '{$_POST['kind']}'
-        WHERE `uid` = '{$uid}';  
+        WHERE `sn` = '{$sn}';  
   ";//die($sql);
   $db->query($sql) or die($db->error() . $sql);
   return "會員資料更新成功";
 
 }
 
-function op_form($uid=""){
+function op_form($sn=""){
   global $smarty,$db;
 
-  if($uid){
+  if($sn){
     $sql="SELECT *
-          FROM `users`
-          WHERE `uid` = '{$uid}'
+          FROM `prods`
+          WHERE `sn` = '{$sn}'
     ";//die($sql);
     
     $result = $db->query($sql) or die($db->error() . $sql);
     $row = $result->fetch_assoc(); 
   }
-  $row['uid'] = isset($row['uid']) ? $row['uid'] : "";
-  $row['uname'] = isset($row['uname']) ? $row['uname'] : "";
-  $row['name'] = isset($row['name']) ? $row['name'] : "";
-  $row['tel'] = isset($row['tel']) ? $row['tel'] : "";
-  $row['email'] = isset($row['email']) ? $row['email'] : "";
-  $row['kind'] = isset($row['kind']) ? $row['kind'] : "0";
+  $row['sn'] = isset($row['sn']) ? $row['sn'] : "";
+  $row['kind_sn'] = isset($row['kind_sn']) ? $row['kind_sn'] : "1";
+  $row['title'] = isset($row['title']) ? $row['title'] : "";
+  $row['content'] = isset($row['content']) ? $row['content'] : "";
+  $row['price'] = isset($row['price']) ? $row['price'] : "";
+  $row['enable'] = isset($row['enable']) ? $row['enable'] : "1";
+  $row['date'] = isset($row['date']) ? $row['date'] : "";
+  $row['sort'] = isset($row['sort']) ? $row['sort'] : "";
+  $row['counter'] = isset($row['counter']) ? $row['counter'] : "";
 
   $smarty->assign("row",$row);
 }
