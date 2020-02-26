@@ -16,9 +16,9 @@ switch ($op){
     redirect_header("user.php", $msg, 3000);
     exit;
 
-  case "op_update" :
-    $msg = op_update($sn);
-    redirect_header("user.php", $msg, 3000);
+  case "op_insert" :
+    $msg = op_insert();
+    redirect_header("prod.php", $msg, 3000);
     exit;
 
   case "op_form" :
@@ -47,21 +47,31 @@ function op_delete($sn){
   return "會員資料刪除成功";
 }
 
-function op_update($sn=""){
-  global $db; 
-   
-  $_POST['uname'] = db_filter($_POST['uname'], '帳號');
-  $_POST['pass'] = db_filter($_POST['pass'], '');//密碼
-  $_POST['name'] = db_filter($_POST['name'], '姓名');
-  $_POST['tel'] = db_filter($_POST['tel'], '電話');
-  $_POST['email'] = db_filter($_POST['email'], 'email',FILTER_SANITIZE_EMAIL);
-  $_POST['kind'] = db_filter($_POST['kind'], '會員狀態');
-  
-  $and_col = "";
-  if($_POST['pass']){    
-    $_POST['pass']  = password_hash($_POST['pass'], PASSWORD_DEFAULT);
-    //更新密碼
-    $and_col = "`pass` = '{$_POST['pass']}',";
+function op_insert($sn=""){
+  global $db;						 
+ 
+  $_POST['sn'] = db_filter($_POST['sn'], '');//流水號
+  $_POST['kind_sn'] = db_filter($_POST['kind_sn'], '');//類別
+  $_POST['title'] = db_filter($_POST['title'], '標題');//標題
+  $_POST['content'] = db_filter($_POST['content'], '');
+  $_POST['price'] = db_filter($_POST['price'], '');
+  $_POST['enable'] = db_filter($_POST['enable'], '');
+  $_POST['date'] = db_filter($_POST['date'], '');
+  $_POST['sort'] = db_filter($_POST['sort'], '');  
+  $_POST['counter'] = db_filter($_POST['counter'], '');
+
+  if($sn){
+
+  }else{
+    $sql="INSERT INTO `prods` 
+    (`kind_sn`, `title`, `content`, `price`, `enable`, `date`, `sort`, `counter`)
+    VALUES 
+    ('{$_POST['kind_sn']}', '{$_POST['title']}', '{$_POST['content']}', '{$_POST['price']}', '{$_POST['enable']}', '{$_POST['date']}', '{$_POST['sort']}', '{$_POST['counter']}')    
+    "; //die($sql);
+    $db->query($sql) or die($db->error() . $sql);
+    $sn = $db->insert_id;
+
+
   }
 
   $sql="UPDATE `prods` SET

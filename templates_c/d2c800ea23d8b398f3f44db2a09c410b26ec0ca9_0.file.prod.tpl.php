@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-26 14:16:30
+/* Smarty version 3.1.34-dev-7, created on 2020-02-26 14:34:14
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\prod.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e560d3e7f8934_85358751',
+  'unifunc' => 'content_5e561166dc4174_92022709',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd2c800ea23d8b398f3f44db2a09c410b26ec0ca9' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\prod.tpl',
-      1 => 1582697783,
+      1 => 1582698154,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e560d3e7f8934_85358751 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e561166dc4174_92022709 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
@@ -139,7 +139,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                 <!--價格-->              
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label>價格<span class="text-danger">*</span></label>
+                        <label>價格</label>
                         <input type="text" class="form-control" name="price" id="price" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
 ">
                     </div>
@@ -147,7 +147,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                 <!--建立日期-->              
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label>建立日期<span class="text-danger">*</span></label>
+                        <label>建立日期</label>
                         <input type="text" class="form-control" name="date" id="date" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['date'];?>
 " onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
                     </div>
@@ -155,7 +155,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                 <!--排序-->              
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label>排序<span class="text-danger">*</span></label>
+                        <label>排序</label>
                         <input type="text" class="form-control" name="sort" id="sort" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['sort'];?>
 ">
                     </div>
@@ -163,7 +163,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                 <!--計數-->              
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label>計數<span class="text-danger">*</span></label>
+                        <label>計數</label>
                         <input type="text" class="form-control" name="counter" id="counter" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['counter'];?>
 ">
                     </div>
@@ -172,7 +172,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label>圖片</label>
-                        <input type="file"" class="form-control" name="prod" id="prod">
+                        <input type="file" class="form-control" name="prod" id="prod">
                     </div>
                 </div> 
             </div>
@@ -210,45 +210,22 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
         <?php echo '<script'; ?>
 >
             $(function(){
+                $("#myForm").validate({
+                    submitHandler: function(form) {
+                        form.submit();
+                    },
+                    rules: {
+                        'title' : {
+                            required: true
+                        }
+                    },
+                    messages: {
+                        'title' : {
+                            required: "必填"
+                        }
 
-            });
-            $(function(){
-            $("#myForm").validate({
-                submitHandler: function(form) {
-                    form.submit();
-                },
-                rules: {
-                    'uname' : {
-                        required: true
-                    },
-                    'name' : {
-                        required: true
-                    },
-                    'tel' : {
-                        required: true
-                    },
-                    'email' : {
-                        required: true,
-                        email:true
                     }
-                },
-                messages: {
-                    'uname' : {
-                        required: "必填"
-                    },
-                    'name' : {
-                        required: "必填"
-                    },
-                    'tel' : {
-                        required: "必填"
-                    },
-                    'email' : {
-                        required: "必填",
-                        email: "請填正確email"
-                    }
-
-                }
-            });
+                });
 
             });
         <?php echo '</script'; ?>

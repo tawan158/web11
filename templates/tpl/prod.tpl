@@ -93,28 +93,28 @@
                 <!--價格-->              
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label>價格<span class="text-danger">*</span></label>
+                        <label>價格</label>
                         <input type="text" class="form-control" name="price" id="price" value="<{$row.price}>">
                     </div>
                 </div>         
                 <!--建立日期-->              
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label>建立日期<span class="text-danger">*</span></label>
+                        <label>建立日期</label>
                         <input type="text" class="form-control" name="date" id="date" value="<{$row.date}>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
                     </div>
                 </div>             
                 <!--排序-->              
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label>排序<span class="text-danger">*</span></label>
+                        <label>排序</label>
                         <input type="text" class="form-control" name="sort" id="sort" value="<{$row.sort}>">
                     </div>
                 </div>            
                 <!--計數-->              
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label>計數<span class="text-danger">*</span></label>
+                        <label>計數</label>
                         <input type="text" class="form-control" name="counter" id="counter" value="<{$row.counter}>">
                     </div>
                 </div>             
@@ -154,45 +154,22 @@
         </style>
         <script>
             $(function(){
+                $("#myForm").validate({
+                    submitHandler: function(form) {
+                        form.submit();
+                    },
+                    rules: {
+                        'title' : {
+                            required: true
+                        }
+                    },
+                    messages: {
+                        'title' : {
+                            required: "必填"
+                        }
 
-            });
-            $(function(){
-            $("#myForm").validate({
-                submitHandler: function(form) {
-                    form.submit();
-                },
-                rules: {
-                    'uname' : {
-                        required: true
-                    },
-                    'name' : {
-                        required: true
-                    },
-                    'tel' : {
-                        required: true
-                    },
-                    'email' : {
-                        required: true,
-                        email:true
                     }
-                },
-                messages: {
-                    'uname' : {
-                        required: "必填"
-                    },
-                    'name' : {
-                        required: "必填"
-                    },
-                    'tel' : {
-                        required: "必填"
-                    },
-                    'email' : {
-                        required: "必填",
-                        email: "請填正確email"
-                    }
-
-                }
-            });
+                });
 
             });
         </script>
