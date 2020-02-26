@@ -63,7 +63,7 @@
         <h1 class="text-center">商品管理表單</h1>
         
         <form action="prod.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
-            <!-- sn	 title	content	price		date	sort	counter -->
+            <!-- 	 						 -->
             <div class="row">         
                 <!--標題-->              
                 <div class="col-sm-4">
@@ -82,35 +82,52 @@
                 <!-- 商品狀態  -->
                 <div class="col-sm-4">
                     <div class="form-group">
-                    <label style="display:block;">商品狀態</label>
-                    <input type="radio" name="enable" id="enable_1" value="1" <{if $row.enable=='1'}>checked<{/if}>>
-                    <label for="enable_1" style="display:inline;">啟用</label>&nbsp;&nbsp;
-                    <input type="radio" name="enable" id="enable_0" value="0" <{if $row.enable=='0'}>checked<{/if}>>
-                    <label for="enable_0" style="display:inline;">停用</label>
+                        <label style="display:block;">商品狀態</label>
+                        <input type="radio" name="enable" id="enable_1" value="1" <{if $row.enable=='1'}>checked<{/if}>>
+                        <label for="enable_1" style="display:inline;">啟用</label>&nbsp;&nbsp;
+                        <input type="radio" name="enable" id="enable_0" value="0" <{if $row.enable=='0'}>checked<{/if}>>
+                        <label for="enable_0" style="display:inline;">停用</label>
                     </div>
                 </div>  
 
-                <!--姓名-->              
-                <div class="col-sm-6">
+                <!--價格-->              
+                <div class="col-sm-3">
                     <div class="form-group">
-                    <label>姓名<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="name" id="name" value="<{$row.name}>">
+                        <label>價格<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="price" id="price" value="<{$row.price}>">
                     </div>
                 </div>         
-                <!--電話-->              
-                <div class="col-sm-6">
+                <!--建立日期-->              
+                <div class="col-sm-3">
                     <div class="form-group">
-                    <label>電話<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="tel" id="tel" value="<{$row.tel}>">
+                        <label>建立日期<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="date" id="date" value="<{$row.date}>">
                     </div>
                 </div>             
-                <!--信箱-->              
-                <div class="col-sm-12">
+                <!--排序-->              
+                <div class="col-sm-3">
                     <div class="form-group">
-                    <label>信箱<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="email" id="email" value="<{$row.email}>">
+                        <label>排序<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="sort" id="sort" value="<{$row.sort}>">
+                    </div>
+                </div>            
+                <!--計數-->              
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>計數<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="counter" id="counter" value="<{$row.counter}>">
                     </div>
                 </div> 
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-12">  
+                    <!-- 商品內容 -->
+                    <div class="form-group">
+                        <label class="control-label">商品內容</label>
+                        <textarea class="form-control" rows="5" id="content" name="content"><{$row.content}></textarea>
+                    </div>
+                </div>
             </div>
 
             <div class="text-center pb-20">

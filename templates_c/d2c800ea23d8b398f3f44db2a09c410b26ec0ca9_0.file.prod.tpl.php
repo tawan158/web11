@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-26 04:57:07
+/* Smarty version 3.1.34-dev-7, created on 2020-02-26 06:11:45
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\prod.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e55ec9370f9a5_26764298',
+  'unifunc' => 'content_5e55fe1105ede1_37536817',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd2c800ea23d8b398f3f44db2a09c410b26ec0ca9' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\prod.tpl',
-      1 => 1582689422,
+      1 => 1582693901,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e55ec9370f9a5_26764298 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e55fe1105ede1_37536817 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
@@ -107,7 +107,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
         <h1 class="text-center">商品管理表單</h1>
         
         <form action="prod.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
-            <!-- sn	 title	content	price		date	sort	counter -->
+            <!-- 	 						 -->
             <div class="row">         
                 <!--標題-->              
                 <div class="col-sm-4">
@@ -128,38 +128,57 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                 <!-- 商品狀態  -->
                 <div class="col-sm-4">
                     <div class="form-group">
-                    <label style="display:block;">商品狀態</label>
-                    <input type="radio" name="enable" id="enable_1" value="1" <?php if ($_smarty_tpl->tpl_vars['row']->value['enable'] == '1') {?>checked<?php }?>>
-                    <label for="enable_1" style="display:inline;">啟用</label>&nbsp;&nbsp;
-                    <input type="radio" name="enable" id="enable_0" value="0" <?php if ($_smarty_tpl->tpl_vars['row']->value['enable'] == '0') {?>checked<?php }?>>
-                    <label for="enable_0" style="display:inline;">停用</label>
+                        <label style="display:block;">商品狀態</label>
+                        <input type="radio" name="enable" id="enable_1" value="1" <?php if ($_smarty_tpl->tpl_vars['row']->value['enable'] == '1') {?>checked<?php }?>>
+                        <label for="enable_1" style="display:inline;">啟用</label>&nbsp;&nbsp;
+                        <input type="radio" name="enable" id="enable_0" value="0" <?php if ($_smarty_tpl->tpl_vars['row']->value['enable'] == '0') {?>checked<?php }?>>
+                        <label for="enable_0" style="display:inline;">停用</label>
                     </div>
                 </div>  
 
-                <!--姓名-->              
-                <div class="col-sm-6">
+                <!--價格-->              
+                <div class="col-sm-3">
                     <div class="form-group">
-                    <label>姓名<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="name" id="name" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['name'];?>
+                        <label>價格<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="price" id="price" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
 ">
                     </div>
                 </div>         
-                <!--電話-->              
-                <div class="col-sm-6">
+                <!--建立日期-->              
+                <div class="col-sm-3">
                     <div class="form-group">
-                    <label>電話<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="tel" id="tel" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['tel'];?>
+                        <label>建立日期<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="date" id="date" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['date'];?>
 ">
                     </div>
                 </div>             
-                <!--信箱-->              
-                <div class="col-sm-12">
+                <!--排序-->              
+                <div class="col-sm-3">
                     <div class="form-group">
-                    <label>信箱<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="email" id="email" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['email'];?>
+                        <label>排序<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="sort" id="sort" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['sort'];?>
+">
+                    </div>
+                </div>            
+                <!--計數-->              
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>計數<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="counter" id="counter" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['counter'];?>
 ">
                     </div>
                 </div> 
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-12">  
+                    <!-- 商品內容 -->
+                    <div class="form-group">
+                        <label class="control-label">商品內容</label>
+                        <textarea class="form-control" rows="5" id="content" name="content"><?php echo $_smarty_tpl->tpl_vars['row']->value['content'];?>
+</textarea>
+                    </div>
+                </div>
             </div>
 
             <div class="text-center pb-20">
