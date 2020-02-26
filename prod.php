@@ -76,27 +76,36 @@ function op_insert($sn=""){
     $msg = "商品資料新增成功";    
 
   }
+  
   if($_FILES['prod']['name']){
     if ($_FILES['prod']['error'] === UPLOAD_ERR_OK){
-        echo '檔案名稱: ' . $_FILES['prod']['name'] . '<br/>';
-        echo '檔案類型: ' . $_FILES['prod']['type'] . '<br/>';
-        echo '檔案大小: ' . ($_FILES['prod']['size']) . ' <br/>';
-        echo '暫存名稱: ' . $_FILES['prod']['tmp_name'] . '<br/>';
         
-        die();
+        $kind = "prod";
+        $sub_dir = "/".$kind;
+        #過濾變數
+        $_FILES['prod']['name'] = db_filter($_FILES['prod']['name'], '');
+        $_FILES['prod']['type'] = db_filter($_FILES['prod']['type'], '');
+        $_FILES['prod']['size'] = db_filter($_FILES['prod']['size'], '');
+        #檢查資料目錄
+        mk_dir(_WEB_PATH . "/uploads");
+        mk_dir(_WEB_PATH . "/uploads" . $sub_dir);
+        $path = _WEB_PATH . "/uploads" . $sub_dir . "/";
+        #圖片名稱
+        $rand = substr(md5(uniqid(mt_rand(), 1)), 0, 5);//取得一個5碼亂數
+        
+        #//取得上傳檔案的副檔名
+        $ext = pathinfo($_FILES["prod"]["name"], PATHINFO_EXTENSION); 
+        $ext = strtolower($ext);//轉小寫
 
-        # 檢查檔案是否已經存在
-        if (file_exists('uploads/' . $_FILES['prod']['name'][$i])){
-        echo '檔案已存在。<br/>';
-        } else {
-        $file = $_FILES['prod']['tmp_name'][$i];
-        $dest = 'uploads/' . $_FILES['prod']['name'][$i];
+        $file_name = $rand . "_" . $sn . "." . $ext; 
+        #圖片目錄
 
         # 將檔案移至指定位置
-        move_uploaded_file($file, $dest);
-        }
+        move_uploaded_file($_FILES['prod']['tmp_name'], $path . $file_name);
+
+
     } else {
-        echo '錯誤代碼：' . $_FILES['prod']['error'] . '<br/>';
+        die("圖片上傳失敗");
     }
   }
   
