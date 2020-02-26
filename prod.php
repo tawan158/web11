@@ -76,12 +76,13 @@ function op_insert($sn=""){
     $msg = "商品資料新增成功";    
 
   }
-  
+
   if($_FILES['prod']['name']){
     if ($_FILES['prod']['error'] === UPLOAD_ERR_OK){
         
         $kind = "prod";
         $sub_dir = "/".$kind;
+        $sort = 1;
         #過濾變數
         $_FILES['prod']['name'] = db_filter($_FILES['prod']['name'], '');
         $_FILES['prod']['type'] = db_filter($_FILES['prod']['type'], '');
@@ -96,23 +97,34 @@ function op_insert($sn=""){
         #//取得上傳檔案的副檔名
         $ext = pathinfo($_FILES["prod"]["name"], PATHINFO_EXTENSION); 
         $ext = strtolower($ext);//轉小寫
+        
+        //判斷檔案種類
+        if ($ext == "jpg" or $ext == "jpeg" or $ext == "png" or $ext == "gif") {
+            $file_kind = "img";
+        } else {
+            $file_kind = "file";
+        }     
 
         $file_name = $rand . "_" . $sn . "." . $ext; 
         #圖片目錄
 
         # 將檔案移至指定位置
-        move_uploaded_file($_FILES['prod']['tmp_name'], $path . $file_name);
+        if(move_uploaded_file($_FILES['prod']['tmp_name'], $path . $file_name)){
+            $sql="INSERT INTO `files` 
+                              (`kind`, `col_sn`, `sort`, `file_kind`, `file_name`, `file_type`, `file_size`, `description`, `counter`, `name`, `download_name`, `sub_dir`) 
+                              VALUES 
+                              ('{$kind}', '{$sn}', '{$sort}', '{$file_kind}', '{$_FILES['prod']['name']}', '{$_FILES['prod']['type']}', '{$_FILES['prod']['size']}', NULL, '0', '{$file_name}', '', '{$sub_dir}')
+            
+            ";
+            $db->query($sql) or die($db->error() . $sql);
+
+        }
 
 
     } else {
         die("圖片上傳失敗");
     }
   }
-  
-
-
-
-
 
   return $msg;
 
