@@ -4,10 +4,12 @@
         <tr> 
             <th scope="col">標題</th>
             <th scope="col">分類</th>
-            <th scope="col">價格</th>
-            <th scope="col">狀態</th>
-            <th scope="col">計數</th>
-            <th scope="col">新增</th>
+            <th scope="col" class="text-right">價格</th>
+            <th scope="col" class="text-center">狀態</th>
+            <th scope="col" class="text-center">計數</th>
+            <th scope="col" class="text-center">
+                <a href="?op=op_form"><i class="fas fa-plus-square"></i>新增</a>
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -15,10 +17,10 @@
                 <tr>
                     <td><{$row.title}></td>
                     <td><{$row.kind_sn}></td>
-                    <td><{$row.price}></td>
-                    <td><{if $row.enable}><i class="fas fa-user-check"></i><{/if}></td>
-                    <td><{$row.counter}></td>
-                    <td>
+                    <td class="text-right"><{$row.price}></td>
+                    <td class="text-center"><{if $row.enable}><i class="fas fa-check"></i><{/if}></td>
+                    <td class="text-center"><{$row.counter}></td>
+                    <td class="text-center">
                         <a href="?op=op_form&sn=<{$row.sn}>"><i class="far fa-edit"></i></a>
                         <a href="javascript:void(0)" onclick="op_delete(<{$row.sn}>);"><i class="far fa-trash-alt"></i></a>
                     </td>
