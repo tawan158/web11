@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-27 13:47:03
-  from 'D:\ugm\xampp\htdocs\web11\templates\tpl\prod.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2020-02-27 13:48:17
+  from 'D:\ugm\xampp\htdocs\web11\templates\tpl\kind.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5757d782a575_88725061',
+  'unifunc' => 'content_5e575821dfda40_23574064',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'd2c800ea23d8b398f3f44db2a09c410b26ec0ca9' => 
+    '04d7decec3abf2d8bbcc4eb4e029928389f99ca9' => 
     array (
-      0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\prod.tpl',
+      0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\kind.tpl',
       1 => 1582781777,
       2 => 'file',
     ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5757d782a575_88725061 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e575821dfda40_23574064 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>

@@ -26,8 +26,10 @@ if($WEB['file_name'] == "index.php"){
   $WEB['web_title'] = "會員管理";
 }elseif($WEB['file_name'] == "prod.php"){
   $WEB['web_title'] = "商品管理";
+}elseif($WEB['file_name'] == "kind.php"){
+  $WEB['web_title'] = "類別管理";
 }else{
-  $WEB['web_title'] = "";
+  $WEB['web_title'] = "";//
 }
 //basename(__FILE__)head.php
 #--------- WEB END -----
