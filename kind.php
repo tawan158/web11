@@ -119,6 +119,9 @@ function getKindsBySn($sn){
 
 }
 
+/*================================
+  用kind 取得數量的最大值
+================================*/
 function getKindMaxSortByKind($kind){
   global $db;
   $sql = "SELECT count(*)+1 as count
@@ -142,7 +145,7 @@ function op_form($kind,$sn=""){
   }
 
   $row['sn'] = isset($row['sn']) ? $row['sn'] : "";
-  $row['kind'] = isset($row['kind']) ? $row['kind'] : "";
+  $row['kind'] = isset($row['kind']) ? $row['kind'] : $kind;
   $row['title'] = isset($row['title']) ? $row['title'] : "";
   $row['enable'] = isset($row['enable']) ? $row['enable'] : "1";
   $row['sort'] = isset($row['sort']) ? $row['sort'] : getKindMaxSortByKind($kind);

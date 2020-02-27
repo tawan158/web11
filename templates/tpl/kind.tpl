@@ -87,6 +87,7 @@
             <div class="text-center pb-20">
             <input type="hidden" name="op" value="<{$row.op}>">
             <input type="hidden" name="sn" value="<{$row.sn}>">
+            <input type="hidden" name="kind" value="<{$row.kind}>">
             <button type="submit" class="btn btn-primary">送出</button>
             </div>
         
