@@ -51,6 +51,24 @@ function op_delete($sn){
   $db->query($sql) or die($db->error() . $sql);
   return "會員資料刪除成功";
 }
+/*==========================
+  用$kind,$col_sn,$sort
+  刪除 圖片資料
+==========================*/
+function delFilesByKindColsnSort($kind,$col_sn,$sort){
+  global $db;		
+  # 1.刪除實體檔案
+  $file_name = getFilesByKindColsnSort($kind,$col_sn,$sort,false);
+  if($file_name){
+    unlink($file_name);
+  }
+  # 2.刪除files資料表	
+  $sql="DELETE FROM `files`
+        WHERE `kind` = '{$kind}' AND `col_sn` = '{$col_sn}' AND `sort` = '{$sort}'
+  ";
+  $db->query($sql) or die($db->error() . $sql);	
+  return;	 
+}
 
 function op_insert($sn=""){
   global $db;						 
@@ -99,7 +117,7 @@ function op_insert($sn=""){
     #刪除舊圖
     # 1.刪除實體檔案
     # 2.刪除files資料表
-    //delFilesByKindColsnSort($kind,$sn,1);
+    delFilesByKindColsnSort($kind,$sn,1);
      
     if ($_FILES['prod']['error'] === UPLOAD_ERR_OK){
         
