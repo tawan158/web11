@@ -10,7 +10,7 @@
     <!-- Font Awesome Icons -->
     <link href="<{$xoImgUrl}>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
-    <title>會員管理</title>
+    <title><{$WEB.web_title}></title>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="<{$xoImgUrl}>bootstrap/jquery-3.4.1.min.js"></script>
@@ -21,7 +21,7 @@
     <{* 轉向樣板 *}>
     <{include file="tpl/redirect.tpl"}>
 
-    <h1 class="text-center mt-2">育將電腦工作室 後台</h1>
+    <h1 class="text-center mt-2"><{$WEB.web_title}></h1>
     <div class="container">
       <div class="row">
         <div class="col-sm-9">

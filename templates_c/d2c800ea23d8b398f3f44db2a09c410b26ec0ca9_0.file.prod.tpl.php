@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-27 10:55:08
+/* Smarty version 3.1.34-dev-7, created on 2020-02-27 11:35:05
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\prod.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e572f8cb55018_11230918',
+  'unifunc' => 'content_5e5738e91ddb05_91864715',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd2c800ea23d8b398f3f44db2a09c410b26ec0ca9' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\prod.tpl',
-      1 => 1582771918,
+      1 => 1582774501,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e572f8cb55018_11230918 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5738e91ddb05_91864715 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
@@ -103,9 +103,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
 
 <?php if ($_smarty_tpl->tpl_vars['op']->value == "op_form") {?>
     
-    <div class="container">
-        <h1 class="text-center">商品管理表單</h1>
-        
+    <div class="container">        
         <form action="prod.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
             <!-- 	 						 -->
             <div class="row">         

@@ -20,6 +20,15 @@ define('_WEB_URL', $http . $_SERVER["HTTP_HOST"] . str_replace($_SERVER["DOCUMEN
 #--------- WEB -----
 #程式檔名(含副檔名)
 $WEB['file_name'] = basename($_SERVER['PHP_SELF']); //index.php
+if($WEB['file_name'] == "index.php"){
+  $WEB['web_title'] = "育將電腦工作室";
+}elseif($WEB['file_name'] == "user.php"){
+  $WEB['web_title'] = "會員管理";
+}elseif($WEB['file_name'] == "prod.php"){
+  $WEB['web_title'] = "商品管理";
+}else{
+  $WEB['web_title'] = "";
+}
 //basename(__FILE__)head.php
 #--------- WEB END -----
  

@@ -59,9 +59,7 @@
 
 <{if $op=="op_form"}>
     
-    <div class="container">
-        <h1 class="text-center">商品管理表單</h1>
-        
+    <div class="container">        
         <form action="prod.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
             <!-- 	 						 -->
             <div class="row">         

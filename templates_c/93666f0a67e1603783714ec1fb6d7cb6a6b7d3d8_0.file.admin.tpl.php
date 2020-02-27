@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-26 03:39:20
+/* Smarty version 3.1.34-dev-7, created on 2020-02-27 11:34:09
   from 'D:\ugm\xampp\htdocs\web11\templates\admin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e55da58ec8ad5_64493040',
+  'unifunc' => 'content_5e5738b18774d9_42165988',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '93666f0a67e1603783714ec1fb6d7cb6a6b7d3d8' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\admin.tpl',
-      1 => 1582684409,
+      1 => 1582774440,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:tpl/prod.tpl' => 1,
   ),
 ),false)) {
-function content_5e55da58ec8ad5_64493040 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5738b18774d9_42165988 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
   <head>
@@ -38,7 +38,8 @@ bootstrap/bootstrap.min.css">
     <link href="<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
 vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
-    <title>會員管理</title>
+    <title><?php echo $_smarty_tpl->tpl_vars['WEB']->value['web_title'];?>
+</title>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <?php echo '<script'; ?>
@@ -58,7 +59,8 @@ bootstrap/bootstrap.min.js"><?php echo '</script'; ?>
         <?php $_smarty_tpl->_subTemplateRender("file:tpl/redirect.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
-    <h1 class="text-center mt-2">育將電腦工作室 後台</h1>
+    <h1 class="text-center mt-2"><?php echo $_smarty_tpl->tpl_vars['WEB']->value['web_title'];?>
+</h1>
     <div class="container">
       <div class="row">
         <div class="col-sm-9">
