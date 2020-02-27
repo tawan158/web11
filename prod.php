@@ -21,6 +21,11 @@ switch ($op){
     redirect_header("prod.php", $msg, 3000);
     exit;
 
+  case "op_update" :
+    $msg = op_insert($sn);
+    redirect_header("prod.php", $msg, 3000);
+    exit;
+
   case "op_form" :
     $msg = op_form($sn);
     break;
@@ -64,7 +69,19 @@ function op_insert($sn=""){
   $_POST['counter'] = db_filter($_POST['counter'], '');
 
   if($sn){
-
+    $sql="UPDATE  `prods` SET
+                  `kind_sn` = '{$_POST['kind_sn']}',
+                  `title` = '{$_POST['title']}',
+                  `content` = '{$_POST['content']}',
+                  `price` = '{$_POST['price']}',
+                  `enable` = '{$_POST['enable']}',
+                  `date` = '{$_POST['date']}',
+                  `sort` = '{$_POST['sort']}',
+                  `counter` = '{$_POST['counter']}'
+                  WHERE `sn` = '{$_POST['sn']}'    
+    ";
+    $db->query($sql) or die($db->error() . $sql);
+    $msg = "商品資料更新成功";
   }else{
     $sql="INSERT INTO `prods` 
     (`kind_sn`, `title`, `content`, `price`, `enable`, `date`, `sort`, `counter`)
@@ -78,9 +95,14 @@ function op_insert($sn=""){
   }
 
   if($_FILES['prod']['name']){
+    $kind = "prod";
+    #刪除舊圖
+    # 1.刪除實體檔案
+    # 2.刪除files資料表
+    //delFilesByKindColsnSort($kind,$sn,1);
+     
     if ($_FILES['prod']['error'] === UPLOAD_ERR_OK){
         
-        $kind = "prod";
         $sub_dir = "/".$kind;
         $sort = 1;
         #過濾變數
@@ -146,22 +168,31 @@ function getFilesByKindColsnSort($kind,$col_sn,$sort=1,$url=true){
     return $file_name;
 }
 
+/*===========================
+  用sn取得商品檔資料
+===========================*/
+function getProdsBySn($sn){
+  global $db;
+  $sql="SELECT *
+        FROM `prods`
+        WHERE `sn` = '{$sn}'
+  ";//die($sql);
+  
+  $result = $db->query($sql) or die($db->error() . $sql);
+  $row = $result->fetch_assoc();
+  $row['prod'] = getFilesByKindColsnSort("prod",$sn);
+  return $row;
+
+}
+
 function op_form($sn=""){
   global $smarty,$db;
 
   if($sn){
-    $sql="SELECT *
-          FROM `prods`
-          WHERE `sn` = '{$sn}'
-    ";//die($sql);
-    
-    $result = $db->query($sql) or die($db->error() . $sql);
-    $row = $result->fetch_assoc();
+    $row = getProdsBySn($sn);
     $row['op'] = "op_update";
-    $row['prod'] = getFilesByKindColsnSort("prod",$sn);
   }else{
     $row['op'] = "op_insert";
-    $row['prod'] = "";
   }
 
   $row['sn'] = isset($row['sn']) ? $row['sn'] : "";
@@ -170,10 +201,14 @@ function op_form($sn=""){
   $row['content'] = isset($row['content']) ? $row['content'] : "";
   $row['price'] = isset($row['price']) ? $row['price'] : "";
   $row['enable'] = isset($row['enable']) ? $row['enable'] : "1";
-  
-  $row['date'] = isset($row['date']) ? date("Y-m-d H:i:s",strtotime($row['date'])) : date("Y-m-d H:i:s",strtotime("now"));
+
+  $row['date'] = isset($row['date']) ? $row['date'] : strtotime("now");
+  $row['date'] = date("Y-m-d H:i:s",$row['date']);
+
   $row['sort'] = isset($row['sort']) ? $row['sort'] : "";
   $row['counter'] = isset($row['counter']) ? $row['counter'] : "";
+  
+  $row['prod'] = isset($row['prod']) ? $row['prod'] : "";
 
   $smarty->assign("row",$row);
 }
