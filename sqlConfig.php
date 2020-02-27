@@ -1,5 +1,5 @@
 <?php
-if($_SERVER['HTTP_HOST'] == "127.0.0.1" or "localhost"){
+if($_SERVER['HTTP_HOST'] == "127.0.0.1" or $_SERVER['HTTP_HOST'] == "localhost"){
   #資料庫伺服器
   $db_host = "localhost";
   #資料庫使用者帳號
