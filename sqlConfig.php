@@ -12,11 +12,11 @@ if($_SERVER['HTTP_HOST'] == "127.0.0.1" or $_SERVER['HTTP_HOST'] == "localhost")
   #資料庫伺服器
   $db_host = "localhost";
   #資料庫使用者帳號
-  $db_user = "root";
+  $db_user = "dj1ugm_web111";
   #資料庫使用者密碼
-  $db_password = "111111";
+  $db_password = "]fRN^suAthJl";
   #資料庫名稱
-  $db_name = "web11";
+  $db_name = "dj1ugm_web111";
 }
 
 

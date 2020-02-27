@@ -183,13 +183,16 @@ function getFilesByKindColsnSort($kind,$col_sn,$sort=1,$url=true){
     $sql="SELECT *
                  FROM `files`
                  WHERE `kind` = '{$kind}' AND `col_sn` = '{$col_sn}' AND `sort` = '{$sort}'
-    ";     
+    ";//ddie($sql);     
     $result = $db->query($sql) or die($db->error() . $sql);
     $row = $result->fetch_assoc();
-    if($url){
-        $file_name = _WEB_URL . "/uploads" . $row['sub_dir'] . "/" . $row['name'];
-    }else{
-        $file_name = _WEB_PATH . "/uploads" . $row['sub_dir'] . "/" . $row['name'];
+    $file_name = "";
+    if($row){
+      if($url){
+          $file_name = _WEB_URL . "/uploads" . $row['sub_dir'] . "/" . $row['name'];
+      }else{
+          $file_name = _WEB_PATH . "/uploads" . $row['sub_dir'] . "/" . $row['name'];
+      }
     }
     return $file_name;
 }
