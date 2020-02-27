@@ -15,17 +15,17 @@ $kind = "prod";
 switch ($op){
   case "op_delete" :
     $msg = op_delete($sn);
-    redirect_header("prod.php", $msg, 3000);
+    redirect_header("kind.php", $msg, 3000);
     exit;
 
   case "op_insert" :
-    $msg = op_insert();
-    redirect_header("prod.php", $msg, 3000);
+    $msg = op_insert($kind);
+    redirect_header("kind.php?kind={$kind}", $msg, 3000);
     exit;
 
   case "op_update" :
     $msg = op_insert($sn);
-    redirect_header("prod.php", $msg, 3000);
+    redirect_header("kind.php", $msg, 3000);
     exit;
 
   case "op_form" :
@@ -48,29 +48,22 @@ $smarty->display('admin.tpl');
 function op_delete($sn){
   global $db;
 
-  #刪除商品資料表
+  #刪除類別資料表
   $sql="DELETE FROM `kinds`
         WHERE `sn` = '{$sn}'
   ";
   $db->query($sql) or die($db->error() . $sql);
-  return "商品資料刪除成功";
+  return "類別資料刪除成功";
 }
 
-function op_insert($sn=""){
+function op_insert($kind,$sn=""){
   global $db;						 
  
   $_POST['sn'] = db_filter($_POST['sn'], '');//流水號
-  $_POST['kind_sn'] = db_filter($_POST['kind_sn'], '');//類別
   $_POST['title'] = db_filter($_POST['title'], '標題');//標題
-  $_POST['content'] = db_filter($_POST['content'], '');
-  $_POST['price'] = db_filter($_POST['price'], '');
+  $_POST['kind'] = db_filter($_POST['kind'], '');
   $_POST['enable'] = db_filter($_POST['enable'], '');
-
-  $_POST['date'] = db_filter($_POST['date'], '');
-  $_POST['date'] = strtotime($_POST['date']);
-
-  $_POST['sort'] = db_filter($_POST['sort'], '');  
-  $_POST['counter'] = db_filter($_POST['counter'], '');
+  $_POST['sort'] = db_filter($_POST['sort'], ''); 
 
   if($sn){
     $sql="UPDATE  `kinds` SET
@@ -85,16 +78,16 @@ function op_insert($sn=""){
                   WHERE `sn` = '{$_POST['sn']}'    
     ";
     $db->query($sql) or die($db->error() . $sql);
-    $msg = "商品資料更新成功";
+    $msg = "類別資料更新成功";
   }else{
     $sql="INSERT INTO `kinds` 
-    (`kind_sn`, `title`, `content`, `price`, `enable`, `date`, `sort`, `counter`)
+    (`title`, `enable`, `sort`, `kind`)
     VALUES 
-    ('{$_POST['kind_sn']}', '{$_POST['title']}', '{$_POST['content']}', '{$_POST['price']}', '{$_POST['enable']}', '{$_POST['date']}', '{$_POST['sort']}', '{$_POST['counter']}')    
+    ( '{$_POST['title']}', '{$_POST['enable']}', '{$_POST['sort']}', '{$_POST['kind']}')    
     "; //die($sql);
     $db->query($sql) or die($db->error() . $sql);
     $sn = $db->insert_id;
-    $msg = "商品資料新增成功";    
+    $msg = "類別資料新增成功";    
 
   }
 
@@ -104,7 +97,7 @@ function op_insert($sn=""){
 }
 
 /*===========================
-  用sn取得商品檔資料
+  用sn取得類別檔資料
 ===========================*/
 function getKindsBySn($sn){
   global $db;

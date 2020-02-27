@@ -44,7 +44,7 @@
                 cancelButtonText: '取消'
                 }).then((result) => {
                 if (result.value) {
-                    document.location.href="prod.php?op=op_delete&sn="+sn;
+                    document.location.href="kind.php?op=op_delete&sn="+sn;
                 }
             })
         }
@@ -54,7 +54,7 @@
 <{if $op=="op_form"}>
     
     <div class="container">        
-        <form action="prod.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
+        <form action="kind.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
             <!-- 	 						 -->
             <div class="row">         
                 <!--標題-->              

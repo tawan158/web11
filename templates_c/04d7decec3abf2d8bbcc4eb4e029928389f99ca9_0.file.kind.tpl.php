@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-27 14:37:59
+/* Smarty version 3.1.34-dev-7, created on 2020-02-27 14:54:16
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\kind.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5763c72664c5_72761877',
+  'unifunc' => 'content_5e576798501ab0_68194370',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '04d7decec3abf2d8bbcc4eb4e029928389f99ca9' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\kind.tpl',
-      1 => 1582785473,
+      1 => 1582786451,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5763c72664c5_72761877 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e576798501ab0_68194370 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
@@ -84,7 +84,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                 cancelButtonText: '取消'
                 }).then((result) => {
                 if (result.value) {
-                    document.location.href="prod.php?op=op_delete&sn="+sn;
+                    document.location.href="kind.php?op=op_delete&sn="+sn;
                 }
             })
         }
@@ -95,7 +95,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
 <?php if ($_smarty_tpl->tpl_vars['op']->value == "op_form") {?>
     
     <div class="container">        
-        <form action="prod.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
+        <form action="kind.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
             <!-- 	 						 -->
             <div class="row">         
                 <!--標題-->              
@@ -131,6 +131,8 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
             <input type="hidden" name="op" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['op'];?>
 ">
             <input type="hidden" name="sn" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
+">
+            <input type="hidden" name="kind" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['kind'];?>
 ">
             <button type="submit" class="btn btn-primary">送出</button>
             </div>
