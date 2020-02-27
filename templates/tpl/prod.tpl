@@ -50,7 +50,7 @@
                 cancelButtonText: '取消'
                 }).then((result) => {
                 if (result.value) {
-                    document.location.href="user.php?op=op_delete&sn="+sn;
+                    document.location.href="prod.php?op=op_delete&sn="+sn;
                 }
             })
         }

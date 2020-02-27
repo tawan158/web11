@@ -13,7 +13,7 @@ $sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
 switch ($op){
   case "op_delete" :
     $msg = op_delete($sn);
-    redirect_header("user.php", $msg, 3000);
+    redirect_header("prod.php", $msg, 3000);
     exit;
 
   case "op_insert" :
@@ -45,11 +45,17 @@ $smarty->display('admin.tpl');
 /*---- 函數區-----*/
 function op_delete($sn){
   global $db; 
+  #刪除舊圖
+  # 1.刪除實體檔案
+  # 2.刪除files資料表
+  delFilesByKindColsnSort("prod",$sn,1);
+
+  #刪除商品資料表
   $sql="DELETE FROM `prods`
         WHERE `sn` = '{$sn}'
   ";
   $db->query($sql) or die($db->error() . $sql);
-  return "會員資料刪除成功";
+  return "商品資料刪除成功";
 }
 /*==========================
   用$kind,$col_sn,$sort
