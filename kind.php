@@ -7,6 +7,8 @@ if($_SESSION['user']['kind'] !== 1)redirect_header("index.php", '您沒有權限
 /* 過濾變數，設定預設值 */
 $op = system_CleanVars($_REQUEST, 'op', 'op_list', 'string');
 $sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
+$kind = system_CleanVars($_REQUEST, 'kind', 'prod', 'string');
+$kind = "prod";
 // echo $op;die();
  
 /* 程式流程 */
@@ -27,12 +29,12 @@ switch ($op){
     exit;
 
   case "op_form" :
-    $msg = op_form($sn);
+    $msg = op_form($kind,$sn);
     break;
  
   default:
     $op = "op_list";
-    op_list();
+    op_list($kind);
     break;  
 }
 /*---- 將變數送至樣版----*/
@@ -44,36 +46,14 @@ $smarty->display('admin.tpl');
  
 /*---- 函數區-----*/
 function op_delete($sn){
-  global $db; 
-  #刪除舊圖
-  # 1.刪除實體檔案
-  # 2.刪除files資料表
-  delFilesByKindColsnSort("prod",$sn,1);
+  global $db;
 
   #刪除商品資料表
-  $sql="DELETE FROM `prods`
+  $sql="DELETE FROM `kinds`
         WHERE `sn` = '{$sn}'
   ";
   $db->query($sql) or die($db->error() . $sql);
   return "商品資料刪除成功";
-}
-/*==========================
-  用$kind,$col_sn,$sort
-  刪除 圖片資料
-==========================*/
-function delFilesByKindColsnSort($kind,$col_sn,$sort){
-  global $db;		
-  # 1.刪除實體檔案
-  $file_name = getFilesByKindColsnSort($kind,$col_sn,$sort,false);
-  if($file_name){
-    unlink($file_name);
-  }
-  # 2.刪除files資料表	
-  $sql="DELETE FROM `files`
-        WHERE `kind` = '{$kind}' AND `col_sn` = '{$col_sn}' AND `sort` = '{$sort}'
-  ";
-  $db->query($sql) or die($db->error() . $sql);	
-  return;	 
 }
 
 function op_insert($sn=""){
@@ -93,7 +73,7 @@ function op_insert($sn=""){
   $_POST['counter'] = db_filter($_POST['counter'], '');
 
   if($sn){
-    $sql="UPDATE  `prods` SET
+    $sql="UPDATE  `kinds` SET
                   `kind_sn` = '{$_POST['kind_sn']}',
                   `title` = '{$_POST['title']}',
                   `content` = '{$_POST['content']}',
@@ -107,7 +87,7 @@ function op_insert($sn=""){
     $db->query($sql) or die($db->error() . $sql);
     $msg = "商品資料更新成功";
   }else{
-    $sql="INSERT INTO `prods` 
+    $sql="INSERT INTO `kinds` 
     (`kind_sn`, `title`, `content`, `price`, `enable`, `date`, `sort`, `counter`)
     VALUES 
     ('{$_POST['kind_sn']}', '{$_POST['title']}', '{$_POST['content']}', '{$_POST['price']}', '{$_POST['enable']}', '{$_POST['date']}', '{$_POST['sort']}', '{$_POST['counter']}')    
@@ -118,133 +98,66 @@ function op_insert($sn=""){
 
   }
 
-  if($_FILES['prod']['name']){
-    $kind = "prod";
-    #刪除舊圖
-    # 1.刪除實體檔案
-    # 2.刪除files資料表
-    delFilesByKindColsnSort($kind,$sn,1);
-     
-    if ($_FILES['prod']['error'] === UPLOAD_ERR_OK){
-        
-        $sub_dir = "/".$kind;
-        $sort = 1;
-        #過濾變數
-        $_FILES['prod']['name'] = db_filter($_FILES['prod']['name'], '');
-        $_FILES['prod']['type'] = db_filter($_FILES['prod']['type'], '');
-        $_FILES['prod']['size'] = db_filter($_FILES['prod']['size'], '');
-        #檢查資料目錄
-        mk_dir(_WEB_PATH . "/uploads");
-        mk_dir(_WEB_PATH . "/uploads" . $sub_dir);
-        $path = _WEB_PATH . "/uploads" . $sub_dir . "/";
-        #圖片名稱
-        $rand = substr(md5(uniqid(mt_rand(), 1)), 0, 5);//取得一個5碼亂數
-        
-        #//取得上傳檔案的副檔名
-        $ext = pathinfo($_FILES["prod"]["name"], PATHINFO_EXTENSION); 
-        $ext = strtolower($ext);//轉小寫
-        
-        //判斷檔案種類
-        if ($ext == "jpg" or $ext == "jpeg" or $ext == "png" or $ext == "gif") {
-            $file_kind = "img";
-        } else {
-            $file_kind = "file";
-        }     
-
-        $file_name = $rand . "_" . $sn . "." . $ext; 
-        #圖片目錄
-
-        # 將檔案移至指定位置
-        if(move_uploaded_file($_FILES['prod']['tmp_name'], $path . $file_name)){
-            $sql="INSERT INTO `files` 
-                              (`kind`, `col_sn`, `sort`, `file_kind`, `file_name`, `file_type`, `file_size`, `description`, `counter`, `name`, `download_name`, `sub_dir`) 
-                              VALUES 
-                              ('{$kind}', '{$sn}', '{$sort}', '{$file_kind}', '{$_FILES['prod']['name']}', '{$_FILES['prod']['type']}', '{$_FILES['prod']['size']}', NULL, '0', '{$file_name}', '', '{$sub_dir}')
-            
-            ";
-            $db->query($sql) or die($db->error() . $sql);
-
-        }
-
-
-    } else {
-        die("圖片上傳失敗");
-    }
-  }
 
   return $msg;
 
-}
-/*========================================
-  用kind col_sn sort 取得圖片資料
-========================================*/ 
-function getFilesByKindColsnSort($kind,$col_sn,$sort=1,$url=true){
-    global $db; 
-    $sql="SELECT *
-                 FROM `files`
-                 WHERE `kind` = '{$kind}' AND `col_sn` = '{$col_sn}' AND `sort` = '{$sort}'
-    ";     
-    $result = $db->query($sql) or die($db->error() . $sql);
-    $row = $result->fetch_assoc();
-    if($url){
-        $file_name = _WEB_URL . "/uploads" . $row['sub_dir'] . "/" . $row['name'];
-    }else{
-        $file_name = _WEB_PATH . "/uploads" . $row['sub_dir'] . "/" . $row['name'];
-    }
-    return $file_name;
 }
 
 /*===========================
   用sn取得商品檔資料
 ===========================*/
-function getProdsBySn($sn){
+function getKindsBySn($sn){
   global $db;
   $sql="SELECT *
-        FROM `prods`
+        FROM `kinds`
         WHERE `sn` = '{$sn}'
   ";//die($sql);
   
   $result = $db->query($sql) or die($db->error() . $sql);
   $row = $result->fetch_assoc();
-  $row['prod'] = getFilesByKindColsnSort("prod",$sn);
   return $row;
 
 }
 
-function op_form($sn=""){
+function getKindMaxSortByKind($kind){
+  global $db;
+  $sql = "SELECT count(*)+1 as count
+          FROM `kinds`
+          WHERE `kind`='{$kind}'
+  ";//die($sql);
+
+  $result = $db->query($sql) or die($db->error() . $sql);
+  $row = $result->fetch_assoc();
+  return $row['count'];
+}
+
+function op_form($kind,$sn=""){
   global $smarty,$db;
 
   if($sn){
-    $row = getProdsBySn($sn);
+    $row = getKindsBySn($sn);
     $row['op'] = "op_update";
   }else{
     $row['op'] = "op_insert";
   }
 
   $row['sn'] = isset($row['sn']) ? $row['sn'] : "";
-  $row['kind_sn'] = isset($row['kind_sn']) ? $row['kind_sn'] : "1";
+  $row['kind'] = isset($row['kind']) ? $row['kind'] : "";
   $row['title'] = isset($row['title']) ? $row['title'] : "";
-  $row['content'] = isset($row['content']) ? $row['content'] : "";
-  $row['price'] = isset($row['price']) ? $row['price'] : "";
   $row['enable'] = isset($row['enable']) ? $row['enable'] : "1";
-
-  $row['date'] = isset($row['date']) ? $row['date'] : strtotime("now");
-  $row['date'] = date("Y-m-d H:i:s",$row['date']);
-
-  $row['sort'] = isset($row['sort']) ? $row['sort'] : "";
-  $row['counter'] = isset($row['counter']) ? $row['counter'] : "";
+  $row['sort'] = isset($row['sort']) ? $row['sort'] : getKindMaxSortByKind($kind);
   
-  $row['prod'] = isset($row['prod']) ? $row['prod'] : "";
 
   $smarty->assign("row",$row);
 }
 
 
-function op_list(){
+function op_list($kind){
   global $smarty,$db;
   
   $sql = "SELECT *
-          FROM `prods`
+          FROM `kinds`
+          WHERE `kind`='{$kind}'
   ";//die($sql);
 
   $result = $db->query($sql) or die($db->error() . $sql);
@@ -252,11 +165,7 @@ function op_list(){
   while($row = $result->fetch_assoc()){    
     $row['sn'] = (int)$row['sn'];//分類
     $row['title'] = htmlspecialchars($row['title']);//標題
-    $row['kind_sn'] = (int)$row['kind_sn'];//分類
-    $row['price'] = (int)$row['price'];//價格
-    $row['enable'] = (int)$row['enable'];//狀態
-    $row['counter'] = (int)$row['counter'];//計數
-    $row['prod'] = getFilesByKindColsnSort("prod",$row['sn']);  
+    $row['enable'] = (int)$row['enable'];//狀態 
     $rows[] = $row;
   }
   $smarty->assign("rows",$rows);  

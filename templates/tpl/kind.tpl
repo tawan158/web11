@@ -2,12 +2,8 @@
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
         <tr> 
-            <th scope="col" style="width:85px;">圖片</th>
             <th scope="col">標題</th>
-            <th scope="col">分類</th>
-            <th scope="col" class="text-right">價格</th>
             <th scope="col" class="text-center">狀態</th>
-            <th scope="col" class="text-center">計數</th>
             <th scope="col" class="text-center">
                 <a href="?op=op_form"><i class="fas fa-plus-square"></i>新增</a>
             </th>
@@ -16,20 +12,16 @@
         <tbody>
             <{foreach $rows as $row}>
                 <tr>
-                    <td><img src="<{$row.prod}>" alt="<{$row.title}>" width=80></td>
-                    <td class="align-middle"><{$row.title}></td>
-                    <td class="align-middle"><{$row.kind_sn}></td>
-                    <td class="text-right align-middle"><{$row.price}></td>
-                    <td class="text-center align-middle"><{if $row.enable}><i class="fas fa-check"></i><{/if}></td>
-                    <td class="text-center align-middle"><{$row.counter}></td>
-                    <td class="text-center align-middle">
+                    <td class=""><{$row.title}></td>
+                    <td class="text-center "><{if $row.enable}><i class="fas fa-check"></i><{/if}></td>
+                    <td class="text-center ">
                         <a href="?op=op_form&sn=<{$row.sn}>"><i class="far fa-edit"></i></a>
                         <a href="javascript:void(0)" onclick="op_delete(<{$row.sn}>);"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
             <{foreachelse}>
                 <tr>
-                    <td colspan=6>目前沒有資料</td>
+                    <td colspan=3>目前沒有資料</td>
                 </tr>
             <{/foreach}>
 
@@ -71,81 +63,27 @@
                         <label>標題<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="title" id="title" value="<{$row.title}>" >
                     </div>
-                </div>         
-                <!--分類-->              
+                </div> 
+                <!-- 類別狀態  -->
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label>分類</label>
-                        <select name="kind_sn" id="kind_sn" class="form-control">
-                            <option value="1">分類1</option>
-                            <option value="2">分類2</option>
-                            <option value="3">分類3</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- 商品狀態  -->
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label style="display:block;">商品狀態</label>
+                        <label style="display:block;">類別狀態</label>
                         <input type="radio" name="enable" id="enable_1" value="1" <{if $row.enable=='1'}>checked<{/if}>>
                         <label for="enable_1" style="display:inline;">啟用</label>&nbsp;&nbsp;
                         <input type="radio" name="enable" id="enable_0" value="0" <{if $row.enable=='0'}>checked<{/if}>>
                         <label for="enable_0" style="display:inline;">停用</label>
                     </div>
                 </div>  
-
-                <!--價格-->              
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label>價格</label>
-                        <input type="text" class="form-control" name="price" id="price" value="<{$row.price}>">
-                    </div>
-                </div>         
-                <!--建立日期-->              
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label>建立日期</label>
-                        <input type="text" class="form-control" name="date" id="date" value="<{$row.date}>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
-                    </div>
-                </div>             
+       
                 <!--排序-->              
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label>排序</label>
-                        <input type="text" class="form-control" name="sort" id="sort" value="<{$row.sort}>">
-                    </div>
-                </div>            
-                <!--計數-->              
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label>計數</label>
-                        <input type="text" class="form-control" name="counter" id="counter" value="<{$row.counter}>">
-                    </div>
-                </div>             
-                <!--圖片-->              
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label>圖片</label>
-                        <input type="file" class="form-control" name="prod" id="prod">
-                        <label class="mt-1">
-                            <{if $row.prod}>
-                                <img src="<{$row.prod}>" alt="<{$row.title}>" class="img-fluid">
-                            <{/if}>
-                        </label>
-                    </div>
-                </div> 
-            </div>
-            
-            <div class="row">
-                <div class="col-sm-12">  
-                    <!-- 商品內容 -->
-                    <div class="form-group">
-                        <label class="control-label">商品內容</label>
-                        <textarea class="form-control" rows="5" id="content" name="content"><{$row.content}></textarea>
+                        <input type="text" class="form-control text-right" name="sort" id="sort" value="<{$row.sort}>">
                     </div>
                 </div>
             </div>
-
+            
             <div class="text-center pb-20">
             <input type="hidden" name="op" value="<{$row.op}>">
             <input type="hidden" name="sn" value="<{$row.sn}>">

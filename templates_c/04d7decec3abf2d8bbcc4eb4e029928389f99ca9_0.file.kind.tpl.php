@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-27 13:48:17
+/* Smarty version 3.1.34-dev-7, created on 2020-02-27 14:37:59
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\kind.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e575821dfda40_23574064',
+  'unifunc' => 'content_5e5763c72664c5_72761877',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '04d7decec3abf2d8bbcc4eb4e029928389f99ca9' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\kind.tpl',
-      1 => 1582781777,
+      1 => 1582785473,
       2 => 'file',
     ),
   ),
@@ -20,17 +20,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e575821dfda40_23574064 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5763c72664c5_72761877 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
         <tr> 
-            <th scope="col" style="width:85px;">圖片</th>
             <th scope="col">標題</th>
-            <th scope="col">分類</th>
-            <th scope="col" class="text-right">價格</th>
             <th scope="col" class="text-center">狀態</th>
-            <th scope="col" class="text-center">計數</th>
             <th scope="col" class="text-center">
                 <a href="?op=op_form"><i class="fas fa-plus-square"></i>新增</a>
             </th>
@@ -43,19 +39,10 @@ if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
 ?>
                 <tr>
-                    <td><img src="<?php echo $_smarty_tpl->tpl_vars['row']->value['prod'];?>
-" alt="<?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
-" width=80></td>
-                    <td class="align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+                    <td class=""><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
 </td>
-                    <td class="align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['kind_sn'];?>
-</td>
-                    <td class="text-right align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
-</td>
-                    <td class="text-center align-middle"><?php if ($_smarty_tpl->tpl_vars['row']->value['enable']) {?><i class="fas fa-check"></i><?php }?></td>
-                    <td class="text-center align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['counter'];?>
-</td>
-                    <td class="text-center align-middle">
+                    <td class="text-center "><?php if ($_smarty_tpl->tpl_vars['row']->value['enable']) {?><i class="fas fa-check"></i><?php }?></td>
+                    <td class="text-center ">
                         <a href="?op=op_form&sn=<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
 "><i class="far fa-edit"></i></a>
                         <a href="javascript:void(0)" onclick="op_delete(<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
@@ -67,7 +54,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
 } else {
 ?>
                 <tr>
-                    <td colspan=6>目前沒有資料</td>
+                    <td colspan=3>目前沒有資料</td>
                 </tr>
             <?php
 }
@@ -118,88 +105,28 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                         <input type="text" class="form-control" name="title" id="title" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
 " >
                     </div>
-                </div>         
-                <!--分類-->              
+                </div> 
+                <!-- 類別狀態  -->
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label>分類</label>
-                        <select name="kind_sn" id="kind_sn" class="form-control">
-                            <option value="1">分類1</option>
-                            <option value="2">分類2</option>
-                            <option value="3">分類3</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- 商品狀態  -->
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label style="display:block;">商品狀態</label>
+                        <label style="display:block;">類別狀態</label>
                         <input type="radio" name="enable" id="enable_1" value="1" <?php if ($_smarty_tpl->tpl_vars['row']->value['enable'] == '1') {?>checked<?php }?>>
                         <label for="enable_1" style="display:inline;">啟用</label>&nbsp;&nbsp;
                         <input type="radio" name="enable" id="enable_0" value="0" <?php if ($_smarty_tpl->tpl_vars['row']->value['enable'] == '0') {?>checked<?php }?>>
                         <label for="enable_0" style="display:inline;">停用</label>
                     </div>
                 </div>  
-
-                <!--價格-->              
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label>價格</label>
-                        <input type="text" class="form-control" name="price" id="price" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
-">
-                    </div>
-                </div>         
-                <!--建立日期-->              
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label>建立日期</label>
-                        <input type="text" class="form-control" name="date" id="date" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['date'];?>
-" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
-                    </div>
-                </div>             
+       
                 <!--排序-->              
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label>排序</label>
-                        <input type="text" class="form-control" name="sort" id="sort" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['sort'];?>
+                        <input type="text" class="form-control text-right" name="sort" id="sort" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['sort'];?>
 ">
-                    </div>
-                </div>            
-                <!--計數-->              
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label>計數</label>
-                        <input type="text" class="form-control" name="counter" id="counter" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['counter'];?>
-">
-                    </div>
-                </div>             
-                <!--圖片-->              
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label>圖片</label>
-                        <input type="file" class="form-control" name="prod" id="prod">
-                        <label class="mt-1">
-                            <?php if ($_smarty_tpl->tpl_vars['row']->value['prod']) {?>
-                                <img src="<?php echo $_smarty_tpl->tpl_vars['row']->value['prod'];?>
-" alt="<?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
-" class="img-fluid">
-                            <?php }?>
-                        </label>
-                    </div>
-                </div> 
-            </div>
-            
-            <div class="row">
-                <div class="col-sm-12">  
-                    <!-- 商品內容 -->
-                    <div class="form-group">
-                        <label class="control-label">商品內容</label>
-                        <textarea class="form-control" rows="5" id="content" name="content"><?php echo $_smarty_tpl->tpl_vars['row']->value['content'];?>
-</textarea>
                     </div>
                 </div>
             </div>
-
+            
             <div class="text-center pb-20">
             <input type="hidden" name="op" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['op'];?>
 ">
