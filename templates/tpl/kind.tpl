@@ -15,7 +15,7 @@
                     <td class=""><{$row.title}></td>
                     <td class="text-center "><{if $row.enable}><i class="fas fa-check"></i><{/if}></td>
                     <td class="text-center ">
-                        <a href="?op=op_form&sn=<{$row.sn}>"><i class="far fa-edit"></i></a>
+                        <a href="?op=op_form&kind=<{$row.kind}>&sn=<{$row.sn}>"><i class="far fa-edit"></i></a>
                         <a href="javascript:void(0)" onclick="op_delete(<{$row.sn}>);"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>

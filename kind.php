@@ -24,7 +24,7 @@ switch ($op){
     exit;
 
   case "op_update" :
-    $msg = op_insert($sn);
+    $msg = op_insert($kind,$sn);
     redirect_header("kind.php", $msg, 3000);
     exit;
 
@@ -67,14 +67,10 @@ function op_insert($kind,$sn=""){
 
   if($sn){
     $sql="UPDATE  `kinds` SET
-                  `kind_sn` = '{$_POST['kind_sn']}',
                   `title` = '{$_POST['title']}',
-                  `content` = '{$_POST['content']}',
-                  `price` = '{$_POST['price']}',
                   `enable` = '{$_POST['enable']}',
-                  `date` = '{$_POST['date']}',
                   `sort` = '{$_POST['sort']}',
-                  `counter` = '{$_POST['counter']}'
+                  `kind` = '{$_POST['kind']}'
                   WHERE `sn` = '{$_POST['sn']}'    
     ";
     $db->query($sql) or die($db->error() . $sql);
@@ -87,8 +83,7 @@ function op_insert($kind,$sn=""){
     "; //die($sql);
     $db->query($sql) or die($db->error() . $sql);
     $sn = $db->insert_id;
-    $msg = "類別資料新增成功";    
-
+    $msg = "類別資料新增成功"; 
   }
 
 

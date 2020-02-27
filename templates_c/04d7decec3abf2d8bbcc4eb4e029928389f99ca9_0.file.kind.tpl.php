@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-27 14:54:16
+/* Smarty version 3.1.34-dev-7, created on 2020-02-27 15:10:28
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\kind.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e576798501ab0_68194370',
+  'unifunc' => 'content_5e576b6463d152_97214507',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '04d7decec3abf2d8bbcc4eb4e029928389f99ca9' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\kind.tpl',
-      1 => 1582786451,
+      1 => 1582787421,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e576798501ab0_68194370 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e576b6463d152_97214507 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
@@ -43,7 +43,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
 </td>
                     <td class="text-center "><?php if ($_smarty_tpl->tpl_vars['row']->value['enable']) {?><i class="fas fa-check"></i><?php }?></td>
                     <td class="text-center ">
-                        <a href="?op=op_form&sn=<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
+                        <a href="?op=op_form&kind=<?php echo $_smarty_tpl->tpl_vars['row']->value['kind'];?>
+&sn=<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
 "><i class="far fa-edit"></i></a>
                         <a href="javascript:void(0)" onclick="op_delete(<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
 );"><i class="far fa-trash-alt"></i></a>
