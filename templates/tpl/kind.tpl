@@ -5,7 +5,7 @@
             <th scope="col">標題</th>
             <th scope="col" class="text-center">狀態</th>
             <th scope="col" class="text-center">
-                <a href="?op=op_form"><i class="fas fa-plus-square"></i>新增</a>
+                <a href="?op=op_form&kind={$kind}"><i class="fas fa-plus-square"></i>新增</a>
             </th>
         </tr>
         </thead>
@@ -16,7 +16,7 @@
                     <td class="text-center "><{if $row.enable}><i class="fas fa-check"></i><{/if}></td>
                     <td class="text-center ">
                         <a href="?op=op_form&kind=<{$row.kind}>&sn=<{$row.sn}>"><i class="far fa-edit"></i></a>
-                        <a href="javascript:void(0)" onclick="op_delete(<{$row.sn}>);"><i class="far fa-trash-alt"></i></a>
+                        <a href="javascript:void(0)" onclick="op_delete('<{$row.kind}>',<{$row.sn}>);"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
             <{foreachelse}>
@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.css">
     <script src="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.js"></script>
     <script>
-        function op_delete(sn){
+        function op_delete(kind,sn){
             Swal.fire({
                 title: '你確定嗎？',
                 text: "您將無法還原！",
@@ -44,7 +44,7 @@
                 cancelButtonText: '取消'
                 }).then((result) => {
                 if (result.value) {
-                    document.location.href="kind.php?op=op_delete&sn="+sn;
+                    document.location.href="kind.php?op=op_delete&kind=" + kind + "&sn="+sn;
                 }
             })
         }

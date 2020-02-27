@@ -14,8 +14,8 @@ $kind = "prod";
 /* 程式流程 */
 switch ($op){
   case "op_delete" :
-    $msg = op_delete($sn);
-    redirect_header("kind.php", $msg, 3000);
+    $msg = op_delete($kind,$sn);
+    redirect_header("kind.php?kind={$kind}", $msg, 3000);
     exit;
 
   case "op_insert" :
@@ -45,7 +45,7 @@ $smarty->assign("op", $op);
 $smarty->display('admin.tpl');
  
 /*---- 函數區-----*/
-function op_delete($sn){
+function op_delete($kind,$sn){
   global $db;
 
   #刪除類別資料表
@@ -153,13 +153,14 @@ function op_list($kind){
 
   $result = $db->query($sql) or die($db->error() . $sql);
   $rows=[];//array();
-  while($row = $result->fetch_assoc()){    
+  while($row = $result->fetch_assoc()){ 
     $row['sn'] = (int)$row['sn'];//分類
     $row['title'] = htmlspecialchars($row['title']);//標題
     $row['enable'] = (int)$row['enable'];//狀態 
     $rows[] = $row;
   }
-  $smarty->assign("rows",$rows);  
+  $smarty->assign("rows",$rows);
+  $smarty->assign("kind",$kind);  
 
 }
 

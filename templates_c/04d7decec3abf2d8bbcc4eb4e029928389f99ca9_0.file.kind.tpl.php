@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-27 15:10:28
+/* Smarty version 3.1.34-dev-7, created on 2020-02-27 15:31:13
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\kind.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e576b6463d152_97214507',
+  'unifunc' => 'content_5e577041451513_94773218',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '04d7decec3abf2d8bbcc4eb4e029928389f99ca9' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\kind.tpl',
-      1 => 1582787421,
+      1 => 1582788668,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e576b6463d152_97214507 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e577041451513_94773218 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
@@ -28,7 +28,7 @@ if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
             <th scope="col">標題</th>
             <th scope="col" class="text-center">狀態</th>
             <th scope="col" class="text-center">
-                <a href="?op=op_form"><i class="fas fa-plus-square"></i>新增</a>
+                <a href="?op=op_form&kind={$kind}"><i class="fas fa-plus-square"></i>新增</a>
             </th>
         </tr>
         </thead>
@@ -46,7 +46,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
                         <a href="?op=op_form&kind=<?php echo $_smarty_tpl->tpl_vars['row']->value['kind'];?>
 &sn=<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
 "><i class="far fa-edit"></i></a>
-                        <a href="javascript:void(0)" onclick="op_delete(<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
+                        <a href="javascript:void(0)" onclick="op_delete('<?php echo $_smarty_tpl->tpl_vars['row']->value['kind'];?>
+',<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
 );"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
@@ -73,7 +74,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
 >
-        function op_delete(sn){
+        function op_delete(kind,sn){
             Swal.fire({
                 title: '你確定嗎？',
                 text: "您將無法還原！",
@@ -85,7 +86,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                 cancelButtonText: '取消'
                 }).then((result) => {
                 if (result.value) {
-                    document.location.href="kind.php?op=op_delete&sn="+sn;
+                    document.location.href="kind.php?op=op_delete&kind=" + kind + "&sn="+sn;
                 }
             })
         }
