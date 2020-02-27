@@ -77,9 +77,9 @@
                     <div class="form-group">
                         <label>分類</label>
                         <select name="kind_sn" id="kind_sn" class="form-control">
-                            <option value="1">分類1</option>
-                            <option value="2">分類2</option>
-                            <option value="3">分類3</option>
+                            <{foreach $row.kind_sn_options as $option}>
+                                <option value="<{$option.sn}>" <{if $option.sn == $row.kind_sn}>selected<{/if}>><{$option.title}></option>
+                            <{/foreach}>
                         </select>
                     </div>
                 </div>

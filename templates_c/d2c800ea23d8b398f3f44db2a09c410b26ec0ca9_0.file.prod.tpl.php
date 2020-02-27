@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-27 13:47:03
+/* Smarty version 3.1.34-dev-7, created on 2020-02-27 16:01:08
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\prod.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5757d782a575_88725061',
+  'unifunc' => 'content_5e577744efd390_50314821',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd2c800ea23d8b398f3f44db2a09c410b26ec0ca9' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\prod.tpl',
-      1 => 1582781777,
+      1 => 1582790463,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5757d782a575_88725061 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e577744efd390_50314821 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
@@ -124,9 +124,18 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                     <div class="form-group">
                         <label>分類</label>
                         <select name="kind_sn" id="kind_sn" class="form-control">
-                            <option value="1">分類1</option>
-                            <option value="2">分類2</option>
-                            <option value="3">分類3</option>
+                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['row']->value['kind_sn_options'], 'option');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['option']->value) {
+?>
+                                <option value="<?php echo $_smarty_tpl->tpl_vars['option']->value['sn'];?>
+" <?php if ($_smarty_tpl->tpl_vars['option']->value['sn'] == $_smarty_tpl->tpl_vars['row']->value['kind_sn']) {?>selected<?php }?>><?php echo $_smarty_tpl->tpl_vars['option']->value['title'];?>
+</option>
+                            <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </select>
                     </div>
                 </div>
