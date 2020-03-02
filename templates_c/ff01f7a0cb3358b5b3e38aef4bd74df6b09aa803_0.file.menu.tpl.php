@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-02 10:28:41
+/* Smarty version 3.1.34-dev-7, created on 2020-03-02 10:45:00
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\menu.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5c6f59b438b8_75922608',
+  'unifunc' => 'content_5e5c732ca9bc14_64643780',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ff01f7a0cb3358b5b3e38aef4bd74df6b09aa803' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\menu.tpl',
-      1 => 1583115958,
+      1 => 1583117097,
       2 => 'file',
     ),
   ),
@@ -20,15 +20,18 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5c6f59b438b8_75922608 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5c732ca9bc14_64643780 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
         <tr> 
             <th scope="col">標題</th>
+            <th scope="col">網址</th>
+            <th scope="col" class="text-center">外連</th>
             <th scope="col" class="text-center">狀態</th>
             <th scope="col" class="text-center">
-                <a href="?op=op_form&kind={$kind}"><i class="fas fa-plus-square"></i>新增</a>
+                <a href="?op=op_form&kind=<?php echo $_smarty_tpl->tpl_vars['kind']->value;?>
+"><i class="fas fa-plus-square"></i>新增</a>
             </th>
         </tr>
         </thead>
@@ -41,6 +44,9 @@ foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
                 <tr>
                     <td class=""><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
 </td>
+                    <td class=""><?php echo $_smarty_tpl->tpl_vars['row']->value['url'];?>
+</td>
+                    <td class="text-center "><?php if ($_smarty_tpl->tpl_vars['row']->value['target']) {?><i class="fas fa-check"></i><?php }?></td>
                     <td class="text-center "><?php if ($_smarty_tpl->tpl_vars['row']->value['enable']) {?><i class="fas fa-check"></i><?php }?></td>
                     <td class="text-center ">
                         <a href="?op=op_form&kind=<?php echo $_smarty_tpl->tpl_vars['row']->value['kind'];?>
@@ -56,7 +62,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
 } else {
 ?>
                 <tr>
-                    <td colspan=3>目前沒有資料</td>
+                    <td colspan=5>目前沒有資料</td>
                 </tr>
             <?php
 }

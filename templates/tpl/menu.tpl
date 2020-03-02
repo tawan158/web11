@@ -3,9 +3,11 @@
         <thead>
         <tr> 
             <th scope="col">標題</th>
+            <th scope="col">網址</th>
+            <th scope="col" class="text-center">外連</th>
             <th scope="col" class="text-center">狀態</th>
             <th scope="col" class="text-center">
-                <a href="?op=op_form&kind={$kind}"><i class="fas fa-plus-square"></i>新增</a>
+                <a href="?op=op_form&kind=<{$kind}>"><i class="fas fa-plus-square"></i>新增</a>
             </th>
         </tr>
         </thead>
@@ -13,6 +15,8 @@
             <{foreach $rows as $row}>
                 <tr>
                     <td class=""><{$row.title}></td>
+                    <td class=""><{$row.url}></td>
+                    <td class="text-center "><{if $row.target}><i class="fas fa-check"></i><{/if}></td>
                     <td class="text-center "><{if $row.enable}><i class="fas fa-check"></i><{/if}></td>
                     <td class="text-center ">
                         <a href="?op=op_form&kind=<{$row.kind}>&sn=<{$row.sn}>"><i class="far fa-edit"></i></a>
@@ -21,7 +25,7 @@
                 </tr>
             <{foreachelse}>
                 <tr>
-                    <td colspan=3>目前沒有資料</td>
+                    <td colspan=5>目前沒有資料</td>
                 </tr>
             <{/foreach}>
 

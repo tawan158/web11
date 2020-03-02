@@ -7,8 +7,8 @@ if($_SESSION['user']['kind'] !== 1)redirect_header("index.php", '您沒有權限
 /* 過濾變數，設定預設值 */
 $op = system_CleanVars($_REQUEST, 'op', 'op_list', 'string');
 $sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
-$kind = system_CleanVars($_REQUEST, 'kind', 'prod', 'string');
-$kind = "prod";
+$kind = system_CleanVars($_REQUEST, 'kind', 'mainMenu', 'string');
+$kind = "mainMenu";
 // echo $op;die();
  
 /* 程式流程 */
@@ -157,6 +157,8 @@ function op_list($kind){
     $row['sn'] = (int)$row['sn'];//分類
     $row['title'] = htmlspecialchars($row['title']);//標題
     $row['enable'] = (int)$row['enable'];//狀態 
+    $row['url'] = htmlspecialchars($row['url']);//網址
+    $row['target'] = (int)$row['target'];//外連 
     $rows[] = $row;
   }
   $smarty->assign("rows",$rows);

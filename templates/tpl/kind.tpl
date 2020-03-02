@@ -5,7 +5,7 @@
             <th scope="col">標題</th>
             <th scope="col" class="text-center">狀態</th>
             <th scope="col" class="text-center">
-                <a href="?op=op_form&kind={$kind}"><i class="fas fa-plus-square"></i>新增</a>
+                <a href="?op=op_form&kind=<{$kind}>"><i class="fas fa-plus-square"></i>新增</a>
             </th>
         </tr>
         </thead>
