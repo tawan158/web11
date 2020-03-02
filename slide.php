@@ -48,6 +48,11 @@ $smarty->display('admin.tpl');
 function op_delete($kind,$sn){
   global $db;
 
+    #刪除舊圖
+    # 1.刪除實體檔案
+    # 2.刪除files資料表
+    delFilesByKindColsnSort($kind,$sn,1);
+
   #刪除輪播圖資料表
   $sql="DELETE FROM `kinds`
         WHERE `sn` = '{$sn}'

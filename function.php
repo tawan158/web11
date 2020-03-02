@@ -130,6 +130,7 @@ function getFilesByKindColsnSort($kind,$col_sn,$sort=1,$url=true){
   $result = $db->query($sql) or die($db->error() . $sql);
   $row = $result->fetch_assoc();
   $file_name = "";
+  
   if($row){
     if($url){
         $file_name = _WEB_URL . "/uploads" . $row['sub_dir'] . "/" . $row['name'];

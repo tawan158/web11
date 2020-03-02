@@ -44,6 +44,11 @@ switch ($op){
 
   default:
     $op = "op_list";
+    $mainSlides = getMenus("mainSlide",true);
+    $smarty->assign("mainSlides", $mainSlides);
+    
+    // print_r($mainSlides);die();
+
     break;  
 }
   /*---- 將變數送至樣版----*/
@@ -57,7 +62,7 @@ $smarty->display('theme.tpl');
 
 //----函數區
 
-function getMenus($kind){
+function getMenus($kind,$pic=false){
   global $db;
   
   $sql = "SELECT *
@@ -73,7 +78,8 @@ function getMenus($kind){
     $row['title'] = htmlspecialchars($row['title']);//標題
     $row['enable'] = (int)$row['enable'];//狀態 
     $row['url'] = htmlspecialchars($row['url']);//網址
-    $row['target'] = (int)$row['target'];//外連 
+    $row['target'] = (int)$row['target'];//外連  
+    $row['pic'] = ($pic == true) ? getFilesByKindColsnSort($kind,$row['sn']) :"";//圖片連結
     $rows[] = $row;
   }
   return $rows; 
