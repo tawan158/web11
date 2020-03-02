@@ -48,7 +48,7 @@
                 cancelButtonText: '取消'
                 }).then((result) => {
                 if (result.value) {
-                    document.location.href="kind.php?op=op_delete&kind=" + kind + "&sn="+sn;
+                    document.location.href="menu.php?op=op_delete&kind=" + kind + "&sn="+sn;
                 }
             })
         }
@@ -58,20 +58,37 @@
 <{if $op=="op_form"}>
     
     <div class="container">        
-        <form action="kind.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
+        <form action="menu.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
             <!-- 	 						 -->
             <div class="row">         
                 <!--標題-->              
-                <div class="col-sm-4">
+                <div class="col-sm-12">
                     <div class="form-group">
                         <label>標題<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="title" id="title" value="<{$row.title}>" >
                     </div>
-                </div> 
-                <!-- 類別狀態  -->
+                </div>          
+                <!--網址-->              
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>網址<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="url" id="url" value="<{$row.url}>" >
+                    </div>
+                </div>
+                <!-- 外連狀態  -->
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label style="display:block;">類別狀態</label>
+                        <label style="display:block;">外連狀態</label>
+                        <input type="radio" name="target" id="target_1" value="1" <{if $row.target=='1'}>checked<{/if}>>
+                        <label for="target_1" style="display:inline;">啟用</label>&nbsp;&nbsp;
+                        <input type="radio" name="target" id="target_0" value="0" <{if $row.target=='0'}>checked<{/if}>>
+                        <label for="target_0" style="display:inline;">停用</label>
+                    </div>
+                </div>   
+                <!--選單狀態  -->
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label style="display:block;">選單狀態</label>
                         <input type="radio" name="enable" id="enable_1" value="1" <{if $row.enable=='1'}>checked<{/if}>>
                         <label for="enable_1" style="display:inline;">啟用</label>&nbsp;&nbsp;
                         <input type="radio" name="enable" id="enable_0" value="0" <{if $row.enable=='0'}>checked<{/if}>>

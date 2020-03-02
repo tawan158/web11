@@ -136,6 +136,8 @@ function op_form($kind,$sn=""){
   $row['kind'] = isset($row['kind']) ? $row['kind'] : $kind;
   $row['title'] = isset($row['title']) ? $row['title'] : "";
   $row['enable'] = isset($row['enable']) ? $row['enable'] : "1";
+  $row['url'] = isset($row['url']) ? $row['url'] : "";
+  $row['target'] = isset($row['target']) ? $row['target'] : "0";
   $row['sort'] = isset($row['sort']) ? $row['sort'] : getKindMaxSortByKind($kind);
   
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-02 10:45:00
+/* Smarty version 3.1.34-dev-7, created on 2020-03-02 10:56:21
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\menu.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5c732ca9bc14_64643780',
+  'unifunc' => 'content_5e5c75d53a3c74_74026972',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ff01f7a0cb3358b5b3e38aef4bd74df6b09aa803' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\menu.tpl',
-      1 => 1583117097,
+      1 => 1583117756,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5c732ca9bc14_64643780 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5c75d53a3c74_74026972 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
@@ -92,7 +92,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                 cancelButtonText: '取消'
                 }).then((result) => {
                 if (result.value) {
-                    document.location.href="kind.php?op=op_delete&kind=" + kind + "&sn="+sn;
+                    document.location.href="menu.php?op=op_delete&kind=" + kind + "&sn="+sn;
                 }
             })
         }
@@ -103,21 +103,39 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
 <?php if ($_smarty_tpl->tpl_vars['op']->value == "op_form") {?>
     
     <div class="container">        
-        <form action="kind.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
+        <form action="menu.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
             <!-- 	 						 -->
             <div class="row">         
                 <!--標題-->              
-                <div class="col-sm-4">
+                <div class="col-sm-12">
                     <div class="form-group">
                         <label>標題<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="title" id="title" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
 " >
                     </div>
-                </div> 
-                <!-- 類別狀態  -->
+                </div>          
+                <!--網址-->              
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>網址<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="url" id="url" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['url'];?>
+" >
+                    </div>
+                </div>
+                <!-- 外連狀態  -->
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label style="display:block;">類別狀態</label>
+                        <label style="display:block;">外連狀態</label>
+                        <input type="radio" name="target" id="target_1" value="1" <?php if ($_smarty_tpl->tpl_vars['row']->value['target'] == '1') {?>checked<?php }?>>
+                        <label for="target_1" style="display:inline;">啟用</label>&nbsp;&nbsp;
+                        <input type="radio" name="target" id="target_0" value="0" <?php if ($_smarty_tpl->tpl_vars['row']->value['target'] == '0') {?>checked<?php }?>>
+                        <label for="target_0" style="display:inline;">停用</label>
+                    </div>
+                </div>   
+                <!--選單狀態  -->
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label style="display:block;">選單狀態</label>
                         <input type="radio" name="enable" id="enable_1" value="1" <?php if ($_smarty_tpl->tpl_vars['row']->value['enable'] == '1') {?>checked<?php }?>>
                         <label for="enable_1" style="display:inline;">啟用</label>&nbsp;&nbsp;
                         <input type="radio" name="enable" id="enable_0" value="0" <?php if ($_smarty_tpl->tpl_vars['row']->value['enable'] == '0') {?>checked<?php }?>>
