@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-27 13:48:17
+/* Smarty version 3.1.34-dev-7, created on 2020-03-02 10:28:39
   from 'D:\ugm\xampp\htdocs\web11\templates\admin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e575821d3bc80_54322368',
+  'unifunc' => 'content_5e5c6f57f0bc15_29534666',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '93666f0a67e1603783714ec1fb6d7cb6a6b7d3d8' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\admin.tpl',
-      1 => 1582782494,
+      1 => 1583116113,
       2 => 'file',
     ),
   ),
@@ -22,9 +22,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:tpl/user.tpl' => 1,
     'file:tpl/prod.tpl' => 1,
     'file:tpl/kind.tpl' => 1,
+    'file:tpl/menu.tpl' => 1,
   ),
 ),false)) {
-function content_5e575821d3bc80_54322368 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5c6f57f0bc15_29534666 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
   <head>
@@ -73,7 +74,10 @@ bootstrap/bootstrap.min.js"><?php echo '</script'; ?>
 ?>
           <?php } elseif ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "kind.php") {?>
             <?php $_smarty_tpl->_subTemplateRender("file:tpl/kind.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-?>   
+?>  
+          <?php } elseif ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "menu.php") {?>
+            <?php $_smarty_tpl->_subTemplateRender("file:tpl/menu.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>  
           <?php }?>
           
 
@@ -99,6 +103,9 @@ bootstrap/bootstrap.min.js"><?php echo '</script'; ?>
               </li>
               <li class="list-group-item">
                 <a href="kind.php" class="btn-block">類別管理</a>
+              </li>
+              <li class="list-group-item">
+                <a href="menu.php" class="btn-block">選單管理</a>
               </li>
               <li class="list-group-item">
                 <a href="http://localhost/adminer/adminer.php" class="btn-block" target="_blank">資料庫管理</a>

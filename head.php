@@ -28,6 +28,8 @@ if($WEB['file_name'] == "index.php"){
   $WEB['web_title'] = "商品管理";
 }elseif($WEB['file_name'] == "kind.php"){
   $WEB['web_title'] = "類別管理";
+}elseif($WEB['file_name'] == "menu.php"){
+  $WEB['web_title'] = "選單管理";
 }else{
   $WEB['web_title'] = "";//
 }
