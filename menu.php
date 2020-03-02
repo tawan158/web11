@@ -15,17 +15,17 @@ $kind = "mainMenu";
 switch ($op){
   case "op_delete" :
     $msg = op_delete($kind,$sn);
-    redirect_header("kind.php?kind={$kind}", $msg, 3000);
+    redirect_header("menu.php?kind={$kind}", $msg, 3000);
     exit;
 
   case "op_insert" :
     $msg = op_insert($kind);
-    redirect_header("kind.php?kind={$kind}", $msg, 3000);
+    redirect_header("menu.php?kind={$kind}", $msg, 3000);
     exit;
 
   case "op_update" :
     $msg = op_insert($kind,$sn);
-    redirect_header("kind.php", $msg, 3000);
+    redirect_header("menu.php", $msg, 3000);
     exit;
 
   case "op_form" :
@@ -48,12 +48,12 @@ $smarty->display('admin.tpl');
 function op_delete($kind,$sn){
   global $db;
 
-  #刪除類別資料表
+  #刪除選單資料表
   $sql="DELETE FROM `kinds`
         WHERE `sn` = '{$sn}'
   ";
   $db->query($sql) or die($db->error() . $sql);
-  return "類別資料刪除成功";
+  return "選單資料刪除成功";
 }
 
 function op_insert($kind,$sn=""){
@@ -61,29 +61,33 @@ function op_insert($kind,$sn=""){
  
   $_POST['sn'] = db_filter($_POST['sn'], '');//流水號
   $_POST['title'] = db_filter($_POST['title'], '標題');//標題
-  $_POST['kind'] = db_filter($_POST['kind'], '');
-  $_POST['enable'] = db_filter($_POST['enable'], '');
-  $_POST['sort'] = db_filter($_POST['sort'], ''); 
+  $_POST['kind'] = db_filter($_POST['kind'], '');//分類
+  $_POST['enable'] = db_filter($_POST['enable'], '');//狀態
+  $_POST['sort'] = db_filter($_POST['sort'], '');//排序
+  $_POST['url'] = db_filter($_POST['url'], '');//網址
+  $_POST['target'] = db_filter($_POST['target'], ''); //外連
 
   if($sn){
     $sql="UPDATE  `kinds` SET
                   `title` = '{$_POST['title']}',
                   `enable` = '{$_POST['enable']}',
                   `sort` = '{$_POST['sort']}',
-                  `kind` = '{$_POST['kind']}'
+                  `kind` = '{$_POST['kind']}',
+                  `url` = '{$_POST['url']}',
+                  `target` = '{$_POST['target']}'
                   WHERE `sn` = '{$_POST['sn']}'    
     ";
     $db->query($sql) or die($db->error() . $sql);
-    $msg = "類別資料更新成功";
+    $msg = "選單資料更新成功";
   }else{
     $sql="INSERT INTO `kinds` 
-    (`title`, `enable`, `sort`, `kind`)
+    (`title`, `enable`, `sort`, `kind`, `url`, `target`)
     VALUES 
-    ( '{$_POST['title']}', '{$_POST['enable']}', '{$_POST['sort']}', '{$_POST['kind']}')    
+    ( '{$_POST['title']}', '{$_POST['enable']}', '{$_POST['sort']}', '{$_POST['kind']}', '{$_POST['url']}', '{$_POST['target']}')    
     "; //die($sql);
     $db->query($sql) or die($db->error() . $sql);
     $sn = $db->insert_id;
-    $msg = "類別資料新增成功"; 
+    $msg = "選單資料新增成功"; 
   }
 
 
@@ -92,7 +96,7 @@ function op_insert($kind,$sn=""){
 }
 
 /*===========================
-  用sn取得類別檔資料
+  用sn取得選單檔資料
 ===========================*/
 function getKindsBySn($sn){
   global $db;
