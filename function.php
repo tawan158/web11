@@ -139,3 +139,22 @@ function getFilesByKindColsnSort($kind,$col_sn,$sort=1,$url=true){
   }
   return $file_name;
 }
+
+/*==========================
+  用$kind,$col_sn,$sort
+  刪除 圖片資料
+==========================*/
+function delFilesByKindColsnSort($kind,$col_sn,$sort){
+  global $db;		
+  # 1.刪除實體檔案
+  $file_name = getFilesByKindColsnSort($kind,$col_sn,$sort,false);
+  if($file_name){
+    unlink($file_name);
+  }
+  # 2.刪除files資料表	
+  $sql="DELETE FROM `files`
+        WHERE `kind` = '{$kind}' AND `col_sn` = '{$col_sn}' AND `sort` = '{$sort}'
+  ";
+  $db->query($sql) or die($db->error() . $sql);	
+  return;	 
+}

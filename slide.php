@@ -48,12 +48,12 @@ $smarty->display('admin.tpl');
 function op_delete($kind,$sn){
   global $db;
 
-  #刪除選單資料表
+  #刪除輪播圖資料表
   $sql="DELETE FROM `kinds`
         WHERE `sn` = '{$sn}'
   ";
   $db->query($sql) or die($db->error() . $sql);
-  return "選單資料刪除成功";
+  return "輪播圖資料刪除成功";
 }
 
 function op_insert($kind,$sn=""){
@@ -78,7 +78,7 @@ function op_insert($kind,$sn=""){
                   WHERE `sn` = '{$_POST['sn']}'    
     ";
     $db->query($sql) or die($db->error() . $sql);
-    $msg = "選單資料更新成功";
+    $msg = "輪播圖資料更新成功";
   }else{
     $sql="INSERT INTO `kinds` 
     (`title`, `enable`, `sort`, `kind`, `url`, `target`)
@@ -87,19 +87,71 @@ function op_insert($kind,$sn=""){
     "; //die($sql);
     $db->query($sql) or die($db->error() . $sql);
     $sn = $db->insert_id;
-    $msg = "選單資料新增成功"; 
+    $msg = "輪播圖資料新增成功"; 
   }
+  
+  if($_FILES['pic']['name']){
+    #刪除舊圖
+    # 1.刪除實體檔案
+    # 2.刪除files資料表
+    delFilesByKindColsnSort($kind,$sn,1);
+     
+    if ($_FILES['pic']['error'] === UPLOAD_ERR_OK){
+        
+        $sub_dir = "/".$kind;
+        $sort = 1;
+        #過濾變數
+        $_FILES['pic']['name'] = db_filter($_FILES['pic']['name'], '');
+        $_FILES['pic']['type'] = db_filter($_FILES['pic']['type'], '');
+        $_FILES['pic']['size'] = db_filter($_FILES['pic']['size'], '');
+        #檢查資料目錄
+        mk_dir(_WEB_PATH . "/uploads");
+        mk_dir(_WEB_PATH . "/uploads" . $sub_dir);
+        $path = _WEB_PATH . "/uploads" . $sub_dir . "/";
+        #圖片名稱
+        $rand = substr(md5(uniqid(mt_rand(), 1)), 0, 5);//取得一個5碼亂數
+        
+        #//取得上傳檔案的副檔名
+        $ext = pathinfo($_FILES["pic"]["name"], PATHINFO_EXTENSION); 
+        $ext = strtolower($ext);//轉小寫
+        
+        //判斷檔案種類
+        if ($ext == "jpg" or $ext == "jpeg" or $ext == "png" or $ext == "gif") {
+            $file_kind = "img";
+        } else {
+            $file_kind = "file";
+        }     
 
+        $file_name = $rand . "_" . $sn . "." . $ext; 
+        #圖片目錄
+
+        # 將檔案移至指定位置
+        if(move_uploaded_file($_FILES['pic']['tmp_name'], $path . $file_name)){
+            $sql="INSERT INTO `files` 
+                              (`kind`, `col_sn`, `sort`, `file_kind`, `file_name`, `file_type`, `file_size`, `description`, `counter`, `name`, `download_name`, `sub_dir`) 
+                              VALUES 
+                              ('{$kind}', '{$sn}', '{$sort}', '{$file_kind}', '{$_FILES['pic']['name']}', '{$_FILES['pic']['type']}', '{$_FILES['pic']['size']}', NULL, '0', '{$file_name}', '', '{$sub_dir}')
+            
+            ";
+            $db->query($sql) or die($db->error() . $sql);
+
+        }
+
+
+    } else {
+        die("圖片上傳失敗");
+    }
+  }
 
   return $msg;
 
 }
 
 /*===========================
-  用sn取得選單檔資料
+  用sn取得輪播圖檔資料
 ===========================*/
 function getKindsBySn($sn){
-  global $db;
+  global $db,$kind;
   $sql="SELECT *
         FROM `kinds`
         WHERE `sn` = '{$sn}'
@@ -107,6 +159,8 @@ function getKindsBySn($sn){
   
   $result = $db->query($sql) or die($db->error() . $sql);
   $row = $result->fetch_assoc();
+  
+  $row['pic'] = getFilesByKindColsnSort($kind,$sn);
   return $row;
 
 }
@@ -143,7 +197,7 @@ function op_form($kind,$sn=""){
   $row['url'] = isset($row['url']) ? $row['url'] : "";
   $row['target'] = isset($row['target']) ? $row['target'] : "0";
   $row['sort'] = isset($row['sort']) ? $row['sort'] : getKindMaxSortByKind($kind);
-  
+  $row['pic'] = isset($row['pic']) ? $row['pic'] : "";
 
   $smarty->assign("row",$row);
 }

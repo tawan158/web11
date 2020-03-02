@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-02 14:12:07
+/* Smarty version 3.1.34-dev-7, created on 2020-03-02 14:37:49
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\slide.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5ca3b77696f0_03972396',
+  'unifunc' => 'content_5e5ca9bd6b4ed5_55312288',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3c9172dc2d32bde492e1f9d8a98502f2a77d74c2' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\slide.tpl',
-      1 => 1583129518,
+      1 => 1583131065,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5ca3b77696f0_03972396 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5ca9bd6b4ed5_55312288 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
@@ -46,13 +46,13 @@ foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
                     <td><img src="<?php echo $_smarty_tpl->tpl_vars['row']->value['pic'];?>
 " alt="<?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
 " width=80></td>
-                    <td class=""><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+                    <td class="align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
 </td>
-                    <td class=""><?php echo $_smarty_tpl->tpl_vars['row']->value['url'];?>
+                    <td class="align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['url'];?>
 </td>
-                    <td class="text-center "><?php if ($_smarty_tpl->tpl_vars['row']->value['target']) {?><i class="fas fa-check"></i><?php }?></td>
-                    <td class="text-center "><?php if ($_smarty_tpl->tpl_vars['row']->value['enable']) {?><i class="fas fa-check"></i><?php }?></td>
-                    <td class="text-center ">
+                    <td class="text-center align-middle"><?php if ($_smarty_tpl->tpl_vars['row']->value['target']) {?><i class="fas fa-check"></i><?php }?></td>
+                    <td class="text-center align-middle"><?php if ($_smarty_tpl->tpl_vars['row']->value['enable']) {?><i class="fas fa-check"></i><?php }?></td>
+                    <td class="text-center align-middle">
                         <a href="?op=op_form&kind=<?php echo $_smarty_tpl->tpl_vars['row']->value['kind'];?>
 &sn=<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
 "><i class="far fa-edit"></i></a>
@@ -111,7 +111,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
             <!-- 	 						 -->
             <div class="row">         
                 <!--標題-->              
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <label>標題<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="title" id="title" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
@@ -119,15 +119,32 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                     </div>
                 </div>          
                 <!--網址-->              
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <label>網址<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="url" id="url" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['url'];?>
 " >
                     </div>
                 </div>
+
+                             
+                <!--圖片-->              
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>圖片</label>
+                        <input type="file" class="form-control" name="pic" id="pic">
+                        <label class="mt-1">
+                            <?php if ($_smarty_tpl->tpl_vars['row']->value['pic']) {?>
+                                <img src="<?php echo $_smarty_tpl->tpl_vars['row']->value['pic'];?>
+" alt="<?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+" class="img-fluid">
+                            <?php }?>
+                        </label>
+                    </div>
+                </div> 
+
                 <!-- 外連狀態  -->
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="form-group">
                         <label style="display:block;">外連狀態</label>
                         <input type="radio" name="target" id="target_1" value="1" <?php if ($_smarty_tpl->tpl_vars['row']->value['target'] == '1') {?>checked<?php }?>>
@@ -137,7 +154,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                     </div>
                 </div>   
                 <!--選單狀態  -->
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="form-group">
                         <label style="display:block;">選單狀態</label>
                         <input type="radio" name="enable" id="enable_1" value="1" <?php if ($_smarty_tpl->tpl_vars['row']->value['enable'] == '1') {?>checked<?php }?>>

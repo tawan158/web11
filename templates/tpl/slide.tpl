@@ -16,11 +16,11 @@
             <{foreach $rows as $row}>
                 <tr>
                     <td><img src="<{$row.pic}>" alt="<{$row.title}>" width=80></td>
-                    <td class=""><{$row.title}></td>
-                    <td class=""><{$row.url}></td>
-                    <td class="text-center "><{if $row.target}><i class="fas fa-check"></i><{/if}></td>
-                    <td class="text-center "><{if $row.enable}><i class="fas fa-check"></i><{/if}></td>
-                    <td class="text-center ">
+                    <td class="align-middle"><{$row.title}></td>
+                    <td class="align-middle"><{$row.url}></td>
+                    <td class="text-center align-middle"><{if $row.target}><i class="fas fa-check"></i><{/if}></td>
+                    <td class="text-center align-middle"><{if $row.enable}><i class="fas fa-check"></i><{/if}></td>
+                    <td class="text-center align-middle">
                         <a href="?op=op_form&kind=<{$row.kind}>&sn=<{$row.sn}>"><i class="far fa-edit"></i></a>
                         <a href="javascript:void(0)" onclick="op_delete('<{$row.kind}>',<{$row.sn}>);"><i class="far fa-trash-alt"></i></a>
                     </td>
@@ -64,21 +64,36 @@
             <!-- 	 						 -->
             <div class="row">         
                 <!--標題-->              
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <label>標題<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="title" id="title" value="<{$row.title}>" >
                     </div>
                 </div>          
                 <!--網址-->              
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <label>網址<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="url" id="url" value="<{$row.url}>" >
                     </div>
                 </div>
+
+                             
+                <!--圖片-->              
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>圖片</label>
+                        <input type="file" class="form-control" name="pic" id="pic">
+                        <label class="mt-1">
+                            <{if $row.pic}>
+                                <img src="<{$row.pic}>" alt="<{$row.title}>" class="img-fluid">
+                            <{/if}>
+                        </label>
+                    </div>
+                </div> 
+
                 <!-- 外連狀態  -->
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="form-group">
                         <label style="display:block;">外連狀態</label>
                         <input type="radio" name="target" id="target_1" value="1" <{if $row.target=='1'}>checked<{/if}>>
@@ -88,7 +103,7 @@
                     </div>
                 </div>   
                 <!--選單狀態  -->
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="form-group">
                         <label style="display:block;">選單狀態</label>
                         <input type="radio" name="enable" id="enable_1" value="1" <{if $row.enable=='1'}>checked<{/if}>>
