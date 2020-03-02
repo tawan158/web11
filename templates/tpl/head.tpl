@@ -10,7 +10,7 @@
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
           <{foreach $mainMenus as $mainMenu}>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="<{$mainMenu.url}>" <{if $mainMenu.target == 1}>>target="_blank" <{/if}>><{$mainMenu.title}></a>
+              <a class="nav-link js-scroll-trigger" href="<{$mainMenu.url}>" <{if $mainMenu.target == 1}>target="_blank" <{/if}> ><{$mainMenu.title}></a>
             </li>
           <{/foreach}>
 

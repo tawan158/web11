@@ -32,7 +32,9 @@
           <{elseif  $WEB.file_name == "kind.php"}>
             <{include file="tpl/kind.tpl"}>  
           <{elseif  $WEB.file_name == "menu.php"}>
-            <{include file="tpl/menu.tpl"}>  
+            <{include file="tpl/menu.tpl"}>   
+          <{elseif  $WEB.file_name == "slide.php"}>
+            <{include file="tpl/slide.tpl"}>  
           <{/if}>
           
 
@@ -61,6 +63,9 @@
               </li>
               <li class="list-group-item">
                 <a href="menu.php" class="btn-block">選單管理</a>
+              </li>
+              <li class="list-group-item">
+                <a href="slide.php" class="btn-block">輪播圖管理</a>
               </li>
               <li class="list-group-item">
                 <a href="http://localhost/adminer/adminer.php" class="btn-block" target="_blank">資料庫管理</a>

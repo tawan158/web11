@@ -48,7 +48,6 @@ switch ($op){
 }
   /*---- 將變數送至樣版----*/
   $mainMenus = getMenus("mainMenu");
-
   $smarty->assign("mainMenus", $mainMenus);
   $smarty->assign("WEB", $WEB);
   $smarty->assign("op", $op);
@@ -63,7 +62,7 @@ function getMenus($kind){
   
   $sql = "SELECT *
           FROM `kinds`
-          WHERE `kind`='{$kind}'
+          WHERE `kind`='{$kind}' and `enable`='1'
           ORDER BY `sort`
   ";//die($sql);
 

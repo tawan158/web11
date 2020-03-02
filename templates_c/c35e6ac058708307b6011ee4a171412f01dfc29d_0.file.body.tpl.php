@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-14 06:43:30
+/* Smarty version 3.1.34-dev-7, created on 2020-03-02 13:37:58
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\body.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e463382856a48_58416571',
+  'unifunc' => 'content_5e5c9bb68acc56_61261147',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c35e6ac058708307b6011ee4a171412f01dfc29d' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\body.tpl',
-      1 => 1581658965,
+      1 => 1583127468,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,61 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e463382856a48_58416571 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5c9bb68acc56_61261147 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
-  <!-- Masthead -->
-  <header class="masthead">
-    <div class="container h-100">
-      <div class="row h-100 align-items-center justify-content-center text-center">
-        <div class="col-lg-10 align-self-end">
-          <h1 class="text-uppercase text-white font-weight-bold">Your Favorite Source of Free Bootstrap Themes</h1>
-          <hr class="divider my-4">
+  <!-- 輪播圖 -->
+  <style>
+    .carousel-item {
+      height: 100vh;
+      min-height: 350px;
+      background: no-repeat center center scroll;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+  </style>  
+  <header>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <!-- Slide One - Set the background image for this slide in the line below -->
+        <div class="carousel-item active" style="background-image: url('https://source.unsplash.com/LAaSoL0LrYs/1920x1080')">
+          <div class="carousel-caption d-none d-md-block">
+            <h2 class="display-4">First Slide</h2>
+            <p class="lead">This is a description for the first slide.</p>
+          </div>
         </div>
-        <div class="col-lg-8 align-self-baseline">
-          <p class="text-white-75 font-weight-light mb-5">Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached!</p>
-          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+        <!-- Slide Two - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('https://source.unsplash.com/bF2vsubyHcQ/1920x1080')">
+          <div class="carousel-caption d-none d-md-block">
+            <h2 class="display-4">Second Slide</h2>
+            <p class="lead">This is a description for the second slide.</p>
+          </div>
+        </div>
+        <!-- Slide Three - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('https://source.unsplash.com/szFUQoyvrxM/1920x1080')">
+          <div class="carousel-caption d-none d-md-block">
+            <h2 class="display-4">Third Slide</h2>
+            <p class="lead">This is a description for the third slide.</p>
+          </div>
         </div>
       </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
     </div>
   </header>
+
   <!-- About Section -->
   <section class="page-section bg-primary" id="about">
     <div class="container">

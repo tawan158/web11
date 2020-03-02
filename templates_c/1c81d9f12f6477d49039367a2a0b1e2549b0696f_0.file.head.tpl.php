@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-02 11:54:06
+/* Smarty version 3.1.34-dev-7, created on 2020-03-02 13:28:50
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\head.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5c835e82b1a8_21471788',
+  'unifunc' => 'content_5e5c999279aee9_77259979',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1c81d9f12f6477d49039367a2a0b1e2549b0696f' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\head.tpl',
-      1 => 1583121217,
+      1 => 1583126927,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5c835e82b1a8_21471788 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5c999279aee9_77259979 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" style="">
@@ -39,7 +39,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['mainMenu']->value) {
 ?>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="<?php echo $_smarty_tpl->tpl_vars['mainMenu']->value['url'];?>
-" <?php if ($_smarty_tpl->tpl_vars['mainMenu']->value['target'] == 1) {?>>target="_blank" <?php }?>><?php echo $_smarty_tpl->tpl_vars['mainMenu']->value['title'];?>
+" <?php if ($_smarty_tpl->tpl_vars['mainMenu']->value['target'] == 1) {?>target="_blank" <?php }?> ><?php echo $_smarty_tpl->tpl_vars['mainMenu']->value['title'];?>
 </a>
             </li>
           <?php
