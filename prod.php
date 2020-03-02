@@ -175,27 +175,6 @@ function op_insert($sn=""){
   return $msg;
 
 }
-/*========================================
-  用kind col_sn sort 取得圖片資料
-========================================*/ 
-function getFilesByKindColsnSort($kind,$col_sn,$sort=1,$url=true){
-    global $db; 
-    $sql="SELECT *
-                 FROM `files`
-                 WHERE `kind` = '{$kind}' AND `col_sn` = '{$col_sn}' AND `sort` = '{$sort}'
-    ";//ddie($sql);     
-    $result = $db->query($sql) or die($db->error() . $sql);
-    $row = $result->fetch_assoc();
-    $file_name = "";
-    if($row){
-      if($url){
-          $file_name = _WEB_URL . "/uploads" . $row['sub_dir'] . "/" . $row['name'];
-      }else{
-          $file_name = _WEB_PATH . "/uploads" . $row['sub_dir'] . "/" . $row['name'];
-      }
-    }
-    return $file_name;
-}
 
 /*===========================
   用sn取得商品檔資料

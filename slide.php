@@ -7,25 +7,25 @@ if($_SESSION['user']['kind'] !== 1)redirect_header("index.php", '您沒有權限
 /* 過濾變數，設定預設值 */
 $op = system_CleanVars($_REQUEST, 'op', 'op_list', 'string');
 $sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
-$kind = system_CleanVars($_REQUEST, 'kind', 'mainMenu', 'string');
-$kind = "mainMenu";
+$kind = system_CleanVars($_REQUEST, 'kind', 'mainSlide', 'string');
+$kind = "mainSlide";
 // echo $op;die();
  
 /* 程式流程 */
 switch ($op){
   case "op_delete" :
     $msg = op_delete($kind,$sn);
-    redirect_header("menu.php?kind={$kind}", $msg, 3000);
+    redirect_header("slide.php?kind={$kind}", $msg, 3000);
     exit;
 
   case "op_insert" :
     $msg = op_insert($kind);
-    redirect_header("menu.php?kind={$kind}", $msg, 3000);
+    redirect_header("slide.php?kind={$kind}", $msg, 3000);
     exit;
 
   case "op_update" :
     $msg = op_insert($kind,$sn);
-    redirect_header("menu.php", $msg, 3000);
+    redirect_header("slide.php", $msg, 3000);
     exit;
 
   case "op_form" :
@@ -166,6 +166,7 @@ function op_list($kind){
     $row['enable'] = (int)$row['enable'];//狀態 
     $row['url'] = htmlspecialchars($row['url']);//網址
     $row['target'] = (int)$row['target'];//外連 
+    $row['pic'] = getFilesByKindColsnSort($kind,$row['sn']);
     $rows[] = $row;
   }
   $smarty->assign("rows",$rows);

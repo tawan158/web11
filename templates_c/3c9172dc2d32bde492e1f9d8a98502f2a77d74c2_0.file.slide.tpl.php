@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-02 13:46:46
+/* Smarty version 3.1.34-dev-7, created on 2020-03-02 14:12:07
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\slide.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5c9dc6bd5c19_78624626',
+  'unifunc' => 'content_5e5ca3b77696f0_03972396',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3c9172dc2d32bde492e1f9d8a98502f2a77d74c2' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\slide.tpl',
-      1 => 1583127844,
+      1 => 1583129518,
       2 => 'file',
     ),
   ),
@@ -20,11 +20,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5c9dc6bd5c19_78624626 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5ca3b77696f0_03972396 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
         <tr> 
+            <th scope="col" style="width:85px;">圖片</th>
             <th scope="col">標題</th>
             <th scope="col">網址</th>
             <th scope="col" class="text-center">外連</th>
@@ -42,6 +43,9 @@ if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
 ?>
                 <tr>
+                    <td><img src="<?php echo $_smarty_tpl->tpl_vars['row']->value['pic'];?>
+" alt="<?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+" width=80></td>
                     <td class=""><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
 </td>
                     <td class=""><?php echo $_smarty_tpl->tpl_vars['row']->value['url'];?>
@@ -62,7 +66,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
 } else {
 ?>
                 <tr>
-                    <td colspan=5>目前沒有資料</td>
+                    <td colspan=6>目前沒有資料</td>
                 </tr>
             <?php
 }
@@ -92,7 +96,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                 cancelButtonText: '取消'
                 }).then((result) => {
                 if (result.value) {
-                    document.location.href="menu.php?op=op_delete&kind=" + kind + "&sn="+sn;
+                    document.location.href="slide.php?op=op_delete&kind=" + kind + "&sn="+sn;
                 }
             })
         }
@@ -103,7 +107,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
 <?php if ($_smarty_tpl->tpl_vars['op']->value == "op_form") {?>
     
     <div class="container">        
-        <form action="menu.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
+        <form action="slide.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
             <!-- 	 						 -->
             <div class="row">         
                 <!--標題-->              

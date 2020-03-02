@@ -2,6 +2,7 @@
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
         <tr> 
+            <th scope="col" style="width:85px;">圖片</th>
             <th scope="col">標題</th>
             <th scope="col">網址</th>
             <th scope="col" class="text-center">外連</th>
@@ -14,6 +15,7 @@
         <tbody>
             <{foreach $rows as $row}>
                 <tr>
+                    <td><img src="<{$row.pic}>" alt="<{$row.title}>" width=80></td>
                     <td class=""><{$row.title}></td>
                     <td class=""><{$row.url}></td>
                     <td class="text-center "><{if $row.target}><i class="fas fa-check"></i><{/if}></td>
@@ -25,7 +27,7 @@
                 </tr>
             <{foreachelse}>
                 <tr>
-                    <td colspan=5>目前沒有資料</td>
+                    <td colspan=6>目前沒有資料</td>
                 </tr>
             <{/foreach}>
 
@@ -48,7 +50,7 @@
                 cancelButtonText: '取消'
                 }).then((result) => {
                 if (result.value) {
-                    document.location.href="menu.php?op=op_delete&kind=" + kind + "&sn="+sn;
+                    document.location.href="slide.php?op=op_delete&kind=" + kind + "&sn="+sn;
                 }
             })
         }
@@ -58,7 +60,7 @@
 <{if $op=="op_form"}>
     
     <div class="container">        
-        <form action="menu.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
+        <form action="slide.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
             <!-- 	 						 -->
             <div class="row">         
                 <!--標題-->              
