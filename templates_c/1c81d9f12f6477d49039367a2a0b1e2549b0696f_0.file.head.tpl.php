@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-27 11:33:12
+/* Smarty version 3.1.34-dev-7, created on 2020-03-02 09:45:05
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\head.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e573878bfe056_36402827',
+  'unifunc' => 'content_5e5c652163c1f9_34242894',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1c81d9f12f6477d49039367a2a0b1e2549b0696f' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\head.tpl',
-      1 => 1582774387,
+      1 => 1583113502,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e573878bfe056_36402827 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5c652163c1f9_34242894 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" style="background:rgba(108, 117, 125,0.8);">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" style="">
     <div class="container">
       <a class="navbar-brand js-scroll-trigger" href="index.php#page-top"><?php echo $_smarty_tpl->tpl_vars['WEB']->value['web_title'];?>
 </a>

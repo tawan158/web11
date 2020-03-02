@@ -21,7 +21,7 @@
   <link href="<{$xoImgUrl}>vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
   <!-- Theme CSS - Includes Bootstrap -->
-  <link href="<{$xoImgUrl}>css/creative.min.css" rel="stylesheet">
+  <link href="<{$xoImgUrl}>css/creative.css" rel="stylesheet">
   
   <{* head_js.tpl *}>
   <{include file="tpl/head_js.tpl"}>

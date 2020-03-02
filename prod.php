@@ -234,6 +234,21 @@ function getProdsOptions($kind){
   return $rows;
 }
 
+
+/*================================
+  取得商品數量的最大值
+================================*/
+function getProdsMaxSort(){
+  global $db;
+  $sql = "SELECT count(*)+1 as count
+          FROM `prods`
+  ";//die($sql);
+
+  $result = $db->query($sql) or die($db->error() . $sql);
+  $row = $result->fetch_assoc();
+  return $row['count'];
+}
+
 function op_form($sn=""){
   global $smarty,$db;
 
@@ -256,7 +271,7 @@ function op_form($sn=""){
   $row['date'] = isset($row['date']) ? $row['date'] : strtotime("now");
   $row['date'] = date("Y-m-d H:i:s",$row['date']);
 
-  $row['sort'] = isset($row['sort']) ? $row['sort'] : "";
+  $row['sort'] = isset($row['sort']) ? $row['sort'] : getProdsMaxSort();
   $row['counter'] = isset($row['counter']) ? $row['counter'] : "";
   
   $row['prod'] = isset($row['prod']) ? $row['prod'] : "";

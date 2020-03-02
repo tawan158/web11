@@ -98,7 +98,7 @@
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label>價格</label>
-                        <input type="text" class="form-control" name="price" id="price" value="<{$row.price}>">
+                        <input type="text" class="form-control text-right" name="price" id="price" value="<{$row.price}>">
                     </div>
                 </div>         
                 <!--建立日期-->              
@@ -112,14 +112,14 @@
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label>排序</label>
-                        <input type="text" class="form-control" name="sort" id="sort" value="<{$row.sort}>">
+                        <input type="text" class="form-control text-right" name="sort" id="sort" value="<{$row.sort}>">
                     </div>
                 </div>            
                 <!--計數-->              
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label>計數</label>
-                        <input type="text" class="form-control" name="counter" id="counter" value="<{$row.counter}>">
+                        <input type="text" class="form-control text-right" name="counter" id="counter" value="<{$row.counter}>">
                     </div>
                 </div>             
                 <!--圖片-->              
