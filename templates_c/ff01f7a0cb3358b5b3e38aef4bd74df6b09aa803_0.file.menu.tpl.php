@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-02 10:56:21
+/* Smarty version 3.1.34-dev-7, created on 2020-03-02 11:26:47
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\menu.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5c75d53a3c74_74026972',
+  'unifunc' => 'content_5e5c7cf75f44c1_93137122',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ff01f7a0cb3358b5b3e38aef4bd74df6b09aa803' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\menu.tpl',
-      1 => 1583117756,
+      1 => 1583119585,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5c75d53a3c74_74026972 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5c7cf75f44c1_93137122 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
@@ -184,10 +184,16 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                     rules: {
                         'title' : {
                             required: true
+                        },
+                        'url' : {
+                            required: true
                         }
                     },
                     messages: {
                         'title' : {
+                            required: "必填"
+                        },
+                        'url' : {
                             required: "必填"
                         }
 

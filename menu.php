@@ -155,6 +155,7 @@ function op_list($kind){
   $sql = "SELECT *
           FROM `kinds`
           WHERE `kind`='{$kind}'
+          ORDER BY `sort`
   ";//die($sql);
 
   $result = $db->query($sql) or die($db->error() . $sql);

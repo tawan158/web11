@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-02 09:45:05
+/* Smarty version 3.1.34-dev-7, created on 2020-03-02 11:54:06
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\head.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5c652163c1f9_34242894',
+  'unifunc' => 'content_5e5c835e82b1a8_21471788',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1c81d9f12f6477d49039367a2a0b1e2549b0696f' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\head.tpl',
-      1 => 1583113502,
+      1 => 1583121217,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5c652163c1f9_34242894 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5c835e82b1a8_21471788 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" style="">
@@ -32,22 +32,21 @@ function content_5e5c652163c1f9_34242894 (Smarty_Internal_Template $_smarty_tpl)
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="index.php#about">關於我們</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="index.php#services">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="index.php#portfolio">Portfolio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="index.php#contact">Contact</a>
-          </li>
+          <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['mainMenus']->value, 'mainMenu');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['mainMenu']->value) {
+?>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="<?php echo $_smarty_tpl->tpl_vars['mainMenu']->value['url'];?>
+" <?php if ($_smarty_tpl->tpl_vars['mainMenu']->value['target'] == 1) {?>>target="_blank" <?php }?>><?php echo $_smarty_tpl->tpl_vars['mainMenu']->value['title'];?>
+</a>
+            </li>
+          <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="index.php?op=contact_form">聯絡我們</a>
-          </li>
 
           <?php if ($_SESSION['user']['kind'] === 1) {?>
                         <li class="nav-item">

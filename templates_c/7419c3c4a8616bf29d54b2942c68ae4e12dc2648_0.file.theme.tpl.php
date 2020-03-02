@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-02 09:34:52
+/* Smarty version 3.1.34-dev-7, created on 2020-03-02 11:36:22
   from 'D:\ugm\xampp\htdocs\web11\templates\theme.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5c62bc3103e6_78677006',
+  'unifunc' => 'content_5e5c7f36601197_85269856',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7419c3c4a8616bf29d54b2942c68ae4e12dc2648' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\theme.tpl',
-      1 => 1583112887,
+      1 => 1583120147,
       2 => 'file',
     ),
   ),
@@ -29,7 +29,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:tpl/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5e5c62bc3103e6_78677006 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5c7f36601197_85269856 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -93,7 +93,12 @@ css/creative.css" rel="stylesheet">
     <?php $_smarty_tpl->_subTemplateRender("file:tpl/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
-
+  
+  <!-- Custom scripts for this template -->
+  <?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
+js/creative.min.js"><?php echo '</script'; ?>
+>
 </body>
 
 </html>

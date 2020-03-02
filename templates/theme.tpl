@@ -53,7 +53,9 @@
   <{* footer.tpl *}>
   <{include file="tpl/footer.tpl"}>
 
-
+  
+  <!-- Custom scripts for this template -->
+  <script src="<{$xoImgUrl}>js/creative.min.js"></script>
 </body>
 
 </html>

@@ -130,10 +130,16 @@
                     rules: {
                         'title' : {
                             required: true
+                        },
+                        'url' : {
+                            required: true
                         }
                     },
                     messages: {
                         'title' : {
+                            required: "必填"
+                        },
+                        'url' : {
                             required: "必填"
                         }
 
