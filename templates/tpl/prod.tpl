@@ -145,13 +145,15 @@
                     </div>
                 </div>
             </div>
-
+            
             <!-- ckeditor -->
             <script src="<{$xoAppUrl}>class/ckeditor/ckeditor.js"></script>
             <script>
                 CKEDITOR.replace('content',{
-                    height:500,
-                    contentsCss: ['<{$xoImgUrl}>css/creative.css'] //引入前台樣板css
+                    height:500,//高度
+                    contentsCss: ['<{$xoImgUrl}>css/creative.css'],//前台樣板css
+                    removeDialogTabs: 'image:Link',//取消連結 //link:target;link:advanced;image:advanced
+                    filebrowserBrowseUrl: '<{$xoAppUrl}>class/elfinder.php?type=image'//呼叫elfinder.php
                 });
             </script>
 

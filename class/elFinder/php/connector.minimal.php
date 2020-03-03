@@ -1,5 +1,20 @@
 <?php
 
+#權限設定
+require_once dirname(dirname(dirname(__DIR__))) . '/head.php';
+
+if($_SESSION['user']['kind'] !== 1)redirect_header(_WEB_URL, '您沒有權限', 3000);
+
+$type = system_CleanVars($_REQUEST, 'type', 'image', 'string');
+$mdir = system_CleanVars($_REQUEST, 'mdir', 'ck', 'string');
+$path = _WEB_PATH . "/uploads/{$mdir}/{$type}/";
+$url = _WEB_URL . "/uploads/{$mdir}/{$type}/";
+
+$image_max_width =  800;
+$image_max_height = 800;
+#------------------------
+
+
 error_reporting(0); // Set E_ALL for debuging
 
 // // Optional exec path settings (Default is called with command name only)
@@ -139,31 +154,33 @@ function access($attr, $path, $data, $volume, $isDir, $relpath) {
 // Documentation for connector options:
 // https://github.com/Studio-42/elFinder/wiki/Connector-configuration-options
 $opts = array(
+	'bind' => [
+			'upload.presave' => [
+					'Plugin.AutoResize.onUpLoadPreSave',
+			],
+	],
+	'plugin' => [
+			'AutoResize' => [
+					'enable' => true, // For control by volume driver
+					'maxWidth' => $image_max_width, // Path to Water mark image
+					'maxHeight' => $image_max_height, // Margin right pixel
+					'quality' => 95, // JPEG image save quality
+			],
+	],
+	'locale' => 'zh_TW.UTF-8',
 	// 'debug' => true,
 	'roots' => array(
 		// Items volume
 		array(
 			'driver'        => 'LocalFileSystem',           // driver for accessing file system (REQUIRED)
-			'path'          => '../files/',                 // path to files (REQUIRED)
-			'URL'           => dirname($_SERVER['PHP_SELF']) . '/../files/', // URL to files (REQUIRED)
+			'path'          => $path,                 // path to files (REQUIRED)
+			'URL'           => $url, // URL to files (REQUIRED)
 			'trashHash'     => 't1_Lw',                     // elFinder's hash of trash folder
 			'winHashFix'    => DIRECTORY_SEPARATOR !== '/', // to make hash same to Linux one on windows too
 			'uploadDeny'    => array('all'),                // All Mimetypes not allowed to upload
 			'uploadAllow'   => array('image/x-ms-bmp', 'image/gif', 'image/jpeg', 'image/png', 'image/x-icon', 'text/plain'), // Mimetype `image` and `text/plain` allowed to upload
 			'uploadOrder'   => array('deny', 'allow'),      // allowed Mimetype `image` and `text/plain` only
 			'accessControl' => 'access'                     // disable and hide dot starting files (OPTIONAL)
-		),
-		// Trash volume
-		array(
-			'id'            => '1',
-			'driver'        => 'Trash',
-			'path'          => '../files/.trash/',
-			'tmbURL'        => dirname($_SERVER['PHP_SELF']) . '/../files/.trash/.tmb/',
-			'winHashFix'    => DIRECTORY_SEPARATOR !== '/', // to make hash same to Linux one on windows too
-			'uploadDeny'    => array('all'),                // Recomend the same settings as the original volume that uses the trash
-			'uploadAllow'   => array('image/x-ms-bmp', 'image/gif', 'image/jpeg', 'image/png', 'image/x-icon', 'text/plain'), // Same as above
-			'uploadOrder'   => array('deny', 'allow'),      // Same as above
-			'accessControl' => 'access',                    // Same as above
 		),
 	)
 );
