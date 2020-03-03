@@ -1,4 +1,13 @@
 <{if $op=="op_list"}>
+
+    <div class="row mb-2">
+        <div class="cols-sm-4">
+            <select name="kind" id="kind" class="form-control" onchange="location.href='?kind='+this.value">
+                <option value="mainMenu" <{if $kind == "mainMenu"}>selected<{/if}> >主選單</option>
+                <option value="cartMenu" <{if $kind == "cartMenu"}>selected<{/if}> >購物車選單</option>
+            </select>
+        </div>
+    </div>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
         <tr> 

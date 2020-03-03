@@ -37,6 +37,8 @@
 
   <{if $WEB.file_name == "index.php"}>
     <{include file="tpl/index.tpl"}>
+  <{elseif  $WEB.file_name == "cart.php"}>
+    <{include file="tpl/cart.tpl"}>
   <{/if}>
   
 

@@ -1,5 +1,27 @@
+<?php
+/* Smarty version 3.1.34-dev-7, created on 2020-03-03 11:32:35
+  from 'D:\ugm\xampp\htdocs\web11\templates\tpl\cart.tpl' */
 
-<{if $op == "op_gallery"}>
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.34-dev-7',
+  'unifunc' => 'content_5e5dcfd33eec83_07095240',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '50e4048a5f846acadf4dda68c273764db420ec2f' => 
+    array (
+      0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\cart.tpl',
+      1 => 1583206229,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_5e5dcfd33eec83_07095240 (Smarty_Internal_Template $_smarty_tpl) {
+if ($_smarty_tpl->tpl_vars['op']->value == "op_gallery") {?>
   <!-- Page Content -->
     <div class="container">
 
@@ -73,7 +95,7 @@
   
     </div>
 	<!-- /.container -->
-<{elseif  $op == "Portfolio"}>
+<?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "Portfolio") {?>
 		<!-- Page Content -->
 <div class="container">
 
@@ -201,5 +223,7 @@
 
 </div>
 <!-- /.container -->
-<{else}>
-<{/if}>
+<?php } else {
+}
+}
+}

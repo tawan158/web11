@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-03 10:42:54
+/* Smarty version 3.1.34-dev-7, created on 2020-03-03 10:48:31
   from 'D:\ugm\xampp\htdocs\web11\templates\theme.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5dc42e77cc50_46615566',
+  'unifunc' => 'content_5e5dc57fbb9294_56921673',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7419c3c4a8616bf29d54b2942c68ae4e12dc2648' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\theme.tpl',
-      1 => 1583203329,
+      1 => 1583203707,
       2 => 'file',
     ),
   ),
@@ -22,10 +22,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:tpl/redirect.tpl' => 1,
     'file:tpl/head.tpl' => 1,
     'file:tpl/index.tpl' => 1,
+    'file:tpl/cart.tpl' => 1,
     'file:tpl/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5e5dc42e77cc50_46615566 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5dc57fbb9294_56921673 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -69,6 +70,9 @@ css/creative.css" rel="stylesheet">
 
   <?php if ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "index.php") {?>
     <?php $_smarty_tpl->_subTemplateRender("file:tpl/index.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+  <?php } elseif ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "cart.php") {?>
+    <?php $_smarty_tpl->_subTemplateRender("file:tpl/cart.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
   <?php }?>
   
