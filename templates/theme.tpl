@@ -74,10 +74,21 @@
       .fab-fixed-wrap .fab.fab-line {
         background-color: #0b0;
       }
+
+      .badge-counter {
+        position: absolute;
+        transform: scale(.7);
+        transform-origin: top right;
+        top: 10px;
+        right: 10px;
+        /* color:red;
+        background: #fff; */
+      }
     </style>
     <div class="fab-fixed-wrap with-navbar-bottom" style="bottom: 4.6875rem;position: fixed;z-index: 1035;right: .9375rem;bottom: .9375rem;">
       <a href="#" class="fab fab-facebook mp-click" data-toggle="tooltip" title="您選了<{$smarty.session.cartAmount}>個餐點">
-        <i class="fas fa-cart-plus"></i>  
+        <i class="fas fa-cart-plus"></i> 
+        <span class="badge badge-danger badge-counter"><{$smarty.session.cartAmount}></span> 
       </a>
     </div>
     <script>

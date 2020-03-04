@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-04 14:10:43
+/* Smarty version 3.1.34-dev-7, created on 2020-03-04 14:19:45
   from 'D:\ugm\xampp\htdocs\web11\templates\theme.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5f46639adb97_39715078',
+  'unifunc' => 'content_5e5f48819cf171_81096698',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7419c3c4a8616bf29d54b2942c68ae4e12dc2648' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\theme.tpl',
-      1 => 1583302220,
+      1 => 1583302782,
       2 => 'file',
     ),
   ),
@@ -26,7 +26,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:tpl/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5e5f46639adb97_39715078 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5f48819cf171_81096698 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -109,11 +109,23 @@ css/creative.css" rel="stylesheet">
       .fab-fixed-wrap .fab.fab-line {
         background-color: #0b0;
       }
+
+      .badge-counter {
+        position: absolute;
+        transform: scale(.7);
+        transform-origin: top right;
+        top: 10px;
+        right: 10px;
+        /* color:red;
+        background: #fff; */
+      }
     </style>
     <div class="fab-fixed-wrap with-navbar-bottom" style="bottom: 4.6875rem;position: fixed;z-index: 1035;right: .9375rem;bottom: .9375rem;">
       <a href="#" class="fab fab-facebook mp-click" data-toggle="tooltip" title="您選了<?php echo $_SESSION['cartAmount'];?>
 個餐點">
-        <i class="fas fa-cart-plus"></i>  
+        <i class="fas fa-cart-plus"></i> 
+        <span class="badge badge-danger badge-counter"><?php echo $_SESSION['cartAmount'];?>
+</span> 
       </a>
     </div>
     <?php echo '<script'; ?>
