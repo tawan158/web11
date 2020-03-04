@@ -184,3 +184,18 @@ function getMenus($kind,$pic=false){
   return $rows; 
 
 }
+
+/*===========================
+  用sn取得商品檔資料
+===========================*/
+function getProdsBySn($sn){
+  global $db;
+  $sql="SELECT *
+        FROM `prods`
+        WHERE `sn` = '{$sn}'
+  ";//die($sql);  
+  $result = $db->query($sql) or die($db->error() . $sql);
+  $row = $result->fetch_assoc();
+  $row['prod'] = getFilesByKindColsnSort("prod",$sn);
+  return $row;
+}

@@ -8,10 +8,12 @@ $sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
 
 /* 程式流程 */
 switch ($op){
-	case "op_gallery" :
-		//op_gallery();
-		break; 
-		  
+	case "add_cart" :
+    $msg = add_cart($sn);
+    redirect_header("cart.php", $msg, 3000);    
+		exit; 
+
+    		  
   default:
     $op = "op_list";
     op_list();
@@ -29,6 +31,23 @@ switch ($op){
 $smarty->display('theme.tpl');
 
 //----函數區
+function add_cart($sn){
+  global $db;
+  $row = getProdsBySn($sn);
+  if($row['enable']){       
+    $row['sn'] = (int)$row['sn'];//分類
+    $row['title'] = htmlspecialchars($row['title']);//標題
+    $row['price'] = (int)$row['price'];//價格
+    $row['prod'] = getFilesByKindColsnSort("prod",$row['sn']); 
+    $row['amount'] = isset($_SESSION['cart'][$sn]['amount']) ? $_SESSION['cart'][$sn]['amount']++ : 1;
+    
+    $_SESSION['cart'][$sn] = $row;
+    $_SESSION['cartAmount'] = count($_SESSION['cart']);
+    
+  }
+  return "加入購物車成功";
+}
+
 function op_list(){
   global $db,$smarty;
 

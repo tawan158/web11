@@ -57,3 +57,29 @@ CREATE TABLE `files` (
     `sub_dir` varchar(255) NOT NULL DEFAULT '' COMMENT '檔案子路徑',
     PRIMARY KEY (`sn`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上傳檔案資料表';
+
+-- 訂單主檔
+CREATE TABLE `orders_main` (
+  `sn` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'sn',
+  `no` varchar(255) NOT NULL DEFAULT '' COMMENT '訂單編號',
+  `name` varchar(255) NOT NULL DEFAULT '' COMMENT '姓名',
+  `tel` varchar(255) NOT NULL DEFAULT '' COMMENT '電話',
+  `email` varchar(255) NOT NULL DEFAULT '' COMMENT '電子信箱',
+  `ps` text DEFAULT NULL COMMENT '備註',
+  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '會員編號',
+  `date` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '訂單日期',
+  `total` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '總計',
+  PRIMARY KEY (`sn`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='訂單主檔';
+
+-- 訂單明細檔
+CREATE TABLE `orders` (
+  `sn` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'sn',
+  `orders_main_sn` int(10) unsigned NOT NULL COMMENT 'orders_main_sn',
+  `prod_sn` int(10) unsigned NOT NULL COMMENT 'prod_standard_sn',
+  `title` varchar(255) NOT NULL DEFAULT '' COMMENT '名稱',
+  `amount` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '數量',
+  `price` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '售價',
+  `sort` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
+  PRIMARY KEY (`sn`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='訂單明細檔';

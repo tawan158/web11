@@ -83,7 +83,7 @@ css/creative.css" rel="stylesheet">
 ?>
 
     
-  <?php if ($_SESSION['cartCount']) {?>
+  <?php if ($_SESSION['cartAmount']) {?>
     <style>
       .fab-fixed-wrap .fab {
         display: block;

@@ -104,4 +104,4 @@ $_SESSION['message'] = "";
 $_SESSION['time'] = "";
 
 #購物車圖示
-$_SESSION['cartCount'] = isset($_SESSION['cartCount']) ? $_SESSION['cartCount'] : 0;
+$_SESSION['cartAmount'] = isset($_SESSION['cartAmount']) ? $_SESSION['cartAmount'] : 0;
