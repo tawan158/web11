@@ -10,14 +10,11 @@ $sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
 switch ($op){
 	case "op_gallery" :
 		//op_gallery();
-		break;  
-
-	case "Portfolio" :
-		//op_gallery();
-		break;
+		break; 
 		  
   default:
     $op = "op_list";
+    op_list();
     break;  
 }
   /*---- 將變數送至樣版----*/
@@ -32,27 +29,27 @@ switch ($op){
 $smarty->display('theme.tpl');
 
 //----函數區
+function op_list(){
+  global $db,$smarty;
 
-function getMenus($kind,$pic=false){
-  global $db;
-  
-  $sql = "SELECT *
-          FROM `kinds`
-          WHERE `kind`='{$kind}' and `enable`='1'
-          ORDER BY `sort`
+  $sql = "SELECT a.sn,a.title,price,
+                 b.title as kinds_title
+          FROM `prods` as a
+          LEFT JOIN `kinds` as b on a.kind_sn=b.sn
+          WHERE a.`enable`='1'
+          ORDER BY a.date desc
   ";//die($sql);
 
   $result = $db->query($sql) or die($db->error() . $sql);
   $rows=[];//array();
-  while($row = $result->fetch_assoc()){ 
+  while($row = $result->fetch_assoc()){    
     $row['sn'] = (int)$row['sn'];//分類
     $row['title'] = htmlspecialchars($row['title']);//標題
-    $row['enable'] = (int)$row['enable'];//狀態 
-    $row['url'] = htmlspecialchars($row['url']);//網址
-    $row['target'] = (int)$row['target'];//外連  
-    $row['pic'] = ($pic == true) ? getFilesByKindColsnSort($kind,$row['sn']) :"";//圖片連結
+    $row['price'] = (int)$row['price'];//價格
+    $row['prod'] = getFilesByKindColsnSort("prod",$row['sn']);  
+    //$row['kinds_title'] = htmlspecialchars($row['kinds_title']);//標題
     $rows[] = $row;
   }
-  return $rows; 
+  $smarty->assign("rows",$rows); 
 
 }
