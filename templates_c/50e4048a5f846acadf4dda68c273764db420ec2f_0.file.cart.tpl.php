@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-04 15:56:12
+/* Smarty version 3.1.34-dev-7, created on 2020-03-04 16:25:46
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\cart.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5f5f1c2d9b11_57758385',
+  'unifunc' => 'content_5e5f660a1659c1_18009449',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '50e4048a5f846acadf4dda68c273764db420ec2f' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\cart.tpl',
-      1 => 1583308566,
+      1 => 1583310341,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5f5f1c2d9b11_57758385 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5f660a1659c1_18009449 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
   <!-- Page Content -->
   <div class="container" style="margin-top: 110px;">
@@ -101,67 +101,141 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
   <div class="container mt-5" style="margin-top: 100px!important;>
     <h1 class="text-center">點餐訂單</h1>
     <form  role="form" action="order_insert" method="post" id="myForm" >        
-        <div class="row">
-            <!--姓名-->              
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label><span class="title">姓名</span><span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="name" id="name" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['name'];?>
-">
-                </div>
-            </div>
-            <!--電話-->              
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label><span class="title">電話</span><span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="tel" id="tel" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['tel'];?>
-">
-                </div>
-            </div>
-            <!--email-->              
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label><span class="title">email</span><span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="email" id="email" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['email'];?>
-">
-                </div>
-            </div>
-                    
-            <!--分類-->              
-            <div class="col-sm-3">
+      <div class="row">
+          <!--姓名-->              
+          <div class="col-sm-3">
               <div class="form-group">
-                  <label>桌號或外帶</label>
-                  <select name="kind_sn" id="kind_sn" class="form-control">
-                    <?php
+                  <label><span class="title">姓名</span><span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="name" id="name" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['name'];?>
+">
+              </div>
+          </div>
+          <!--電話-->              
+          <div class="col-sm-3">
+              <div class="form-group">
+                  <label><span class="title">電話</span><span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="tel" id="tel" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['tel'];?>
+">
+              </div>
+          </div>
+          <!--email-->              
+          <div class="col-sm-3">
+              <div class="form-group">
+                  <label><span class="title">email</span><span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="email" id="email" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['email'];?>
+">
+              </div>
+          </div>
+                  
+          <!--分類-->              
+          <div class="col-sm-3">
+            <div class="form-group">
+                <label>桌號或外帶</label>
+                <select name="kind_sn" id="kind_sn" class="form-control">
+                  <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['row']->value['kind_sn_options'], 'option');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['option']->value) {
 ?>
-                      <option value="<?php echo $_smarty_tpl->tpl_vars['option']->value['sn'];?>
+                    <option value="<?php echo $_smarty_tpl->tpl_vars['option']->value['sn'];?>
 " <?php if ($_smarty_tpl->tpl_vars['option']->value['sn'] == $_smarty_tpl->tpl_vars['row']->value['kind_sn']) {?>selected<?php }?>><?php echo $_smarty_tpl->tpl_vars['option']->value['title'];?>
 </option>
-                    <?php
+                  <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                  </select>
+                </select>
+            </div>
+          </div>
+      </div> 
+      
+      <div class="row">
+          <div class="col-sm-12">  
+              <!-- 聯絡事項 -->
+              <div class="form-group">
+                  <label class="control-label">備註</label>
+                  <textarea class="form-control" rows="1" id="ps" name="ps"></textarea>
               </div>
-            </div>
-        </div> 
+          </div>
+      </div>
         
-        <div class="row">
-            <div class="col-sm-12">  
-                <!-- 聯絡事項 -->
-                <div class="form-group">
-                    <label class="control-label">備註</label>
-                    <textarea class="form-control" rows="1" id="ps" name="ps"></textarea>
-                </div>
-            </div>
-        </div>
+      <table class="table table-striped table-bordered table-hover table-sm">
+        <thead>
+        <tr> 
+            <th scope="col" style="width:85px;">圖片</th>
+            <th scope="col">餐點名稱</th>
+            <th scope="col" class="text-right">價格</th>
+            <th scope="col" class="text-center">數量</th>
+            <th scope="col" class="text-center">小計</th>
+        </tr>
+        </thead>
+        <tbody>
+            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_SESSION['cart'], 'row', false, 'sn');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['sn']->value => $_smarty_tpl->tpl_vars['row']->value) {
+?>
+                <tr>
+                  <td><img src="<?php echo $_smarty_tpl->tpl_vars['row']->value['prod'];?>
+" alt="<?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+" width=80></td>
+                  <td class="align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+</td>
+                  <td class="text-right align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
+</td>
+                  <td class="text-center align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['amount'];?>
+</td>
+                  <td class="text-center align-middle"></td>
+                </tr>
+            <?php
+}
+} else {
+?>
+                <tr>
+                    <td colspan=5>目前沒有點餐</td>
+                </tr>
+            <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+            <tr>
+              <td colspan=4 class="text-right">合計</td>
+              <td class="text-right" id="Total"></td>
+            </tr>
 
-        <div class="text-center pb-3">
-            <button type="submit" class="btn btn-primary">送出</button>
-        </div>
+        </tbody>
+      </table>
+  
+      <!-- sweetalert2 -->
+      <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['xoAppUrl']->value;?>
+class/sweetalert2/sweetalert2.min.css">
+      <?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['xoAppUrl']->value;?>
+class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
+>
+      <?php echo '<script'; ?>
+>
+        function op_delete(sn){
+            Swal.fire({
+                title: '你確定嗎？',
+                text: "您將無法還原！",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '是的，刪除它！',
+                cancelButtonText: '取消'
+                }).then((result) => {
+                if (result.value) {
+                    document.location.href="prod.php?op=op_delete&sn="+sn;
+                }
+            })
+        }
+      <?php echo '</script'; ?>
+>
+
+      <div class="text-center pb-3">
+        <button type="submit" class="btn btn-primary">送出</button>
+      </div>
     </form>
   </div>
 
