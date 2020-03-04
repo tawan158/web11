@@ -102,3 +102,6 @@ $smarty->assign("time",$_SESSION['time']);
 $_SESSION['redirect'] = "";
 $_SESSION['message'] = "";
 $_SESSION['time'] = "";
+
+#購物車圖示
+$_SESSION['cartCount'] = isset($_SESSION['cartCount']) ? $_SESSION['cartCount'] : 0;

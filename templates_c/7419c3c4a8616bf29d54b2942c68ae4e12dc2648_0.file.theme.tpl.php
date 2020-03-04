@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-03 10:48:31
+/* Smarty version 3.1.34-dev-7, created on 2020-03-04 11:09:18
   from 'D:\ugm\xampp\htdocs\web11\templates\theme.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5dc57fbb9294_56921673',
+  'unifunc' => 'content_5e5f1bded18d77_18266828',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7419c3c4a8616bf29d54b2942c68ae4e12dc2648' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\theme.tpl',
-      1 => 1583203707,
+      1 => 1583291354,
       2 => 'file',
     ),
   ),
@@ -26,7 +26,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:tpl/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5e5dc57fbb9294_56921673 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5f1bded18d77_18266828 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -81,6 +81,41 @@ css/creative.css" rel="stylesheet">
 
     <?php $_smarty_tpl->_subTemplateRender("file:tpl/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
+
+    
+  <?php if ($_SESSION['cartCount']) {?>
+    <style>
+      .fab-fixed-wrap .fab {
+        display: block;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        color: white;
+        background-color: #0c9;
+        text-align: center;
+        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.16);
+        text-decoration: none;
+        display: flex;
+        line-height: 1.2;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .fab-fixed-wrap .fab.fab-facebook {
+        /* background-color: #4080ff; */
+        background-color: #f4623a;
+      }
+
+      .fab-fixed-wrap .fab.fab-line {
+        background-color: #0b0;
+      }
+    </style>
+    <div class="fab-fixed-wrap with-navbar-bottom" style="bottom: 4.6875rem;position: fixed;z-index: 1035;right: .9375rem;bottom: .9375rem;">
+      <a href="#" class="fab fab-facebook mp-click">
+        <i class="fas fa-cart-plus"></i>  
+      </a>
+    </div>
+  <?php }?>
 
   
   <!-- Custom scripts for this template -->
