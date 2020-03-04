@@ -86,7 +86,7 @@
       }
     </style>
     <div class="fab-fixed-wrap with-navbar-bottom" style="bottom: 4.6875rem;position: fixed;z-index: 1035;right: .9375rem;bottom: .9375rem;">
-      <a href="#" class="fab fab-facebook mp-click" data-toggle="tooltip" title="您選了<{$smarty.session.cartAmount}>個餐點">
+      <a href="cart.php?op=order_form" class="fab fab-facebook mp-click" data-toggle="tooltip" title="您選了<{$smarty.session.cartAmount}>個餐點">
         <i class="fas fa-cart-plus"></i> 
         <span class="badge badge-danger badge-counter"><{$smarty.session.cartAmount}></span> 
       </a>

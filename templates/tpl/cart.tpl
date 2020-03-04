@@ -55,3 +55,102 @@
 </script>
 <{elseif  $op == "Portfolio"}>
 <{/if}>
+
+<{if $op == "order_form"}>
+  <div class="container mt-5" style="margin-top: 100px!important;>
+    <h1 class="text-center">點餐訂單</h1>
+    <form  role="form" action="order_insert" method="post" id="myForm" >        
+        <div class="row">
+            <!--姓名-->              
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label><span class="title">姓名</span><span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="name" id="name" value="<{$row.name}>">
+                </div>
+            </div>
+            <!--電話-->              
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label><span class="title">電話</span><span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="tel" id="tel" value="<{$row.tel}>">
+                </div>
+            </div>
+            <!--email-->              
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label><span class="title">email</span><span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="email" id="email" value="<{$row.email}>">
+                </div>
+            </div>
+                    
+            <!--分類-->              
+            <div class="col-sm-3">
+              <div class="form-group">
+                  <label>桌號或外帶</label>
+                  <select name="kind_sn" id="kind_sn" class="form-control">
+                    <{foreach $row.kind_sn_options as $option}>
+                      <option value="<{$option.sn}>" <{if $option.sn == $row.kind_sn}>selected<{/if}>><{$option.title}></option>
+                    <{/foreach}>
+                  </select>
+              </div>
+            </div>
+        </div> 
+        
+        <div class="row">
+            <div class="col-sm-12">  
+                <!-- 聯絡事項 -->
+                <div class="form-group">
+                    <label class="control-label">備註</label>
+                    <textarea class="form-control" rows="1" id="ps" name="ps"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center pb-3">
+            <button type="submit" class="btn btn-primary">送出</button>
+        </div>
+    </form>
+  </div>
+
+  <!-- 表單驗證 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+  <!-- 調用方法 -->
+  <style>
+  .error{
+    color:red;
+  }
+  </style>
+  <script>
+
+  $(function(){
+    $("#myForm").validate({
+    submitHandler: function(form) {
+        form.submit();
+    },
+    rules: {
+        'entry.1597864916' : {
+        required: true
+        },
+        'entry.2110810376' : {
+        required: true
+        },
+        'entry.1402899655' : {
+        required: true
+        }
+    },
+    messages: {
+        'entry.1597864916' : {
+        required: "必填"
+        },
+        'entry.2110810376' : {
+        required: "必填"
+        },
+        'entry.1402899655' : {
+        required: "必填"
+        }
+    }
+    });
+
+  });
+  </script>
+<{/if}>

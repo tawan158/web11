@@ -13,24 +13,39 @@ switch ($op){
     redirect_header("cart.php", $msg, 3000);    
 		exit; 
 
+	case "order_form" :
+    $msg = order_form();
+    break;  
     		  
   default:
     $op = "op_list";
     op_list();
     break;  
 }
-  /*---- 將變數送至樣版----*/
-  $mainMenus = getMenus("cartMenu");
+/*---- 將變數送至樣版----*/
+$mainMenus = getMenus("cartMenu");
 
-  $smarty->assign("mainMenus", $mainMenus);
+$smarty->assign("mainMenus", $mainMenus);
 
-  $smarty->assign("WEB", $WEB);
-  $smarty->assign("op", $op);
+$smarty->assign("WEB", $WEB);
+$smarty->assign("op", $op);
    
 /*---- 程式結尾-----*/
 $smarty->display('theme.tpl');
 
 //----函數區
+function order_form(){
+  global $db,$smarty;
+    $row['uid'] = isset($_SESSION['user']['uid']) ? $_SESSION['user']['uid'] : "" ;
+    $row['name'] = isset($_SESSION['user']['name'])? $_SESSION['user']['name'] : "";
+    $row['tel'] = isset($_SESSION['user']['tel'])? $_SESSION['user']['tel'] : "";
+    $row['email'] = isset($_SESSION['user']['email'])? $_SESSION['user']['email'] : "";
+  
+    $row['kind_sn'] = "";//類別值
+    $row['kind_sn_options'] = getProdsOptions("orderKind");
+    $smarty->assign("row", $row);
+
+}
 function add_cart($sn){
   global $db;
   $row = getProdsBySn($sn);

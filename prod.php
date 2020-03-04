@@ -160,25 +160,6 @@ function op_insert($sn=""){
 }
 
 
-/*===========================
-  取得商品檔類別選項
-===========================*/
-function getProdsOptions($kind){
-  global $db;
-  $sql="SELECT `sn`,`title`
-        FROM `kinds`
-        WHERE `kind` = '{$kind}' AND `enable` = '1'
-        ORDER BY `sort`  
-  ";
-  $result = $db->query($sql) or die($db->error() . $sql);
-  $rows=[];//array();
-  while($row = $result->fetch_assoc()){    
-    $row['sn'] = (int)$row['sn'];//分類
-    $row['title'] = htmlspecialchars($row['title']);//標題
-    $rows[] = $row;
-  }
-  return $rows;
-}
 
 
 /*================================

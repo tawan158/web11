@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-02 11:16:51
+/* Smarty version 3.1.34-dev-7, created on 2020-03-04 15:31:00
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\kind.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5c7aa3e77243_84778336',
+  'unifunc' => 'content_5e5f5934bf3133_75630756',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '04d7decec3abf2d8bbcc4eb4e029928389f99ca9' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\kind.tpl',
-      1 => 1583117140,
+      1 => 1583306911,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,27 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5c7aa3e77243_84778336 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5f5934bf3133_75630756 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
+
+    <div class="row mb-2">
+        <div class="cols-sm-4">
+                        <select name="kind" id="kind" class="form-control" onchange="location.href='?kind='+this.value">
+                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['kinds']->value, 'row');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
+?>
+                                <option value="<?php echo $_smarty_tpl->tpl_vars['row']->value['value'];?>
+" <?php if ($_smarty_tpl->tpl_vars['kind']->value == $_smarty_tpl->tpl_vars['row']->value['value']) {?>selected<?php }?> ><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+</option>
+                            <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+            </select>
+        </div>
+    </div>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
         <tr> 
