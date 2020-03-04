@@ -245,8 +245,9 @@ function op_form($sn=""){
 function op_list(){
   global $smarty,$db;
   
-  $sql = "SELECT *
-          FROM `prods`
+  $sql = "SELECT a.*,b.title as kinds_title
+          FROM `prods` as a
+          LEFT JOIN `kinds` as b on a.kind_sn=b.sn
   ";//die($sql);
 
   $result = $db->query($sql) or die($db->error() . $sql);
@@ -259,6 +260,7 @@ function op_list(){
     $row['enable'] = (int)$row['enable'];//狀態
     $row['counter'] = (int)$row['counter'];//計數
     $row['prod'] = getFilesByKindColsnSort("prod",$row['sn']);  
+    $row['kinds_title'] = htmlspecialchars($row['kinds_title']);//標題
     $rows[] = $row;
   }
   $smarty->assign("rows",$rows);  

@@ -18,7 +18,7 @@
                 <tr>
                     <td><img src="<{$row.prod}>" alt="<{$row.title}>" width=80></td>
                     <td class="align-middle"><{$row.title}></td>
-                    <td class="align-middle"><{$row.kind_sn}></td>
+                    <td class="align-middle"><{$row.kinds_title}></td>
                     <td class="text-right align-middle"><{$row.price}></td>
                     <td class="text-center align-middle"><{if $row.enable}><i class="fas fa-check"></i><{/if}></td>
                     <td class="text-center align-middle"><{$row.counter}></td>

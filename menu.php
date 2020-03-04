@@ -4,12 +4,12 @@ require_once 'head.php';
  
 if($_SESSION['user']['kind'] !== 1)redirect_header("index.php", '您沒有權限', 3000);
 
-$kinds = ["mainMenu","cartMenu"];
 /* 過濾變數，設定預設值 */
 $op = system_CleanVars($_REQUEST, 'op', 'op_list', 'string');
 $sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
 $kind = system_CleanVars($_REQUEST, 'kind', 'mainMenu', 'string');
 
+$kinds = ["mainMenu","cartMenu"];
 $kind = (in_array($kind, $kinds)) ? $kind : "mainMenu";
 // echo $op;die();
  
