@@ -40,6 +40,16 @@ function op_list(){
           ORDER BY a.date desc
   ";//die($sql);
 
+  #---分頁套件(原始$sql 不要設 limit)
+  include_once _WEB_PATH."/class/PageBar/PageBar.php";
+  $pageCount = 8;
+  $PageBar = getPageBar($db, $sql, $pageCount, 10);
+  $sql     = $PageBar['sql'];
+  $total   = $PageBar['total'];
+  $bar     = ($total > $pageCount) ? $PageBar['bar'] : "";
+  $smarty->assign("bar",$bar);  
+  #---分頁套件(end)
+
   $result = $db->query($sql) or die($db->error() . $sql);
   $rows=[];//array();
   while($row = $result->fetch_assoc()){    

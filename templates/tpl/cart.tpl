@@ -24,10 +24,10 @@
           </div>
         </div>
 
-      <{/foreach}>
-      
+      <{/foreach}>      
     </div>
     <!-- /.row -->
+    <{$bar}>
 
   </div>
   <!-- /.container -->

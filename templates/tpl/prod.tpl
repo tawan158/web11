@@ -35,6 +35,7 @@
 
         </tbody>
     </table>
+    <{$bar}>
     
     <!-- sweetalert2 -->
     <link rel="stylesheet" href="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.css">
