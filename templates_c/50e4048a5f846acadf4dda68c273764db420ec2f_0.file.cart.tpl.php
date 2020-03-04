@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-04 10:26:23
+/* Smarty version 3.1.34-dev-7, created on 2020-03-04 10:41:58
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\cart.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5f11cf503401_48843309',
+  'unifunc' => 'content_5e5f1576c436e4_65173301',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '50e4048a5f846acadf4dda68c273764db420ec2f' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\cart.tpl',
-      1 => 1583288614,
+      1 => 1583289715,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5f11cf503401_48843309 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5f1576c436e4_65173301 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
   <!-- Page Content -->
   <div class="container" style="margin-top: 110px;">
@@ -44,7 +44,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
             <div class="card-body">
               <div class="card-title">
                 <?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
-
+： <?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
+ 元
               </div>
               <div class="mt-2">
                 <a href="#" class="btn btn-primary btn-sm">加入購物車</a>

@@ -15,7 +15,7 @@
             <img class="card-img-top" src="<{$row.prod}>" alt="<{$row.title}>">
             <div class="card-body">
               <div class="card-title">
-                <{$row.title}>
+                <{$row.title}>： <{$row.price}> 元
               </div>
               <div class="mt-2">
                 <a href="#" class="btn btn-primary btn-sm">加入購物車</a>

@@ -248,6 +248,7 @@ function op_list(){
   $sql = "SELECT a.*,b.title as kinds_title
           FROM `prods` as a
           LEFT JOIN `kinds` as b on a.kind_sn=b.sn
+          ORDER BY a.`date` desc
   ";//die($sql);
 
   $result = $db->query($sql) or die($db->error() . $sql);
