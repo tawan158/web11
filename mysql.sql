@@ -69,6 +69,7 @@ CREATE TABLE `orders_main` (
   `uid` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '會員編號',
   `date` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '訂單日期',
   `total` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '總計',
+  `kind_sn` smallint(5) unsigned NOT NULL DEFAULT 0 COMMENT '桌號',
   PRIMARY KEY (`sn`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='訂單主檔';
 

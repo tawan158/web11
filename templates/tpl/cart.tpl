@@ -59,7 +59,7 @@
 <{if $op == "order_form"}>
   <div class="container mt-5" style="margin-top: 100px!important;>
     <h1 class="text-center">點餐訂單</h1>
-    <form  role="form" action="order_insert" method="post" id="myForm" >        
+    <form  role="form" action="cart.php" method="post" id="myForm" >        
       <div class="row">
           <!--姓名-->              
           <div class="col-sm-3">
@@ -164,6 +164,9 @@
       </script>
 
       <div class="text-center pb-3">
+        
+        <input type="hidden" name="op" value="<{$row.op}>">
+        <input type="hidden" name="uid" value="<{$row.uid}>">
         <button type="submit" class="btn btn-primary">送出</button>
       </div>
     </form>

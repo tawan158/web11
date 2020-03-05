@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-05 10:09:24
+/* Smarty version 3.1.34-dev-7, created on 2020-03-05 10:59:15
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\cart.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e605f547b8100_79937915',
+  'unifunc' => 'content_5e606b03d30a96_22324636',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '50e4048a5f846acadf4dda68c273764db420ec2f' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\cart.tpl',
-      1 => 1583374161,
+      1 => 1583376180,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e605f547b8100_79937915 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e606b03d30a96_22324636 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
   <!-- Page Content -->
   <div class="container" style="margin-top: 110px;">
@@ -100,7 +100,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
 <?php if ($_smarty_tpl->tpl_vars['op']->value == "order_form") {?>
   <div class="container mt-5" style="margin-top: 100px!important;>
     <h1 class="text-center">點餐訂單</h1>
-    <form  role="form" action="order_insert" method="post" id="myForm" >        
+    <form  role="form" action="cart.php" method="post" id="myForm" >        
       <div class="row">
           <!--姓名-->              
           <div class="col-sm-3">
@@ -238,6 +238,11 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
 >
 
       <div class="text-center pb-3">
+        
+        <input type="hidden" name="op" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['op'];?>
+">
+        <input type="hidden" name="uid" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['uid'];?>
+">
         <button type="submit" class="btn btn-primary">送出</button>
       </div>
     </form>
