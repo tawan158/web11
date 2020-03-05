@@ -9,20 +9,19 @@ $op = system_CleanVars($_REQUEST, 'op', 'op_list', 'string');
 $sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
 $kind = system_CleanVars($_REQUEST, 'kind', 'mainMenu', 'string');
 
-//$kinds = ["mainMenu","cartMenu"];
-$kinds[] = array(
+$kinds['mainMenu'] = array(
   "value" => "mainMenu",
   "title" => "主選單"
 );
-$kinds[] = array(
+$kinds['cartMenu'] = array(
   "value" => "cartMenu",
   "title" => "購物車選單"
 );
+
 $smarty->assign("kinds", $kinds);
 
 #防呆
-//$kind = (in_array($kind, $kinds)) ? $kind : "mainMenu";
-// echo $op;die();
+$kind = (in_array($kind, array_keys($kinds))) ? $kind : "mainMenu";
  
 /* 程式流程 */
 switch ($op){

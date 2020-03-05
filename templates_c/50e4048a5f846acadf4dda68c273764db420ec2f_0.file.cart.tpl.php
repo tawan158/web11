@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-04 16:25:46
+/* Smarty version 3.1.34-dev-7, created on 2020-03-05 09:39:05
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\cart.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5f660a1659c1_18009449',
+  'unifunc' => 'content_5e605839b2a262_47718124',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '50e4048a5f846acadf4dda68c273764db420ec2f' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\cart.tpl',
-      1 => 1583310341,
+      1 => 1583372342,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5f660a1659c1_18009449 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e605839b2a262_47718124 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
   <!-- Page Content -->
   <div class="container" style="margin-top: 110px;">
@@ -164,9 +164,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         <tr> 
             <th scope="col" style="width:85px;">圖片</th>
             <th scope="col">餐點名稱</th>
-            <th scope="col" class="text-right">價格</th>
-            <th scope="col" class="text-center">數量</th>
-            <th scope="col" class="text-center">小計</th>
+            <th scope="col" class="text-right" style="width:120px;">價格</th>
+            <th scope="col" class="text-center" style="width:120px;">數量</th>
+            <th scope="col" class="text-center" style="width:120px;">小計</th>
         </tr>
         </thead>
         <tbody>
@@ -181,11 +181,16 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sn']->value => $_smarty_tpl->tpl_vars
 " width=80></td>
                   <td class="align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
 </td>
-                  <td class="text-right align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
+                  <td class="text-right align-middle price"><?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
 </td>
-                  <td class="text-center align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['amount'];?>
-</td>
-                  <td class="text-center align-middle"></td>
+                  <td class="text-center align-middle">
+                    <div class="form-group">
+                      <input type="number" class="form-control amount text-right" name="amount" id="amount" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['amount'];?>
+" min="0" onchange="calTotal()">
+                    </div>                    
+                  </td>
+                  <td class="text-center align-middle total">
+                  </td>
                 </tr>
             <?php
 }
@@ -249,39 +254,67 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
     color:red;
   }
   </style>
+
   <?php echo '<script'; ?>
 >
+    $(function(){
+      $("#myForm").validate({
+      submitHandler: function(form) {
+          form.submit();
+      },
+      rules: {
+          'entry.1597864916' : {
+          required: true
+          },
+          'entry.2110810376' : {
+          required: true
+          },
+          'entry.1402899655' : {
+          required: true
+          }
+      },
+      messages: {
+          'entry.1597864916' : {
+          required: "必填"
+          },
+          'entry.2110810376' : {
+          required: "必填"
+          },
+          'entry.1402899655' : {
+          required: "必填"
+          }
+      }
+      });
 
-  $(function(){
-    $("#myForm").validate({
-    submitHandler: function(form) {
-        form.submit();
-    },
-    rules: {
-        'entry.1597864916' : {
-        required: true
-        },
-        'entry.2110810376' : {
-        required: true
-        },
-        'entry.1402899655' : {
-        required: true
-        }
-    },
-    messages: {
-        'entry.1597864916' : {
-        required: "必填"
-        },
-        'entry.2110810376' : {
-        required: "必填"
-        },
-        'entry.1402899655' : {
-        required: "必填"
-        }
-    }
     });
+  <?php echo '</script'; ?>
+>
 
-  });
+  <!-- 計算合計金額 -->
+  <?php echo '<script'; ?>
+>
+    //合計金額
+    function calTotal(){
+        // document.getElementsByClassName("title")[0].innerText //取標題
+        // document.getElementsByClassName("amount")[0].value //取數量
+        var titles = document.getElementsByClassName("title");
+        var amounts = document.getElementsByClassName("amount");
+        var total = 0;
+        for(var i=0; i < titles.length; i++){
+            var title = document.getElementsByClassName("title")[i].innerText;
+            var amount = document.getElementsByClassName("amount")[i].value;
+            var subArr = title.split("-");
+            var price = parseInt(subArr[1]);
+            total += (amount * price);
+        }
+        if(total === 0){
+            document.getElementById("total").value = "";
+        }else{
+            document.getElementById("total").value = total;
+        }
+        
+    }
+
   <?php echo '</script'; ?>
 >
 <?php }

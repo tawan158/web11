@@ -111,9 +111,9 @@
         <tr> 
             <th scope="col" style="width:85px;">圖片</th>
             <th scope="col">餐點名稱</th>
-            <th scope="col" class="text-right">價格</th>
-            <th scope="col" class="text-center">數量</th>
-            <th scope="col" class="text-center">小計</th>
+            <th scope="col" class="text-right" style="width:120px;">價格</th>
+            <th scope="col" class="text-center" style="width:120px;">數量</th>
+            <th scope="col" class="text-center" style="width:120px;">小計</th>
         </tr>
         </thead>
         <tbody>
@@ -121,9 +121,14 @@
                 <tr>
                   <td><img src="<{$row.prod}>" alt="<{$row.title}>" width=80></td>
                   <td class="align-middle"><{$row.title}></td>
-                  <td class="text-right align-middle"><{$row.price}></td>
-                  <td class="text-center align-middle"><{$row.amount}></td>
-                  <td class="text-center align-middle"></td>
+                  <td class="text-right align-middle price"><{$row.price}></td>
+                  <td class="text-center align-middle">
+                    <div class="form-group">
+                      <input type="number" class="form-control amount text-right" name="amount" id="amount" value="<{$row.amount}>" min="0" onchange="calTotal()">
+                    </div>                    
+                  </td>
+                  <td class="text-center align-middle total">
+                  </td>
                 </tr>
             <{foreachelse}>
                 <tr>
@@ -174,37 +179,63 @@
     color:red;
   }
   </style>
+
   <script>
+    $(function(){
+      $("#myForm").validate({
+      submitHandler: function(form) {
+          form.submit();
+      },
+      rules: {
+          'entry.1597864916' : {
+          required: true
+          },
+          'entry.2110810376' : {
+          required: true
+          },
+          'entry.1402899655' : {
+          required: true
+          }
+      },
+      messages: {
+          'entry.1597864916' : {
+          required: "必填"
+          },
+          'entry.2110810376' : {
+          required: "必填"
+          },
+          'entry.1402899655' : {
+          required: "必填"
+          }
+      }
+      });
 
-  $(function(){
-    $("#myForm").validate({
-    submitHandler: function(form) {
-        form.submit();
-    },
-    rules: {
-        'entry.1597864916' : {
-        required: true
-        },
-        'entry.2110810376' : {
-        required: true
-        },
-        'entry.1402899655' : {
-        required: true
-        }
-    },
-    messages: {
-        'entry.1597864916' : {
-        required: "必填"
-        },
-        'entry.2110810376' : {
-        required: "必填"
-        },
-        'entry.1402899655' : {
-        required: "必填"
-        }
-    }
     });
+  </script>
 
-  });
+  <!-- 計算合計金額 -->
+  <script>
+    //合計金額
+    function calTotal(){
+        // document.getElementsByClassName("title")[0].innerText //取標題
+        // document.getElementsByClassName("amount")[0].value //取數量
+        var titles = document.getElementsByClassName("title");
+        var amounts = document.getElementsByClassName("amount");
+        var total = 0;
+        for(var i=0; i < titles.length; i++){
+            var title = document.getElementsByClassName("title")[i].innerText;
+            var amount = document.getElementsByClassName("amount")[i].value;
+            var subArr = title.split("-");
+            var price = parseInt(subArr[1]);
+            total += (amount * price);
+        }
+        if(total === 0){
+            document.getElementById("total").value = "";
+        }else{
+            document.getElementById("total").value = total;
+        }
+        
+    }
+
   </script>
 <{/if}>
