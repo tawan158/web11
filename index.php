@@ -8,6 +8,10 @@ $sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
 
 /* 程式流程 */
 switch ($op){
+  case "contact_insert" :
+    $msg = contact_insert();
+    redirect_header("index.php", $msg , 5000);
+    exit;
 
   case "reg" :
     $msg = reg();
@@ -61,9 +65,29 @@ switch ($op){
 $smarty->display('theme.tpl');
 
 //----函數區
+function contact_insert(){
+  global $db;
+  
+  $_POST['name'] = db_filter($_POST['name'], 'name');
+  $_POST['tel'] = db_filter($_POST['tel'], 'tel');
+  $_POST['email'] = db_filter($_POST['email'], 'email');
+  $_POST['content'] = db_filter($_POST['content'], 'content');
+  $_POST['date'] = strtotime("now");
+  
+  $sql="INSERT INTO `contacts` 
+                    (`name`, `tel`, `email`, `content`, `date`)
+                    VALUES 
+                    ('{$_POST['name']}', '{$_POST['tel']}', '{$_POST['email']}', '{$_POST['content']}', '{$_POST['date']}')  
+  ";
+  $result = $db->query($sql) or die($db->error() . $sql);
+  return "我們已收到您的聯絡事項，將儘快與您聯絡！";
+}
 
 
 function contact_form(){
+  global $smarty;
+  $row['op'] = "contact_insert";
+  $smarty->assign("row", $row);
 
 }
 function ok(){
