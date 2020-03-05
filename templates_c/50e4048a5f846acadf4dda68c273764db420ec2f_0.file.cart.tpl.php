@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-05 09:39:05
+/* Smarty version 3.1.34-dev-7, created on 2020-03-05 10:09:24
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\cart.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e605839b2a262_47718124',
+  'unifunc' => 'content_5e605f547b8100_79937915',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '50e4048a5f846acadf4dda68c273764db420ec2f' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\cart.tpl',
-      1 => 1583372342,
+      1 => 1583374161,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e605839b2a262_47718124 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e605f547b8100_79937915 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
   <!-- Page Content -->
   <div class="container" style="margin-top: 110px;">
@@ -183,13 +183,12 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sn']->value => $_smarty_tpl->tpl_vars
 </td>
                   <td class="text-right align-middle price"><?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
 </td>
-                  <td class="text-center align-middle">
-                    <div class="form-group">
-                      <input type="number" class="form-control amount text-right" name="amount" id="amount" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['amount'];?>
+                  <td class="align-middle">
+                    <input type="number" class="form-control amount text-right" name="amount[<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
+]" id="amount" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['amount'];?>
 " min="0" onchange="calTotal()">
-                    </div>                    
                   </td>
-                  <td class="text-center align-middle total">
+                  <td class="text-right align-middle total">
                   </td>
                 </tr>
             <?php
@@ -293,24 +292,25 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
   <!-- 計算合計金額 -->
   <?php echo '<script'; ?>
 >
+    calTotal();
     //合計金額
     function calTotal(){
         // document.getElementsByClassName("title")[0].innerText //取標題
         // document.getElementsByClassName("amount")[0].value //取數量
-        var titles = document.getElementsByClassName("title");
+        var prices = document.getElementsByClassName("price");
         var amounts = document.getElementsByClassName("amount");
-        var total = 0;
-        for(var i=0; i < titles.length; i++){
-            var title = document.getElementsByClassName("title")[i].innerText;
+        var Total = 0;
+        for(var i=0; i < prices.length; i++){
+            var price = document.getElementsByClassName("price")[i].innerText;
             var amount = document.getElementsByClassName("amount")[i].value;
-            var subArr = title.split("-");
-            var price = parseInt(subArr[1]);
-            total += (amount * price);
+            var price = parseInt(price);
+            Total += (amount * price);//合計
+            document.getElementsByClassName("total")[i].innerText = amount * price;//小計            
         }
-        if(total === 0){
-            document.getElementById("total").value = "";
+        if(Total === 0){
+            document.getElementById("Total").innerText = "";
         }else{
-            document.getElementById("total").value = total;
+            document.getElementById("Total").innerText = Total;
         }
         
     }
