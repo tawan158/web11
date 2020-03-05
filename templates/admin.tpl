@@ -34,7 +34,9 @@
           <{elseif  $WEB.file_name == "menu.php"}>
             <{include file="tpl/menu.tpl"}>   
           <{elseif  $WEB.file_name == "slide.php"}>
-            <{include file="tpl/slide.tpl"}>  
+            <{include file="tpl/slide.tpl"}>     
+          <{elseif  $WEB.file_name == "contact.php"}>
+            <{include file="tpl/contact.tpl"}> 
           <{/if}>
           
 
@@ -66,6 +68,9 @@
               </li>
               <li class="list-group-item">
                 <a href="slide.php" class="btn-block">輪播圖管理</a>
+              </li>
+              <li class="list-group-item">
+                <a href="contact.php" class="btn-block">聯絡我們管理</a>
               </li>
               <li class="list-group-item">
                 <a href="http://localhost/adminer/adminer.php" class="btn-block" target="_blank">資料庫管理</a>
