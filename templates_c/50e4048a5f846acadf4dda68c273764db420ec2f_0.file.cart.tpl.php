@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-06 15:27:48
+/* Smarty version 3.1.34-dev-7, created on 2020-03-06 16:55:52
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\cart.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e61fb749ed267_34521407',
+  'unifunc' => 'content_5e6210183c78d0_79551843',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '50e4048a5f846acadf4dda68c273764db420ec2f' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\cart.tpl',
-      1 => 1583479664,
+      1 => 1583484939,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e61fb749ed267_34521407 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e6210183c78d0_79551843 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
   <!-- Page Content -->
   <div class="container" style="margin-top: 110px;">
@@ -173,21 +173,21 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <?php if ($_smarty_tpl->tpl_vars['row']->value['sn']) {?>
               <!-- 編輯訂單 -->
               <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['orders']->value, 'row', false, 'sn');
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['orders']->value, 'order', false, 'sn');
 if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['sn']->value => $_smarty_tpl->tpl_vars['row']->value) {
+foreach ($_from as $_smarty_tpl->tpl_vars['sn']->value => $_smarty_tpl->tpl_vars['order']->value) {
 ?>
                 <tr>
-                  <td><img src="<?php echo $_smarty_tpl->tpl_vars['row']->value['prod'];?>
-" alt="<?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+                  <td><img src="<?php echo $_smarty_tpl->tpl_vars['order']->value['prod'];?>
+" alt="<?php echo $_smarty_tpl->tpl_vars['order']->value['title'];?>
 " width=80></td>
-                  <td class="align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+                  <td class="align-middle"><?php echo $_smarty_tpl->tpl_vars['order']->value['title'];?>
 </td>
-                  <td class="text-right align-middle price"><?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
+                  <td class="text-right align-middle price"><?php echo $_smarty_tpl->tpl_vars['order']->value['price'];?>
 </td>
                   <td class="align-middle">
-                    <input type="number" class="form-control amount text-right" name="amount[<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
-]" id="amount" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['amount'];?>
+                    <input type="number" class="form-control amount text-right" name="amount[<?php echo $_smarty_tpl->tpl_vars['order']->value['prod_sn'];?>
+]" id="amount" value="<?php echo $_smarty_tpl->tpl_vars['order']->value['amount'];?>
 " min="0" onchange="calTotal()">
                   </td>
                   <td class="text-right align-middle total">

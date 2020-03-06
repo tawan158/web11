@@ -17,6 +17,12 @@ switch ($op){
     redirect_header($returnUrl, "訂餐成功", 3000);    
 		exit; 
 
+  case "order_update" :    
+    if($_SESSION['user']['kind'] !== 1)redirect_header("index.php", '您沒有權限', 3000);
+    $returnUrl = order_insert($sn);
+    redirect_header($returnUrl, "訂餐編輯成功", 3000);    
+    exit; 
+    
   case "add_cart" :
     $msg = add_cart($sn);
     redirect_header("cart.php", $msg, 3000);    
@@ -94,11 +100,31 @@ function order_list($sn){
 
   $smarty->assign("rows", $rows);
 }
+
+
+
+/*==========================
+  取得訂單明細
+==========================*/
+function getOrdersBySnProdsn($orders_main_sn,$prod_sn){
+  global $db;
+  $sql="SELECT *
+        FROM `orders`
+        WHERE `orders_main_sn` = '{$orders_main_sn}' AND `prod_sn` = '{$prod_sn}'
+  ";
+  $result = $db->query($sql) or die($db->error() . $sql);
+  $row = $result->fetch_assoc();
+  return $row;
+}
+
+
+
+
 /*==========================
   新增訂單
 ==========================*/
-function order_insert(){
-  global $db;			 
+function order_insert($sn=""){
+  global $db;
  
   $_POST['name'] = db_filter($_POST['name'], '');//類別
   $_POST['tel'] = db_filter($_POST['tel'], '');//標題
@@ -108,30 +134,65 @@ function order_insert(){
   $_POST['uid'] = db_filter($_POST['uid'], '');
   $_POST['date'] = strtotime("now");
   
-  #訂單主檔
-  $sql="INSERT INTO `orders_main` 
-  (`name`, `tel`, `email`, `ps`, `uid`, `date`, `kind_sn`)
-  VALUES 
-  ('{$_POST['name']}', '{$_POST['tel']}', '{$_POST['email']}', '{$_POST['ps']}', '{$_POST['uid']}', '{$_POST['date']}', '{$_POST['kind_sn']}')    
-  "; //die($sql);
-  $db->query($sql) or die($db->error() . $sql);
-  $sn = $db->insert_id;  
-  
-  #訂單明細檔
-  $sort = 1;
-  $Total = 0;
-  foreach($_POST['amount'] as $prod_sn => $amount){
-    $prod = getProdsBySn($prod_sn);
-    $prod['title'] = db_filter($prod['title'], '');
-    $prod['price'] = (int)$prod['price'];
-    $Total += $prod['price'] * $amount;//小計累計
-    $sql="INSERT INTO `orders` 
-                      (`orders_main_sn`, `prod_sn`, `title`, `amount`, `price`, `sort`)
-                      VALUES 
-                      ('{$sn}', '{$prod_sn}', '{$prod['title']}', '{$amount}', '{$prod['price']}', '{$sort}')
+  if($sn){
+
+    $sql="UPDATE  `orders_main` SET
+                  `name` = '{$_POST['name']}',
+                  `tel` = '{$_POST['tel']}',
+                  `email` = '{$_POST['email']}',
+                  `ps` = '{$_POST['ps']}',
+                  `kind_sn` = '{$_POST['kind_sn']}'
+                  WHERE `sn` = '{$sn}'
     ";
     $db->query($sql) or die($db->error() . $sql);
-    $sort++;
+    $orders_main = getOrders_mainBySn($sn);
+    $_POST['date'] = $orders_main['date'];
+    
+    #訂單明細檔
+    $Total = 0;
+    foreach($_POST['amount'] as $prod_sn => $amount){
+      $order = getOrdersBySnProdsn($sn,$prod_sn);
+      $order['price'] = (int)$order['price'];
+      $Total += $order['price'] * $amount;//小計累計
+
+      $sql="UPDATE  `orders` SET
+                    `amount` = '{$amount}'
+                    WHERE `orders_main_sn` = '{$sn}' and `prod_sn`='{$prod_sn}'
+      ";//die($sql);
+      $db->query($sql) or die($db->error() . $sql);
+      $sort++;
+    }
+
+
+  }else{
+
+    #訂單主檔
+    $sql="INSERT INTO `orders_main` 
+    (`name`, `tel`, `email`, `ps`, `uid`, `date`, `kind_sn`)
+    VALUES 
+    ('{$_POST['name']}', '{$_POST['tel']}', '{$_POST['email']}', '{$_POST['ps']}', '{$_POST['uid']}', '{$_POST['date']}', '{$_POST['kind_sn']}')    
+    "; //die($sql);
+    $db->query($sql) or die($db->error() . $sql);
+    $sn = $db->insert_id;  
+  
+    #訂單明細檔
+    $sort = 1;
+    $Total = 0;
+    foreach($_POST['amount'] as $prod_sn => $amount){
+      $prod = getProdsBySn($prod_sn);
+      $prod['title'] = db_filter($prod['title'], '');
+      $prod['price'] = (int)$prod['price'];
+      $Total += $prod['price'] * $amount;//小計累計
+      $sql="INSERT INTO `orders` 
+                        (`orders_main_sn`, `prod_sn`, `title`, `amount`, `price`, `sort`)
+                        VALUES 
+                        ('{$sn}', '{$prod_sn}', '{$prod['title']}', '{$amount}', '{$prod['price']}', '{$sort}')
+      ";
+      $db->query($sql) or die($db->error() . $sql);
+      $sort++;
+    }
+
+
   }
 
   #更新訂單主檔
@@ -140,8 +201,10 @@ function order_insert(){
                 WHERE `sn` = '{$sn}'  
   ";
   $db->query($sql) or die($db->error() . $sql);
-  unset($_SESSION['cart']);
-  unset($_SESSION['cartAmount']);
+  if(!$sn){
+    unset($_SESSION['cart']);
+    unset($_SESSION['cartAmount']);
+  }
 
   return "cart.php?op=order_list&sn={$sn}&key={$_POST['date']}";
 
@@ -163,9 +226,12 @@ function getOrders_mainBySn($sn){
 
 function order_form($sn=""){
   global $db,$smarty;
-    if($sn){
+    if($sn){      
+      if($_SESSION['user']['kind'] !== 1)redirect_header("index.php", '您沒有權限', 3000);
       $row = getOrders_mainBySn($sn);
+      $row['kind_sn_options'] = getProdsOptions("orderKind");
       $row['op'] = "order_update";      
+      
       #明細檔
       $sql="SELECT *
             FROM `orders`
@@ -182,7 +248,7 @@ function order_form($sn=""){
         $order['price'] = (int)$order['price'];//價格
         $order['amount'] = (int)$order['amount'];//
         $order['prod'] = getFilesByKindColsnSort("prod",$order['prod_sn']);
-        $orders[$order['sn']] = $order;
+        $orders[$order['prod_sn']] = $order;
       }
       $smarty->assign("orders", $orders);
 

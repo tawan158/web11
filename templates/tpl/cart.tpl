@@ -119,13 +119,13 @@
         <tbody>
             <{if $row.sn}>
               <!-- 編輯訂單 -->
-              <{foreach $orders as $sn => $row}>
+              <{foreach $orders as $sn => $order}>
                 <tr>
-                  <td><img src="<{$row.prod}>" alt="<{$row.title}>" width=80></td>
-                  <td class="align-middle"><{$row.title}></td>
-                  <td class="text-right align-middle price"><{$row.price}></td>
+                  <td><img src="<{$order.prod}>" alt="<{$order.title}>" width=80></td>
+                  <td class="align-middle"><{$order.title}></td>
+                  <td class="text-right align-middle price"><{$order.price}></td>
                   <td class="align-middle">
-                    <input type="number" class="form-control amount text-right" name="amount[<{$row.sn}>]" id="amount" value="<{$row.amount}>" min="0" onchange="calTotal()">
+                    <input type="number" class="form-control amount text-right" name="amount[<{$order.prod_sn}>]" id="amount" value="<{$order.amount}>" min="0" onchange="calTotal()">
                   </td>
                   <td class="text-right align-middle total">
                   </td>
