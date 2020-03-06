@@ -25,10 +25,6 @@ switch ($op){
     $msg = op_insert($sn);
     redirect_header("prod.php", $msg, 3000);
     exit;
-
-  case "op_form" :
-    $msg = op_form($sn);
-    break;
  
   default:
     $op = "op_list";
@@ -50,12 +46,12 @@ function op_delete($sn){
   # 2.刪除files資料表
   delFilesByKindColsnSort("prod",$sn,1);
 
-  #刪除商品資料表
+  #刪除訂單主檔資料表
   $sql="DELETE FROM `prods`
         WHERE `sn` = '{$sn}'
   ";
   $db->query($sql) or die($db->error() . $sql);
-  return "商品資料刪除成功";
+  return "訂單主檔資料刪除成功";
 }
 
 
@@ -88,7 +84,7 @@ function op_insert($sn=""){
                   WHERE `sn` = '{$_POST['sn']}'    
     ";
     $db->query($sql) or die($db->error() . $sql);
-    $msg = "商品資料更新成功";
+    $msg = "訂單主檔資料更新成功";
   }else{
     $sql="INSERT INTO `prods` 
     (`kind_sn`, `title`, `content`, `price`, `enable`, `date`, `sort`, `counter`)
@@ -97,7 +93,7 @@ function op_insert($sn=""){
     "; //die($sql);
     $db->query($sql) or die($db->error() . $sql);
     $sn = $db->insert_id;
-    $msg = "商品資料新增成功";    
+    $msg = "訂單主檔資料新增成功";    
 
   }
 
@@ -162,48 +158,41 @@ function op_insert($sn=""){
 
 
 
-/*================================
-  取得商品數量的最大值
-================================*/
-function getProdsMaxSort(){
-  global $db;
-  $sql = "SELECT count(*)+1 as count
-          FROM `prods`
-  ";//die($sql);
 
-  $result = $db->query($sql) or die($db->error() . $sql);
-  $row = $result->fetch_assoc();
-  return $row['count'];
-}
 
 function op_form($sn=""){
   global $smarty,$db;
 
   if($sn){
-    $row = getProdsBySn($sn);
-    $row['op'] = "op_update";
-  }else{
-    $row['op'] = "op_insert";
+    $orders_main = getOrders_mainBySn($sn);
+    $orders_main['op'] = "op_update";
+  }
+  
+  $orders_main['date'] = date("Y-m-d H:i",$orders_main['date']) ;  
+  $smarty->assign("orders_main", $orders_main);
+
+  #明細檔
+  $sql="SELECT *
+        FROM `orders`
+        WHERE `orders_main_sn` = '{$sn}'
+  ";  
+  $result = $db->query($sql) or die($db->error() . $sql);
+  $rows = [];
+  //sn	orders_main_sn	prod_sn	title	amount	price	sort  
+  while($row = $result->fetch_assoc()){    
+    $row['sn'] = (int)$row['sn'];//分類  
+    $row['prod_sn'] = (int)$row['prod_sn'];//商品流水號
+    $row['title'] = htmlspecialchars($row['title']);//標題
+    $row['price'] = (int)$row['price'];//價格
+    $row['amount'] = (int)$row['amount'];//
+    $row['total'] = $row['price'] * $row['amount'] ? $row['price'] * $row['amount'] : "";//
+    $row['prod'] = getFilesByKindColsnSort("prod",$row['prod_sn']);
+    $rows[] = $row;
   }
 
-  $row['sn'] = isset($row['sn']) ? $row['sn'] : "";
-  $row['kind_sn'] = isset($row['kind_sn']) ? $row['kind_sn'] : "1";//類別值
-  $row['kind_sn_options'] = getProdsOptions("prod");
+  $smarty->assign("rows", $rows);
 
-  $row['title'] = isset($row['title']) ? $row['title'] : "";
-  $row['content'] = isset($row['content']) ? $row['content'] : "";
-  $row['price'] = isset($row['price']) ? $row['price'] : "";
-  $row['enable'] = isset($row['enable']) ? $row['enable'] : "1";
 
-  $row['date'] = isset($row['date']) ? $row['date'] : strtotime("now");
-  $row['date'] = date("Y-m-d H:i:s",$row['date']);
-
-  $row['sort'] = isset($row['sort']) ? $row['sort'] : getProdsMaxSort();
-  $row['counter'] = isset($row['counter']) ? $row['counter'] : "";
-  
-  $row['prod'] = isset($row['prod']) ? $row['prod'] : "";
-
-  $smarty->assign("row",$row);
 }
 
 

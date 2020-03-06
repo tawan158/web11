@@ -117,7 +117,9 @@
         </tr>
         </thead>
         <tbody>
-            <{foreach $smarty.session.cart as $sn => $row}>
+            <{if $row.sn}>
+              <!-- 編輯訂單 -->
+              <{foreach $orders as $sn => $row}>
                 <tr>
                   <td><img src="<{$row.prod}>" alt="<{$row.title}>" width=80></td>
                   <td class="align-middle"><{$row.title}></td>
@@ -128,11 +130,31 @@
                   <td class="text-right align-middle total">
                   </td>
                 </tr>
-            <{foreachelse}>
+              <{foreachelse}>
                 <tr>
                     <td colspan=5>目前沒有點餐</td>
                 </tr>
-            <{/foreach}>
+              <{/foreach}>             
+            <{else}>
+              <!-- 新增訂單 -->
+              <{foreach $smarty.session.cart as $sn => $row}>
+                <tr>
+                  <td><img src="<{$row.prod}>" alt="<{$row.title}>" width=80></td>
+                  <td class="align-middle"><{$row.title}></td>
+                  <td class="text-right align-middle price"><{$row.price}></td>
+                  <td class="align-middle">
+                    <input type="number" class="form-control amount text-right" name="amount[<{$row.sn}>]" id="amount" value="<{$row.amount}>" min="0" onchange="calTotal()">
+                  </td>
+                  <td class="text-right align-middle total">
+                  </td>
+                </tr>
+              <{foreachelse}>
+                <tr>
+                    <td colspan=5>目前沒有點餐</td>
+                </tr>
+              <{/foreach}>             
+            <{/if}>
+            
             <tr>
               <td colspan=4 class="text-right">合計</td>
               <td class="text-right" id="Total"></td>
@@ -166,6 +188,7 @@
       <div class="text-center pb-3">
         
         <input type="hidden" name="op" value="<{$row.op}>">
+        <input type="hidden" name="sn" value="<{$row.sn}>">
         <input type="hidden" name="uid" value="<{$row.uid}>">
         <button type="submit" class="btn btn-primary">送出</button>
       </div>

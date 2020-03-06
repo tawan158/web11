@@ -23,7 +23,7 @@ switch ($op){
     exit; 
 
 	case "order_form" :
-    $msg = order_form();
+    $msg = order_form($sn);
     break;  
     		  
   default:
@@ -147,16 +147,57 @@ function order_insert(){
 
 }
 
-function order_form(){
+/*===========================
+  用sn取得訂單主檔檔資料
+===========================*/
+function getOrders_mainBySn($sn){
+  global $db;
+  $sql="SELECT *
+        FROM `orders_main`
+        WHERE `sn` = '{$sn}'
+  ";//die($sql);  
+  $result = $db->query($sql) or die($db->error() . $sql);
+  $row = $result->fetch_assoc();
+  return $row;
+}
+
+function order_form($sn=""){
   global $db,$smarty;
-    $row['uid'] = isset($_SESSION['user']['uid']) ? $_SESSION['user']['uid'] : "" ;
-    $row['name'] = isset($_SESSION['user']['name'])? $_SESSION['user']['name'] : "";
-    $row['tel'] = isset($_SESSION['user']['tel'])? $_SESSION['user']['tel'] : "";
-    $row['email'] = isset($_SESSION['user']['email'])? $_SESSION['user']['email'] : "";
-  
-    $row['kind_sn'] = "";//類別值
-    $row['kind_sn_options'] = getProdsOptions("orderKind");
-    $row['op'] = "order_insert";
+    if($sn){
+      $row = getOrders_mainBySn($sn);
+      $row['op'] = "order_update";      
+      #明細檔
+      $sql="SELECT *
+            FROM `orders`
+            WHERE `orders_main_sn` = '{$sn}'
+            ORDER BY `sort`
+      ";  
+      $result = $db->query($sql) or die($db->error() . $sql);
+      $orders = [];
+      //sn	orders_main_sn	prod_sn	title	amount	price	sort  
+      while($order = $result->fetch_assoc()){    
+        $order['sn'] = (int)$order['sn'];//分類  
+        $order['prod_sn'] = (int)$order['prod_sn'];//商品流水號
+        $order['title'] = htmlspecialchars($order['title']);//標題
+        $order['price'] = (int)$order['price'];//價格
+        $order['amount'] = (int)$order['amount'];//
+        $order['prod'] = getFilesByKindColsnSort("prod",$order['prod_sn']);
+        $orders[$order['sn']] = $order;
+      }
+      $smarty->assign("orders", $orders);
+
+    }else{
+      $row['sn'] = "";
+      $row['uid'] = isset($_SESSION['user']['uid']) ? $_SESSION['user']['uid'] : "" ;
+      $row['name'] = isset($_SESSION['user']['name'])? $_SESSION['user']['name'] : "";
+      $row['tel'] = isset($_SESSION['user']['tel'])? $_SESSION['user']['tel'] : "";
+      $row['email'] = isset($_SESSION['user']['email'])? $_SESSION['user']['email'] : "";
+    
+      $row['kind_sn'] = "";//類別值
+      $row['kind_sn_options'] = getProdsOptions("orderKind");
+      $row['op'] = "order_insert";
+
+    }
     $smarty->assign("row", $row);
 
 }
