@@ -8,15 +8,20 @@ $sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
 
 /* 程式流程 */
 switch ($op){
+	case "order_list" :
+    $msg = order_list($sn);
+    break; 
+
 	case "order_insert" :
-    $msg = order_insert();
-    redirect_header("index.php", $msg, 3000);    
+    $returnUrl = order_insert();
+    redirect_header($returnUrl, "訂餐成功", 3000);    
 		exit; 
 
-    case "add_cart" :
-      $msg = add_cart($sn);
-      redirect_header("cart.php", $msg, 3000);    
-      exit; 
+  case "add_cart" :
+    $msg = add_cart($sn);
+    redirect_header("cart.php", $msg, 3000);    
+    exit; 
+
 	case "order_form" :
     $msg = order_form();
     break;  
@@ -38,6 +43,57 @@ $smarty->assign("op", $op);
 $smarty->display('theme.tpl');
 
 //----函數區
+/*==========================
+  新增訂單
+==========================*/
+function order_list($sn){
+  global $db,$smarty;	
+  $date = system_CleanVars($_REQUEST, 'key', '', 'string');
+  $sql="SELECT a.*,
+               b.title as kind_title
+        FROM `orders_main` as a
+        LEFT JOIN `kinds`  as b on a.kind_sn = b.sn
+        WHERE a.`sn` = '{$sn}' AND a.`date` = '{$date}'
+  ";//die($sql);
+  $result = $db->query($sql) or die($db->error() . $sql);
+  $order_main = $result->fetch_assoc() or redirect_header(_WEB_URL, "無此筆資料", 3000);;
+
+  #訂單主檔
+  $order_main['name'] = htmlspecialchars($order_main['name']);//
+  $order_main['tel'] = htmlspecialchars($order_main['tel']);//
+  $order_main['email'] = htmlspecialchars($order_main['email']);//
+  $order_main['ps'] = htmlspecialchars($order_main['ps']);//
+
+  $order_main['date'] = (int)$order_main['date'];//
+  $order_main['date'] = date("Y-m-d H:i",$order_main['date']);
+
+  $order_main['total'] = (int)$order_main['total'];//
+  $order_main['kind_title'] = htmlspecialchars($order_main['kind_title']);//
+
+  $smarty->assign("order_main", $order_main);
+
+  #訂單明細檔
+  $sql="SELECT *
+        FROM `orders`
+        WHERE `orders_main_sn` = '{$sn}'
+        ORDER BY `sort`
+  ";
+  $result = $db->query($sql) or die($db->error() . $sql);
+  $rows = [];
+  //sn	orders_main_sn	prod_sn	title	amount	price	sort  
+  while($row = $result->fetch_assoc()){    
+    $row['sn'] = (int)$row['sn'];//分類  
+    $row['prod_sn'] = (int)$row['prod_sn'];//商品流水號
+    $row['title'] = htmlspecialchars($row['title']);//標題
+    $row['price'] = (int)$row['price'];//價格
+    $row['amount'] = (int)$row['amount'];//
+    $row['total'] = $row['price'] * $row['amount'] ? $row['price'] * $row['amount'] : "";//
+    $row['prod'] = getFilesByKindColsnSort("prod",$row['prod_sn']);
+    $rows[] = $row;
+  }
+
+  $smarty->assign("rows", $rows);
+}
 /*==========================
   新增訂單
 ==========================*/
@@ -86,6 +142,8 @@ function order_insert(){
   $db->query($sql) or die($db->error() . $sql);
   unset($_SESSION['cart']);
   unset($_SESSION['cartAmount']);
+
+  return "cart.php?op=order_list&sn={$sn}&key={$_POST['date']}";
 
 }
 

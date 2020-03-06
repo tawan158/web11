@@ -241,3 +241,91 @@
 
   </script>
 <{/if}>
+
+
+<{if $op == "order_list"}>
+  <div class="container mt-5" style="margin-top: 100px!important;>
+    <h1 class="text-center">點餐訂單查詢</h1>      
+      <div class="row">
+          <!--姓名-->              
+          <div class="col-sm-3">
+              <div class="form-group">
+                  <label><span class="title">姓名</span>
+                  </label>
+                  <div class="form-control"><{$order_main.name}></div>
+              </div>
+          </div>
+          <!--電話-->              
+          <div class="col-sm-3">
+              <div class="form-group">
+                  <label><span class="title">電話</span>
+                  </label>
+                  <div class="form-control"><{$order_main.tel}></div>
+              </div>
+          </div>
+          <!--email-->              
+          <div class="col-sm-3">
+              <div class="form-group">
+                  <label><span class="title">email</span></label>
+                  <div class="form-control"><{$order_main.email}></div>
+              </div>
+          </div>
+                  
+          <!--分類-->              
+          <div class="col-sm-3">
+            <div class="form-group">
+                <label>桌號或外帶</label>
+                <div class="form-control"><{$order_main.kind_title}></div>
+            </div>
+          </div>
+      </div> 
+      
+      <div class="row">
+          <div class="col-sm-12">  
+              <!-- 聯絡事項 -->
+              <div class="form-group">
+                  <label class="control-label">備註</label>
+                  <div class="form-control"><{$order_main.ps}></div>
+              </div>
+          </div>
+      </div>
+        
+      <table class="table table-striped table-bordered table-hover table-sm">
+        <thead>
+        <tr> 
+            <th scope="col" style="width:85px;">圖片</th>
+            <th scope="col">餐點名稱</th>
+            <th scope="col" class="text-right" style="width:120px;">價格</th>
+            <th scope="col" class="text-center" style="width:120px;">數量</th>
+            <th scope="col" class="text-center" style="width:120px;">小計</th>
+        </tr>
+        </thead>
+        <tbody>
+            <{foreach $rows as $row}>
+                <tr>
+                  <td><img src="<{$row.prod}>" alt="<{$row.title}>" width=80></td>
+                  <td class="align-middle"><{$row.title}></td>
+                  <td class="text-right align-middle price"><{$row.price}></td>
+                  <td class="align-middle text-right">
+                    <{$row.amount}>
+                  </td>
+                  <td class="text-right align-middle total">
+                    <{$row.total}>
+                  </td>
+                </tr>
+            <{/foreach}>
+            <tr>
+              <td colspan=4 class="text-right">合計</td>
+              <td class="text-right" id="Total">
+                <{$order_main.total}>
+              </td>
+            </tr>
+
+        </tbody>
+      </table>
+
+  </div>
+
+
+
+<{/if}>

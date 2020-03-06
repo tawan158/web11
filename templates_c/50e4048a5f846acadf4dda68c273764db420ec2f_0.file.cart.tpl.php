@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-05 10:59:15
+/* Smarty version 3.1.34-dev-7, created on 2020-03-06 13:58:51
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\cart.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e606b03d30a96_22324636',
+  'unifunc' => 'content_5e61e69bcfe328_19511409',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '50e4048a5f846acadf4dda68c273764db420ec2f' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\cart.tpl',
-      1 => 1583376180,
+      1 => 1583474314,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e606b03d30a96_22324636 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e61e69bcfe328_19511409 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
   <!-- Page Content -->
   <div class="container" style="margin-top: 110px;">
@@ -322,6 +322,113 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
 
   <?php echo '</script'; ?>
 >
+<?php }?>
+
+
+<?php if ($_smarty_tpl->tpl_vars['op']->value == "order_list") {?>
+  <div class="container mt-5" style="margin-top: 100px!important;>
+    <h1 class="text-center">點餐訂單查詢</h1>      
+      <div class="row">
+          <!--姓名-->              
+          <div class="col-sm-3">
+              <div class="form-group">
+                  <label><span class="title">姓名</span>
+                  </label>
+                  <div class="form-control"><?php echo $_smarty_tpl->tpl_vars['order_main']->value['name'];?>
+</div>
+              </div>
+          </div>
+          <!--電話-->              
+          <div class="col-sm-3">
+              <div class="form-group">
+                  <label><span class="title">電話</span>
+                  </label>
+                  <div class="form-control"><?php echo $_smarty_tpl->tpl_vars['order_main']->value['tel'];?>
+</div>
+              </div>
+          </div>
+          <!--email-->              
+          <div class="col-sm-3">
+              <div class="form-group">
+                  <label><span class="title">email</span></label>
+                  <div class="form-control"><?php echo $_smarty_tpl->tpl_vars['order_main']->value['email'];?>
+</div>
+              </div>
+          </div>
+                  
+          <!--分類-->              
+          <div class="col-sm-3">
+            <div class="form-group">
+                <label>桌號或外帶</label>
+                <div class="form-control"><?php echo $_smarty_tpl->tpl_vars['order_main']->value['kind_title'];?>
+</div>
+            </div>
+          </div>
+      </div> 
+      
+      <div class="row">
+          <div class="col-sm-12">  
+              <!-- 聯絡事項 -->
+              <div class="form-group">
+                  <label class="control-label">備註</label>
+                  <div class="form-control"><?php echo $_smarty_tpl->tpl_vars['order_main']->value['ps'];?>
+</div>
+              </div>
+          </div>
+      </div>
+        
+      <table class="table table-striped table-bordered table-hover table-sm">
+        <thead>
+        <tr> 
+            <th scope="col" style="width:85px;">圖片</th>
+            <th scope="col">餐點名稱</th>
+            <th scope="col" class="text-right" style="width:120px;">價格</th>
+            <th scope="col" class="text-center" style="width:120px;">數量</th>
+            <th scope="col" class="text-center" style="width:120px;">小計</th>
+        </tr>
+        </thead>
+        <tbody>
+            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['rows']->value, 'row');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
+?>
+                <tr>
+                  <td><img src="<?php echo $_smarty_tpl->tpl_vars['row']->value['prod'];?>
+" alt="<?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+" width=80></td>
+                  <td class="align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+</td>
+                  <td class="text-right align-middle price"><?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
+</td>
+                  <td class="align-middle text-right">
+                    <?php echo $_smarty_tpl->tpl_vars['row']->value['amount'];?>
+
+                  </td>
+                  <td class="text-right align-middle total">
+                    <?php echo $_smarty_tpl->tpl_vars['row']->value['total'];?>
+
+                  </td>
+                </tr>
+            <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+            <tr>
+              <td colspan=4 class="text-right">合計</td>
+              <td class="text-right" id="Total">
+                <?php echo $_smarty_tpl->tpl_vars['order_main']->value['total'];?>
+
+              </td>
+            </tr>
+
+        </tbody>
+      </table>
+
+  </div>
+
+
+
 <?php }
 }
 }
