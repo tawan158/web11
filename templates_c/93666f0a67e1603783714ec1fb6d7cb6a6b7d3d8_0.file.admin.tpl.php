@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-05 16:14:43
+/* Smarty version 3.1.34-dev-7, created on 2020-03-06 14:11:43
   from 'D:\ugm\xampp\htdocs\web11\templates\admin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e60b4f3b2b585_82329689',
+  'unifunc' => 'content_5e61e99f82f6f1_99451881',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '93666f0a67e1603783714ec1fb6d7cb6a6b7d3d8' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\admin.tpl',
-      1 => 1583396077,
+      1 => 1583475078,
       2 => 'file',
     ),
   ),
@@ -25,9 +25,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:tpl/menu.tpl' => 1,
     'file:tpl/slide.tpl' => 1,
     'file:tpl/contact.tpl' => 1,
+    'file:tpl/order.tpl' => 1,
   ),
 ),false)) {
-function content_5e60b4f3b2b585_82329689 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e61e99f82f6f1_99451881 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
   <head>
@@ -85,8 +86,11 @@ bootstrap/bootstrap.min.js"><?php echo '</script'; ?>
 ?>     
           <?php } elseif ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "contact.php") {?>
             <?php $_smarty_tpl->_subTemplateRender("file:tpl/contact.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-?> 
-          <?php }?>
+?>      
+          <?php } elseif ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "order.php") {?>
+            <?php $_smarty_tpl->_subTemplateRender("file:tpl/order.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+          <?php }?> 
           
 
         </div>
@@ -120,6 +124,9 @@ bootstrap/bootstrap.min.js"><?php echo '</script'; ?>
               </li>
               <li class="list-group-item">
                 <a href="contact.php" class="btn-block">聯絡我們管理</a>
+              </li>
+              <li class="list-group-item">
+                <a href="order.php" class="btn-block">訂單管理</a>
               </li>
               <li class="list-group-item">
                 <a href="http://localhost/adminer/adminer.php" class="btn-block" target="_blank">資料庫管理</a>

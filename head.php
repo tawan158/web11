@@ -36,6 +36,8 @@ if($WEB['file_name'] == "index.php"){
   $WEB['web_title'] = "購物車";
 }elseif($WEB['file_name'] == "contact.php"){
   $WEB['web_title'] = "聯絡我們管理";
+}elseif($WEB['file_name'] == "order.php"){
+  $WEB['web_title'] = "訂單管理";
 }else{
   $WEB['web_title'] = "";//
 }
