@@ -11,19 +11,9 @@ $sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
  
 /* 程式流程 */
 switch ($op){
-  case "op_delete" :
-    $msg = op_delete($sn);
-    redirect_header("prod.php", $msg, 3000);
-    exit;
-
-  case "op_insert" :
-    $msg = op_insert();
-    redirect_header("prod.php", $msg, 3000);
-    exit;
-
-  case "op_update" :
-    $msg = op_insert($sn);
-    redirect_header("prod.php", $msg, 3000);
+  case "order_delete" :
+    $msg = order_delete($sn);
+    redirect_header($_SESSION['returnUrl'], $msg, 3000);
     exit;
  
   default:
@@ -40,126 +30,23 @@ $smarty->assign("op", $op);
 $smarty->display('admin.tpl');
  
 /*---- 函數區-----*/
-function op_delete($sn){
-  global $db; 
-  #刪除舊圖
-  # 1.刪除實體檔案
-  # 2.刪除files資料表
-  delFilesByKindColsnSort("prod",$sn,1);
+function order_delete($sn){
+  global $db;
 
   #刪除訂單主檔資料表
-  $sql="DELETE FROM `prods`
+  $sql="DELETE FROM `orders_main`
         WHERE `sn` = '{$sn}'
   ";
   $db->query($sql) or die($db->error() . $sql);
-  return "訂單主檔資料刪除成功";
+
+  #刪除訂單細檔資料表
+  $sql="DELETE FROM `orders`
+        WHERE `orders_main_sn` = '{$sn}'
+  ";
+  $db->query($sql) or die($db->error() . $sql);
+  
+  return "訂單資料刪除成功";
 }
-
-
-function op_insert($sn=""){
-  global $db;						 
- 
-  $_POST['sn'] = db_filter($_POST['sn'], '');//流水號
-  $_POST['kind_sn'] = db_filter($_POST['kind_sn'], '');//類別
-  $_POST['title'] = db_filter($_POST['title'], '標題');//標題
-  $_POST['content'] = db_filter($_POST['content'], '');
-  $_POST['price'] = db_filter($_POST['price'], '');
-  $_POST['enable'] = db_filter($_POST['enable'], '');
-
-  $_POST['date'] = db_filter($_POST['date'], '');
-  $_POST['date'] = strtotime($_POST['date']);
-
-  $_POST['sort'] = db_filter($_POST['sort'], '');  
-  $_POST['counter'] = db_filter($_POST['counter'], '');
-
-  if($sn){
-    $sql="UPDATE  `prods` SET
-                  `kind_sn` = '{$_POST['kind_sn']}',
-                  `title` = '{$_POST['title']}',
-                  `content` = '{$_POST['content']}',
-                  `price` = '{$_POST['price']}',
-                  `enable` = '{$_POST['enable']}',
-                  `date` = '{$_POST['date']}',
-                  `sort` = '{$_POST['sort']}',
-                  `counter` = '{$_POST['counter']}'
-                  WHERE `sn` = '{$_POST['sn']}'    
-    ";
-    $db->query($sql) or die($db->error() . $sql);
-    $msg = "訂單主檔資料更新成功";
-  }else{
-    $sql="INSERT INTO `prods` 
-    (`kind_sn`, `title`, `content`, `price`, `enable`, `date`, `sort`, `counter`)
-    VALUES 
-    ('{$_POST['kind_sn']}', '{$_POST['title']}', '{$_POST['content']}', '{$_POST['price']}', '{$_POST['enable']}', '{$_POST['date']}', '{$_POST['sort']}', '{$_POST['counter']}')    
-    "; //die($sql);
-    $db->query($sql) or die($db->error() . $sql);
-    $sn = $db->insert_id;
-    $msg = "訂單主檔資料新增成功";    
-
-  }
-
-  if($_FILES['prod']['name']){
-    $kind = "prod";
-    #刪除舊圖
-    # 1.刪除實體檔案
-    # 2.刪除files資料表
-    delFilesByKindColsnSort($kind,$sn,1);
-     
-    if ($_FILES['prod']['error'] === UPLOAD_ERR_OK){
-        
-        $sub_dir = "/".$kind;
-        $sort = 1;
-        #過濾變數
-        $_FILES['prod']['name'] = db_filter($_FILES['prod']['name'], '');
-        $_FILES['prod']['type'] = db_filter($_FILES['prod']['type'], '');
-        $_FILES['prod']['size'] = db_filter($_FILES['prod']['size'], '');
-        #檢查資料目錄
-        mk_dir(_WEB_PATH . "/uploads");
-        mk_dir(_WEB_PATH . "/uploads" . $sub_dir);
-        $path = _WEB_PATH . "/uploads" . $sub_dir . "/";
-        #圖片名稱
-        $rand = substr(md5(uniqid(mt_rand(), 1)), 0, 5);//取得一個5碼亂數
-        
-        #//取得上傳檔案的副檔名
-        $ext = pathinfo($_FILES["prod"]["name"], PATHINFO_EXTENSION); 
-        $ext = strtolower($ext);//轉小寫
-        
-        //判斷檔案種類
-        if ($ext == "jpg" or $ext == "jpeg" or $ext == "png" or $ext == "gif") {
-            $file_kind = "img";
-        } else {
-            $file_kind = "file";
-        }     
-
-        $file_name = $rand . "_" . $sn . "." . $ext; 
-        #圖片目錄
-
-        # 將檔案移至指定位置
-        if(move_uploaded_file($_FILES['prod']['tmp_name'], $path . $file_name)){
-            $sql="INSERT INTO `files` 
-                              (`kind`, `col_sn`, `sort`, `file_kind`, `file_name`, `file_type`, `file_size`, `description`, `counter`, `name`, `download_name`, `sub_dir`) 
-                              VALUES 
-                              ('{$kind}', '{$sn}', '{$sort}', '{$file_kind}', '{$_FILES['prod']['name']}', '{$_FILES['prod']['type']}', '{$_FILES['prod']['size']}', NULL, '0', '{$file_name}', '', '{$sub_dir}')
-            
-            ";
-            $db->query($sql) or die($db->error() . $sql);
-
-        }
-
-
-    } else {
-        die("圖片上傳失敗");
-    }
-  }
-
-  return $msg;
-
-}
-
-
-
-
-
 
 function op_form($sn=""){
   global $smarty,$db;

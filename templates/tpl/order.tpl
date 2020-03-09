@@ -20,7 +20,7 @@
                     <td class="text-right"><{$row.total}></td>
                     <td class="text-center">
                         <a href="cart.php?op=order_form&sn=<{$row.sn}>"><i class="far fa-edit"></i></a>
-                        <a href="javascript:void(0)" onclick="op_delete(<{$row.sn}>);"><i class="far fa-trash-alt"></i></a>
+                        <a href="javascript:void(0)" onclick="order_delete(<{$row.sn}>);"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
             <{foreachelse}>
@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.css">
     <script src="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.js"></script>
     <script>
-        function op_delete(sn){
+        function order_delete(sn){
             Swal.fire({
                 title: '你確定嗎？',
                 text: "您將無法還原！",
@@ -49,7 +49,7 @@
                 cancelButtonText: '取消'
                 }).then((result) => {
                 if (result.value) {
-                    document.location.href="prod.php?op=op_delete&sn="+sn;
+                    document.location.href="order.php?op=order_delete&sn="+sn;
                 }
             })
         }
