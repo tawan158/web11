@@ -48,7 +48,7 @@
   <{include file="tpl/footer.tpl"}>
 
   <{* 購物車圖示 *}>  
-  <{if $smarty.session.cartAmount}>
+  <{if $smarty.session.cartAmount and $op != "order_form"}>
     <style>
       .fab-fixed-wrap .fab {
         display: block;
