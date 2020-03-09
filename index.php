@@ -48,6 +48,7 @@ switch ($op){
 
   default:
     $op = "op_list";
+    $_SESSION['returnUrl'] = getCurrentUrl();
     $mainSlides = getMenus("mainSlide",true);
     $smarty->assign("mainSlides", $mainSlides);
     

@@ -20,7 +20,7 @@ switch ($op){
   case "order_update" :    
     if($_SESSION['user']['kind'] !== 1)redirect_header("index.php", '您沒有權限', 3000);
     $returnUrl = order_insert($sn);
-    redirect_header($returnUrl, "訂餐編輯成功", 3000);    
+    redirect_header($_SESSION['returnUrl'], "訂餐編輯成功", 3000);    
     exit; 
     
   case "add_cart" :
@@ -34,6 +34,7 @@ switch ($op){
     		  
   default:
     $op = "op_list";
+    $_SESSION['returnUrl'] = getCurrentUrl();
     op_list();
     break;  
 }
@@ -133,6 +134,7 @@ function order_insert($sn=""){
   $_POST['ps'] = db_filter($_POST['ps'], '');
   $_POST['uid'] = db_filter($_POST['uid'], '');
   $_POST['date'] = strtotime("now");
+  $_POST['op'] = db_filter($_POST['op'], '');//類別
   
   if($sn){
 
@@ -201,7 +203,8 @@ function order_insert($sn=""){
                 WHERE `sn` = '{$sn}'  
   ";
   $db->query($sql) or die($db->error() . $sql);
-  if(!$sn){
+  
+  if($_POST['op'] == "order_insert"){
     unset($_SESSION['cart']);
     unset($_SESSION['cartAmount']);
   }

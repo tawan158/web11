@@ -28,6 +28,7 @@ switch ($op){
  
   default:
     $op = "op_list";
+    $_SESSION['returnUrl'] = getCurrentUrl();
     op_list();
     break;  
 }
