@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-02 15:23:55
+/* Smarty version 3.1.34-dev-7, created on 2020-03-09 17:03:54
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\body.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5cb48b486d91_43369084',
+  'unifunc' => 'content_5e66067a273af5_34782689',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c35e6ac058708307b6011ee4a171412f01dfc29d' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\body.tpl',
-      1 => 1583133832,
+      1 => 1583744630,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5cb48b486d91_43369084 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e66067a273af5_34782689 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
   <?php if ($_smarty_tpl->tpl_vars['mainSlides']->value) {?>  
     <!-- 輪播圖 -->
@@ -142,96 +142,34 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
   <section id="portfolio">
     <div class="container-fluid p-0">
       <div class="row no-gutters">
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
-img/portfolio/fullsize/1.jpg">
-            <img class="img-fluid" src="<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
-img/portfolio/thumbnails/1.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
+        <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['prods']->value, 'prod');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['prod']->value) {
+?>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="<?php echo $_smarty_tpl->tpl_vars['prod']->value['prod'];?>
+">
+              <img class="img-fluid" src="<?php echo $_smarty_tpl->tpl_vars['prod']->value['prod'];?>
+" alt="<?php echo $_smarty_tpl->tpl_vars['prod']->value['title'];?>
+">
+              <div class="portfolio-box-caption">
+                <div class="project-category text-white-50">
+                  <?php echo $_smarty_tpl->tpl_vars['prod']->value['kinds_title'];?>
+
+                </div>
+                <div class="project-name">
+                  <?php echo $_smarty_tpl->tpl_vars['prod']->value['title'];?>
+
+                </div>
               </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
-img/portfolio/fullsize/2.jpg">
-            <img class="img-fluid" src="<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
-img/portfolio/thumbnails/2.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
-img/portfolio/fullsize/3.jpg">
-            <img class="img-fluid" src="<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
-img/portfolio/thumbnails/3.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
-img/portfolio/fullsize/4.jpg">
-            <img class="img-fluid" src="<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
-img/portfolio/thumbnails/4.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
-img/portfolio/fullsize/5.jpg">
-            <img class="img-fluid" src="<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
-img/portfolio/thumbnails/5.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
-img/portfolio/fullsize/6.jpg">
-            <img class="img-fluid" src="<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
-img/portfolio/thumbnails/6.jpg" alt="">
-            <div class="portfolio-box-caption p-3">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
+            </a>
+          </div>
+        <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+        
       </div>
     </div>
   </section>

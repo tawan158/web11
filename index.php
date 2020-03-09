@@ -48,11 +48,14 @@ switch ($op){
 
   default:
     $op = "op_list";
+
     $_SESSION['returnUrl'] = getCurrentUrl();
+
     $mainSlides = getMenus("mainSlide",true);
     $smarty->assign("mainSlides", $mainSlides);
+    op_list();
     
-    // print_r($mainSlides);die();
+    #取得商品資料(含圖)
 
     break;  
 }
@@ -66,6 +69,29 @@ switch ($op){
 $smarty->display('theme.tpl');
 
 //----函數區
+function op_list(){
+  global $db,$smarty;
+  
+  $sql = "SELECT a.*,b.title as kinds_title
+          FROM `prods` as a
+          LEFT JOIN `kinds` as b on a.kind_sn=b.sn
+          WHERE a.`enable`='1'
+          ORDER BY a.`date` desc
+          LIMIT 6;
+  ";//die($sql);
+
+  $result = $db->query($sql) or die($db->error() . $sql);
+  $rows=[];//array();
+  while($row = $result->fetch_assoc()){    
+    $row['sn'] = (int)$row['sn'];//分類
+    $row['title'] = htmlspecialchars($row['title']);//標題 
+    $row['prod'] = getFilesByKindColsnSort("prod",$row['sn']);
+    $row['kinds_title'] = htmlspecialchars($row['kinds_title']);//標題
+    $rows[] = $row;
+  }
+  $smarty->assign("prods",$rows);  
+
+}
 function contact_insert(){
   global $db;
   

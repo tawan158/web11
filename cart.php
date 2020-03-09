@@ -216,7 +216,6 @@ function order_insert($sn=""){
     unset($_SESSION['cart']);
     unset($_SESSION['cartAmount']);
   }
-  die("456");
 
   return "cart.php?op=order_list&sn={$sn}&key={$_POST['date']}";
 
