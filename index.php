@@ -13,6 +13,10 @@ switch ($op){
     redirect_header("index.php", $msg , 5000);
     exit;
 
+  case "checkUname" :
+    echo json_encode(checkUname());
+    exit;
+
   case "reg" :
     $msg = reg();
     redirect_header("index.php", '註冊成功', 3000);
@@ -69,6 +73,20 @@ switch ($op){
 $smarty->display('theme.tpl');
 
 //----函數區
+/*####################################################
+  AJAX 檢查帳號是否重覆
+  驗證不過 => false ， 驗證通過 => true
+####################################################*/
+function checkUname() {
+  global $db;
+  $uname = system_CleanVars($_REQUEST, 'uname', '', 'string');
+
+  if(check_uname($uname)){
+    return false;//帳號有人使用，驗證不過
+  }
+  return true;
+} 
+
 function op_list(){
   global $db,$smarty;
   
@@ -190,6 +208,23 @@ function logout(){
   setcookie("uname", "", time()- 3600 * 24 * 365); 
   setcookie("token", "", time()- 3600 * 24 * 365);
 }
+/*=======================
+  檢查帳號是否有人使用
+  有人使用 傳回 true
+  無人使用 傳回 false
+=======================*/
+function check_uname($uname){
+  global $db;
+  $sql="SELECT count(*) as count
+        FROM `users`
+        WHERE `uname`='{$uname}'
+  ";    
+  $result = $db->query($sql) or die($db->error() . $sql);
+  $row = $result->fetch_assoc();
+
+  if($row['count'])return true;
+  return false;  
+}
  
 /*=======================
 註冊函式(寫入資料庫)
@@ -203,9 +238,16 @@ function reg(){
   $_POST['name'] = db_filter($_POST['name'], '姓名');
   $_POST['tel'] = db_filter($_POST['tel'], '電話');
   $_POST['email'] = db_filter($_POST['email'], 'email',FILTER_SANITIZE_EMAIL);
+  
   #加密處理
   if($_POST['pass'] != $_POST['chk_pass']){
     redirect_header("index.php?op=reg_form","密碼不一致");
+    exit;
+  }
+  
+  #檢查帳號是否重覆
+  if(check_uname($_POST['uname'])){
+    redirect_header("index.php?op=reg_form","帳號已有人使用");
     exit;
   }
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-15 03:27:43
+/* Smarty version 3.1.34-dev-7, created on 2020-03-10 13:45:23
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\reg_form.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e47571f90b905_10473415',
+  'unifunc' => 'content_5e6729735e5eb2_12334158',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '96d22231e9747ca8da96630c0cfad25e0df3091f' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\reg_form.tpl',
-      1 => 1581733597,
+      1 => 1583819117,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e47571f90b905_10473415 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e6729735e5eb2_12334158 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <style>
   .box{
@@ -44,35 +44,35 @@ function content_5e47571f90b905_10473415 (Smarty_Internal_Template $_smarty_tpl)
           <!--密碼-->              
           <div class="col-sm-4">
             <div class="form-group">
-              <label>密碼<span class="text-danger">*</span class="text-danger"></label>
+              <label>密碼<span class="text-danger">*</span></label>
               <input type="password" class="form-control" name="pass" id="pass" value="">
             </div>
           </div>         
           <!--確認密碼-->              
           <div class="col-sm-4">
             <div class="form-group">
-              <label>確認密碼<span class="text-danger">*</span class="text-danger"></label>
+              <label>確認密碼<span class="text-danger">*</span></label>
               <input type="password" class="form-control" name="chk_pass" id="chk_pass" value="" >
             </div>
           </div>         
           <!--姓名-->              
           <div class="col-sm-6">
             <div class="form-group">
-              <label>姓名<span class="text-danger">*</span class="text-danger"></label>
+              <label>姓名<span class="text-danger">*</span></label>
               <input type="text" class="form-control" name="name" id="name" value="">
             </div>
           </div>         
           <!--電話-->              
           <div class="col-sm-6">
             <div class="form-group">
-              <label>電話<span class="text-danger">*</span class="text-danger"></label>
+              <label>電話<span class="text-danger">*</span></label>
               <input type="text" class="form-control" name="tel" id="tel" value="">
             </div>
           </div>             
           <!--信箱-->              
           <div class="col-sm-12">
             <div class="form-group">
-              <label>信箱<span class="text-danger">*</span class="text-danger"></label>
+              <label>信箱<span class="text-danger">*</span></label>
               <input type="text" class="form-control" name="email" id="email" value="">
             </div>
           </div> 
@@ -96,18 +96,25 @@ function content_5e47571f90b905_10473415 (Smarty_Internal_Template $_smarty_tpl)
       </style>
       <?php echo '<script'; ?>
 >
-        // `uname`, ``, ``, `tel`, `email`, 
-        $(function(){
-
-        });
         $(function(){
           $("#myForm").validate({
             submitHandler: function(form) {
               form.submit();
             },
             rules: {
-              'uname' : {
-                required: true
+              'uname': {
+                required: true,//必填
+                remote: {
+                  url: "index.php",
+                  type: "post",               //方法
+                  dataType: "json",           //接受数据格式
+                  data: {                     //資料
+                    "op" : "checkUname",
+                    "uname" : function() {
+                      return $("#uname").val();
+                    }
+                  }
+                }
               },
               'pass' : {
                 required: true
@@ -128,7 +135,8 @@ function content_5e47571f90b905_10473415 (Smarty_Internal_Template $_smarty_tpl)
             },
             messages: {
               'uname' : {
-                required: "必填"
+                required: "必填",
+                remote: "這個帳號已經有人使用"
               },
               'pass' : {
                 required: "必填"
