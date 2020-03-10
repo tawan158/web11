@@ -25,7 +25,7 @@ switch ($op){
     
   case "add_cart" :
     $msg = add_cart($sn);
-    redirect_header("cart.php", $msg, 3000);    
+    redirect_header($_SESSION['returnUrl'], $msg, 3000);    
     exit; 
 
 	case "order_form" :
@@ -308,7 +308,7 @@ function op_list(){
 
   #---分頁套件(原始$sql 不要設 limit)
   include_once _WEB_PATH."/class/PageBar/PageBar.php";
-  $pageCount = 8;
+  $pageCount = 2;
   $PageBar = getPageBar($db, $sql, $pageCount, 10);
   $sql     = $PageBar['sql'];
   $total   = $PageBar['total'];
