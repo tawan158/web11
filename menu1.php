@@ -14,12 +14,17 @@ $ofsn = system_CleanVars($_REQUEST, 'ofsn', 0, 'int');
 $kinds['mainMenu'] = array(
   "value" => "mainMenu",
   "title" => "主選單",
-  "stop_level" => 4
+  "stop_level" => 1
 );
 $kinds['cartMenu'] = array(
   "value" => "cartMenu",
   "title" => "購物車選單",
-  "stop_level" => 2
+  "stop_level" => 1
+);
+$kinds['levelMenu'] = array(
+  "value" => "levelMenu",
+  "title" => "多層選單",
+  "stop_level" => 4
 );
 
 $smarty->assign("kinds", $kinds);
@@ -74,20 +79,32 @@ function op_delete($kind,$sn){
   return "選單資料刪除成功";
 }
 
-function get_ofsn_level($kind,$ofsn,$level = 1){
-  global $db,$kinds;  
+function get_ofsn_level($kind,$ofsn,$level = 0){
+  global $db,$kinds; 
   if($ofsn == 0)return $level;
-  $next_level = $level++;
+  $next_level = $level+ 1;
   
   $sql = "SELECT *
 					FROM `kinds`
-					WHERE `kind`='{$kind}' and `ofsn`='{$ofsn}'
+					WHERE `kind`='{$kind}' and `sn`='{$ofsn}'
   ";//die($sql);
   $result = $db->query($sql) or die($db->error() . $sql);
+  
+  
+  // echo "ofsn=" . $ofsn . "<br>";
+  // echo "level=" . $level . "<br>";
+  // echo "next_level=" .$next_level . "<br>";
+  // print_r($row);
+  // if($ofsn == 41 ){
+  //   die();
+  // }	   
+
   while($row = $result->fetch_assoc()){ 
-    $sn = (int)$row['sn'];		
-    $row_level = get_ofsn_option($kind,$sn,$next_level);
-    $level = ($row_level > $level) ? $row_level : $level;    
+    $sn = (int)$row['sn'];	
+    $ofsn = (int)$row['ofsn'];
+      
+    $row_level = get_ofsn_option($kind,$sn,$next_level);  
+    $level = ($row_level>$level) ? $row_level : $level;
   }
   return $level;
 }
@@ -107,10 +124,12 @@ function op_insert($kind,$sn=""){
   if($sn){
     #判斷父層在第幾層
     $ofsn_level = get_ofsn_level($kind,$_POST['ofsn']);
-    if($_POST['ofsn']==32){
-      echo $ofsn_level;
+    if($_POST['sn']==42){
+      print_r($ofsn_level);
       die();
+
     }
+    
     #判斷自已底下有幾層(含自已)
     $sql="UPDATE  `kinds` SET
                   `title` = '{$_POST['title']}',
