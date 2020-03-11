@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-10 16:38:11
+/* Smarty version 3.1.34-dev-7, created on 2020-03-11 12:04:23
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\menu1.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e6751f320f0c3_04936445',
+  'unifunc' => 'content_5e686347a138f1_12077961',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a7737596f038f483c193ea60bf086a1d506781b1' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\menu1.tpl',
-      1 => 1583829487,
+      1 => 1583899457,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e6751f320f0c3_04936445 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e686347a138f1_12077961 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
 
     <div class="row mb-2">
@@ -56,36 +56,155 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         </tr>
         </thead>
         <tbody>
-            <?php
+					<!-- 第1層 -->
+					<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['rows']->value, 'row');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
 ?>
-                <tr>
-                    <td class=""><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+						<tr>
+							<td class=""><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
 </td>
-                    <td class=""><?php echo $_smarty_tpl->tpl_vars['row']->value['url'];?>
+							<td class=""><?php echo $_smarty_tpl->tpl_vars['row']->value['url'];?>
 </td>
-                    <td class="text-center "><?php if ($_smarty_tpl->tpl_vars['row']->value['target']) {?><i class="fas fa-check"></i><?php }?></td>
-                    <td class="text-center "><?php if ($_smarty_tpl->tpl_vars['row']->value['enable']) {?><i class="fas fa-check"></i><?php }?></td>
-                    <td class="text-center ">
-                        <a href="?op=op_form&kind=<?php echo $_smarty_tpl->tpl_vars['row']->value['kind'];?>
+							<td class="text-center "><?php if ($_smarty_tpl->tpl_vars['row']->value['target']) {?><i class="fas fa-check"></i><?php }?></td>
+							<td class="text-center "><?php if ($_smarty_tpl->tpl_vars['row']->value['enable']) {?><i class="fas fa-check"></i><?php }?></td>
+							<td class="text-center ">
+								<?php if ($_smarty_tpl->tpl_vars['stop_level']->value > 1) {?>
+									<a href="?op=op_form&kind=<?php echo $_smarty_tpl->tpl_vars['kind']->value;?>
+&ofsn=<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
+"><i class="fas fa-plus-square"></i></a>
+								<?php } else { ?>
+									<span style="padding-left: 10px;">	
+								<?php }?>
+								<a href="?op=op_form&kind=<?php echo $_smarty_tpl->tpl_vars['kind']->value;?>
 &sn=<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
 &ofsn=<?php echo $_smarty_tpl->tpl_vars['row']->value['ofsn'];?>
 "><i class="far fa-edit"></i></a>
-                        <a href="javascript:void(0)" onclick="op_delete('<?php echo $_smarty_tpl->tpl_vars['row']->value['kind'];?>
+								<a href="javascript:void(0)" onclick="op_delete('<?php echo $_smarty_tpl->tpl_vars['kind']->value;?>
 ',<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
 );"><i class="far fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-            <?php
+							</td>
+						</tr>
+						
+						<!-- 第2層 -->
+						<?php if ($_smarty_tpl->tpl_vars['stop_level']->value > 1) {?>
+							<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['row']->value['sub'], 'sub2');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['sub2']->value) {
+?>
+								<tr>
+									<td><span style="padding-left: 10px;color:red;" >-</span><?php echo $_smarty_tpl->tpl_vars['sub2']->value['title'];?>
+</td>
+									<td class=""><?php echo $_smarty_tpl->tpl_vars['sub2']->value['url'];?>
+</td>
+									<td class="text-center "><?php if ($_smarty_tpl->tpl_vars['sub2']->value['target']) {?><i class="fas fa-check"></i><?php }?></td>
+									<td class="text-center "><?php if ($_smarty_tpl->tpl_vars['sub2']->value['enable']) {?><i class="fas fa-check"></i><?php }?></td>
+									<td class="text-center ">
+										<?php if ($_smarty_tpl->tpl_vars['stop_level']->value > 2) {?>
+											<a href="?op=op_form&kind=<?php echo $_smarty_tpl->tpl_vars['kind']->value;?>
+&ofsn=<?php echo $_smarty_tpl->tpl_vars['sub2']->value['sn'];?>
+"><i class="fas fa-plus-square"></i></a>
+										<?php } else { ?>
+											<span style="padding-left: 1em;">	
+										<?php }?>
+										<a href="?op=op_form&kind=<?php echo $_smarty_tpl->tpl_vars['kind']->value;?>
+&sn=<?php echo $_smarty_tpl->tpl_vars['sub2']->value['sn'];?>
+&ofsn=<?php echo $_smarty_tpl->tpl_vars['sub2']->value['ofsn'];?>
+"><i class="far fa-edit"></i></a>
+										<a href="javascript:void(0)" onclick="op_delete('<?php echo $_smarty_tpl->tpl_vars['kind']->value;?>
+',<?php echo $_smarty_tpl->tpl_vars['sub2']->value['sn'];?>
+);"><i class="far fa-trash-alt"></i></a>
+									</td>
+								</tr>
+								
+								<!-- 第3層 -->								
+								<?php if ($_smarty_tpl->tpl_vars['stop_level']->value > 2) {?>
+									<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['sub2']->value['sub'], 'sub3');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['sub3']->value) {
+?>
+										<tr>
+											<td><span style="padding-left: 20px;color:red;" >--</span><?php echo $_smarty_tpl->tpl_vars['sub3']->value['title'];?>
+</td>
+											<td class=""><?php echo $_smarty_tpl->tpl_vars['sub3']->value['url'];?>
+</td>
+											<td class="text-center "><?php if ($_smarty_tpl->tpl_vars['sub3']->value['target']) {?><i class="fas fa-check"></i><?php }?></td>
+											<td class="text-center "><?php if ($_smarty_tpl->tpl_vars['sub3']->value['enable']) {?><i class="fas fa-check"></i><?php }?></td>
+											<td class="text-center ">
+												<?php if ($_smarty_tpl->tpl_vars['stop_level']->value > 3) {?>
+													<a href="?op=op_form&kind=<?php echo $_smarty_tpl->tpl_vars['kind']->value;?>
+&ofsn=<?php echo $_smarty_tpl->tpl_vars['sub3']->value['sn'];?>
+"><i class="fas fa-plus-square"></i></a>
+												<?php } else { ?>
+													<span style="padding-left: 1em;">	
+												<?php }?>
+												<a href="?op=op_form&kind=<?php echo $_smarty_tpl->tpl_vars['kind']->value;?>
+&sn=<?php echo $_smarty_tpl->tpl_vars['sub3']->value['sn'];?>
+&ofsn=<?php echo $_smarty_tpl->tpl_vars['sub3']->value['ofsn'];?>
+"><i class="far fa-edit"></i></a>
+												<a href="javascript:void(0)" onclick="op_delete('<?php echo $_smarty_tpl->tpl_vars['kind']->value;?>
+',<?php echo $_smarty_tpl->tpl_vars['sub3']->value['sn'];?>
+);"><i class="far fa-trash-alt"></i></a>
+											</td>
+										</tr> 
+											<!-- 第4層 -->							
+											<?php if ($_smarty_tpl->tpl_vars['stop_level']->value > 3) {?>
+												<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['sub3']->value['sub'], 'sub4');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['sub4']->value) {
+?>
+													<tr>
+														<td><span style="padding-left: 30px;color:red;" >---</span><?php echo $_smarty_tpl->tpl_vars['sub4']->value['title'];?>
+</td>
+														<td class=""><?php echo $_smarty_tpl->tpl_vars['sub4']->value['url'];?>
+</td>
+														<td class="text-center "><?php if ($_smarty_tpl->tpl_vars['sub4']->value['target']) {?><i class="fas fa-check"></i><?php }?></td>
+														<td class="text-center "><?php if ($_smarty_tpl->tpl_vars['sub4']->value['enable']) {?><i class="fas fa-check"></i><?php }?></td>
+														<td class="text-center ">
+															<?php if ($_smarty_tpl->tpl_vars['stop_level']->value > 4) {?>
+																<a href="?op=op_form&kind=<?php echo $_smarty_tpl->tpl_vars['kind']->value;?>
+&ofsn=<?php echo $_smarty_tpl->tpl_vars['sub4']->value['sn'];?>
+"><i class="fas fa-plus-square"></i></a>
+															<?php } else { ?>
+																<span style="padding-left: 1em;">	
+															<?php }?>
+															<a href="?op=op_form&kind=<?php echo $_smarty_tpl->tpl_vars['kind']->value;?>
+&sn=<?php echo $_smarty_tpl->tpl_vars['sub4']->value['sn'];?>
+&ofsn=<?php echo $_smarty_tpl->tpl_vars['sub4']->value['ofsn'];?>
+"><i class="far fa-edit"></i></a>
+															<a href="javascript:void(0)" onclick="op_delete('<?php echo $_smarty_tpl->tpl_vars['kind']->value;?>
+',<?php echo $_smarty_tpl->tpl_vars['sub4']->value['sn'];?>
+);"><i class="far fa-trash-alt"></i></a>
+														</td>
+													</tr> 
+												<?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> 
+											<?php }?> 
+									<?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+									<?php }?> 
+							<?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+						<?php }?>
+
+					<?php
 }
 } else {
 ?>
-                <tr>
-                    <td colspan=5>目前沒有資料</td>
-                </tr>
-            <?php
+						<tr>
+							<td colspan=5>目前沒有資料</td>
+						</tr>
+					<?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
@@ -178,23 +297,49 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
 									<div class="form-group">
 										<label>父層</label>
 										<select name="ofsn" id="ofsn" class="form-control">
+											<!-- 第1層 -->
 											<option value="0" <?php if ($_smarty_tpl->tpl_vars['row']->value['ofsn'] == '0') {?>selected<?php }?>>/</option>
+											
+											<!-- 第2層 -->
 											<?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['row']->value['ofsn_option'], 'ofsn_option');
-if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['ofsn_option']->value) {
-?>
-												<option value="<?php echo $_smarty_tpl->tpl_vars['ofsn_option']->value['sn'];?>
-"  <?php if ($_smarty_tpl->tpl_vars['row']->value['ofsn'] == $_smarty_tpl->tpl_vars['ofsn_option']->value['sn']) {?>selected<?php }?>>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $_smarty_tpl->tpl_vars['ofsn_option']->value['title'];?>
-</option>
-												<?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['ofsn_option']->value['sub'], 'sub');
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['row']->value['ofsn_option'], 'sub');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['sub']->value) {
+?>
+												<option value="<?php echo $_smarty_tpl->tpl_vars['sub']->value['sn'];?>
+"  <?php if ($_smarty_tpl->tpl_vars['row']->value['ofsn'] == $_smarty_tpl->tpl_vars['sub']->value['sn']) {?>selected<?php }?>>
+													&nbsp;&nbsp;&nbsp;&nbsp;-<?php echo $_smarty_tpl->tpl_vars['sub']->value['title'];?>
+
+												</option>
+
+												<!-- 第3層 -->
+												<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['sub']->value['sub'], 'sub2');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['sub2']->value) {
 ?>	
-													<option value="<?php echo $_smarty_tpl->tpl_vars['sub']->value['sn'];?>
-"   <?php if ($_smarty_tpl->tpl_vars['row']->value['ofsn'] == $_smarty_tpl->tpl_vars['sub']->value['sn']) {?>selected<?php }?>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $_smarty_tpl->tpl_vars['sub']->value['title'];?>
-</option>
+													<option value="<?php echo $_smarty_tpl->tpl_vars['sub2']->value['sn'];?>
+"   <?php if ($_smarty_tpl->tpl_vars['row']->value['ofsn'] == $_smarty_tpl->tpl_vars['sub2']->value['sn']) {?>selected<?php }?>>
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--<?php echo $_smarty_tpl->tpl_vars['sub2']->value['title'];?>
+
+													</option>
+													
+													<!-- 第4層 -->
+													<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['sub2']->value['sub'], 'sub3');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['sub3']->value) {
+?>	
+														<option value="<?php echo $_smarty_tpl->tpl_vars['sub3']->value['sn'];?>
+"   <?php if ($_smarty_tpl->tpl_vars['row']->value['ofsn'] == $_smarty_tpl->tpl_vars['sub3']->value['sn']) {?>selected<?php }?>>
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---<?php echo $_smarty_tpl->tpl_vars['sub3']->value['title'];?>
+
+														</option>
+													<?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+
 												<?php
 }
 }

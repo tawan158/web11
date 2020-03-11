@@ -14,12 +14,12 @@ $ofsn = system_CleanVars($_REQUEST, 'ofsn', 0, 'int');
 $kinds['mainMenu'] = array(
   "value" => "mainMenu",
   "title" => "主選單",
-  "stop_level" => 2
+  "stop_level" => 4
 );
 $kinds['cartMenu'] = array(
   "value" => "cartMenu",
   "title" => "購物車選單",
-  "stop_level" => 1
+  "stop_level" => 2
 );
 
 $smarty->assign("kinds", $kinds);
@@ -31,17 +31,17 @@ $kind = (in_array($kind, array_keys($kinds))) ? $kind : "mainMenu";
 switch ($op){
   case "op_delete" :
     $msg = op_delete($kind,$sn);
-    redirect_header("menu.php?kind={$kind}", $msg, 3000);
+    redirect_header($_SESSION['returnUrl'], $msg, 3000);
     exit;
 
   case "op_insert" :
     $msg = op_insert($kind);
-    redirect_header("menu.php?kind={$kind}", $msg, 3000);
+    redirect_header($_SESSION['returnUrl'], $msg, 3000);
     exit;
 
   case "op_update" :
     $msg = op_insert($kind,$sn);
-    redirect_header("menu.php", $msg, 3000);
+    redirect_header($_SESSION['returnUrl'], $msg, 3000);
     exit;
 
   case "op_form" :
@@ -50,6 +50,7 @@ switch ($op){
  
   default:
     $op = "op_list";
+    $_SESSION['returnUrl'] = getCurrentUrl();
     op_list($kind);
     break;  
 }
@@ -61,6 +62,7 @@ $smarty->assign("op", $op);
 $smarty->display('admin.tpl');
  
 /*---- 函數區-----*/
+
 function op_delete($kind,$sn){
   global $db;
 
@@ -70,6 +72,24 @@ function op_delete($kind,$sn){
   ";
   $db->query($sql) or die($db->error() . $sql);
   return "選單資料刪除成功";
+}
+
+function get_ofsn_level($kind,$ofsn,$level = 1){
+  global $db,$kinds;  
+  if($ofsn == 0)return $level;
+  $next_level = $level++;
+  
+  $sql = "SELECT *
+					FROM `kinds`
+					WHERE `kind`='{$kind}' and `ofsn`='{$ofsn}'
+  ";//die($sql);
+  $result = $db->query($sql) or die($db->error() . $sql);
+  while($row = $result->fetch_assoc()){ 
+    $sn = (int)$row['sn'];		
+    $row_level = get_ofsn_option($kind,$sn,$next_level);
+    $level = ($row_level > $level) ? $row_level : $level;    
+  }
+  return $level;
 }
 
 function op_insert($kind,$sn=""){
@@ -85,6 +105,13 @@ function op_insert($kind,$sn=""){
   $_POST['ofsn'] = db_filter($_POST['ofsn'], ''); //父層
 
   if($sn){
+    #判斷父層在第幾層
+    $ofsn_level = get_ofsn_level($kind,$_POST['ofsn']);
+    if($_POST['ofsn']==32){
+      echo $ofsn_level;
+      die();
+    }
+    #判斷自已底下有幾層(含自已)
     $sql="UPDATE  `kinds` SET
                   `title` = '{$_POST['title']}',
                   `enable` = '{$_POST['enable']}',
@@ -144,11 +171,17 @@ function getKindMaxSortByKind($kind,$ofsn=0){
   return $row['count'];
 }
 
-function get_ofsn_option($kind,$ofsn,$ofsn_level){
-	global $db,$kinds;
-	$stop_level = $kinds[$kind]['stop_level'];
+function get_ofsn_option($kind,$ofsn=0,$level=1){
+  global $db,$kinds;
+  #層數
+  $stop_level = $kinds[$kind]['stop_level'];
+  
+  #結束條件
+  if($level+1 > $stop_level)return;
 
-	if($ofsn_level >=$stop_level)return;
+  #下層
+  $next_level = $level++;
+
 
   $sql = "SELECT *
 					FROM `kinds`
@@ -161,14 +194,14 @@ function get_ofsn_option($kind,$ofsn,$ofsn_level){
     $sn = (int)$row['sn'];//分類
 		$title = htmlspecialchars($row['title']);//標題
 		
-		$sub = get_ofsn_option($kind,$sn,++$ofsn_level);
+		$sub = get_ofsn_option($kind,$sn,$next_level);
 		$rows[] = [
 			'sn' => $sn,
 			'title' => $title,
 			'sub' => $sub
 		];
   }
-	return $rows;
+  return $rows;
 }
 
 function op_form($kind, $sn="", $ofsn=0, $stop_level=1){
@@ -190,44 +223,63 @@ function op_form($kind, $sn="", $ofsn=0, $stop_level=1){
   $row['sort'] = isset($row['sort']) ? $row['sort'] : getKindMaxSortByKind($kind,$ofsn);
   
   $row['ofsn'] = isset($row['ofsn']) ? $row['ofsn'] : $ofsn;//父層
-	$row['ofsn_option'] = get_ofsn_option($kind,0,$stop_level-1);//父層選項
+	$row['ofsn_option'] = get_ofsn_option($kind);//父層選項
 	// print_r($row['ofsn_option']);die();
   
 
   $smarty->assign("row",$row);
+  $smarty->assign("stop_level",$stop_level); 
 }
 
-function get_kinds($kind,$ofsn=0){
-	global $db;
+function get_kinds($kind,$ofsn=0,$level=1){
+  global $db,$kinds;
+  #層數
+  $stop_level = $kinds[$kind]['stop_level'];
+
+  #結束條件
+  if($level > $stop_level)return;
+  $next_level = $level++;
+  
   $sql = "SELECT *
           FROM `kinds`
           WHERE `kind`='{$kind}' and `ofsn`='{$ofsn}'
           ORDER BY `sort`
   ";//die($sql);
-
   $result = $db->query($sql) or die($db->error() . $sql);
   $rows=[];//array();
   while($row = $result->fetch_assoc()){ 
-    $row['sn'] = (int)$row['sn'];//分類
-    $row['ofsn'] = (int)$row['ofsn'];//分類
-    $row['title'] = htmlspecialchars($row['title']);//標題
-    $row['enable'] = (int)$row['enable'];//狀態 
-    $row['url'] = htmlspecialchars($row['url']);//網址
-    $row['target'] = (int)$row['target'];//外連 
-    $rows[] = $row;
+    $sn = (int)$row['sn'];//分類
+    $ofsn = (int)$row['ofsn'];//分類
+    $title = htmlspecialchars($row['title']);//標題
+    $enable = (int)$row['enable'];//狀態 
+    $url = htmlspecialchars($row['url']);//網址
+    $target = (int)$row['target'];//外連 
+   
+    $sub = get_kinds($kind,$sn,$next_level);
+    
+    $rows[] = [
+			'sn' => $sn,
+			'ofsn' => $ofsn,
+			'title' => $title,
+			'enable' => $enable,
+			'url' => $url,
+			'target' => $target,
+			'sub' => $sub
+    ];
   }
-
+  return $rows;
 }
 
 function op_list($kind){
 	global $smarty,$db,$kinds;
-	
+	#層數
 	$stop_level = $kinds[$kind]['stop_level'];
-	
-	$rows = get_kinds($kind,$stop_level);
+	#資料
+  $rows = get_kinds($kind,0);
   
   $smarty->assign("rows",$rows);
-  $smarty->assign("kind",$kind);  
+  $smarty->assign("kind",$kind); 
+  $smarty->assign("stop_level",$stop_level);  
 
 }
 

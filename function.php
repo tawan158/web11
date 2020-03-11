@@ -201,6 +201,20 @@ function getProdsBySn($sn){
 }
 
 /*===========================
+  用sn取得新聞檔資料
+===========================*/
+function getNewsBySn($sn){
+  global $db;
+  $sql="SELECT *
+        FROM `news`
+        WHERE `sn` = '{$sn}'
+  ";//die($sql);  
+  $result = $db->query($sql) or die($db->error() . $sql);
+  $row = $result->fetch_assoc();
+  $row['prod'] = getFilesByKindColsnSort("news",$sn);
+  return $row;
+}
+/*===========================
   取得商品檔類別選項
 ===========================*/
 function getProdsOptions($kind){

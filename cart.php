@@ -308,7 +308,7 @@ function op_list(){
 
   #---分頁套件(原始$sql 不要設 limit)
   include_once _WEB_PATH."/class/PageBar/PageBar.php";
-  $pageCount = 2;
+  $pageCount = 8;
   $PageBar = getPageBar($db, $sql, $pageCount, 10);
   $sql     = $PageBar['sql'];
   $total   = $PageBar['total'];

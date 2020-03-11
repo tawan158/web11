@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-10 14:58:23
+/* Smarty version 3.1.34-dev-7, created on 2020-03-11 13:22:07
   from 'D:\ugm\xampp\htdocs\web11\templates\admin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e673a8f91e752_28063634',
+  'unifunc' => 'content_5e68757fd1e315_74950653',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '93666f0a67e1603783714ec1fb6d7cb6a6b7d3d8' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\admin.tpl',
-      1 => 1583823426,
+      1 => 1583904105,
       2 => 'file',
     ),
   ),
@@ -27,9 +27,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:tpl/slide.tpl' => 1,
     'file:tpl/contact.tpl' => 1,
     'file:tpl/order.tpl' => 1,
+    'file:tpl/news.tpl' => 1,
   ),
 ),false)) {
-function content_5e673a8f91e752_28063634 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e68757fd1e315_74950653 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
   <head>
@@ -82,8 +83,8 @@ bootstrap/bootstrap.min.js"><?php echo '</script'; ?>
           <?php } elseif ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "menu.php") {?>
             <?php $_smarty_tpl->_subTemplateRender("file:tpl/menu.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>    
-            <?php } elseif ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "menu1.php") {?>
-              <?php $_smarty_tpl->_subTemplateRender("file:tpl/menu1.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+          <?php } elseif ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "menu1.php") {?>
+            <?php $_smarty_tpl->_subTemplateRender("file:tpl/menu1.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>  
           <?php } elseif ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "slide.php") {?>
             <?php $_smarty_tpl->_subTemplateRender("file:tpl/slide.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -93,6 +94,9 @@ bootstrap/bootstrap.min.js"><?php echo '</script'; ?>
 ?>      
           <?php } elseif ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "order.php") {?>
             <?php $_smarty_tpl->_subTemplateRender("file:tpl/order.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>      
+          <?php } elseif ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "news.php") {?>
+            <?php $_smarty_tpl->_subTemplateRender("file:tpl/news.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
           <?php }?> 
           
@@ -134,6 +138,9 @@ bootstrap/bootstrap.min.js"><?php echo '</script'; ?>
               </li>
               <li class="list-group-item">
                 <a href="order.php" class="btn-block">訂單管理</a>
+              </li>
+              <li class="list-group-item">
+                <a href="news.php" class="btn-block">新聞管理</a>
               </li>
               <li class="list-group-item">
                 <a href="http://localhost/adminer/adminer.php" class="btn-block" target="_blank">資料庫管理</a>

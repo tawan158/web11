@@ -17,6 +17,10 @@ $kinds[] = array(
   "value" => "orderKind",
   "title" => "訂單類別"
 );
+$kinds[] = array(
+  "value" => "news",
+  "title" => "新聞類別"
+);
 $smarty->assign("kinds", $kinds);
 
 // echo $op;die();

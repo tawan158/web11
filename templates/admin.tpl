@@ -33,14 +33,16 @@
             <{include file="tpl/kind.tpl"}>  
           <{elseif  $WEB.file_name == "menu.php"}>
             <{include file="tpl/menu.tpl"}>    
-            <{elseif  $WEB.file_name == "menu1.php"}>
-              <{include file="tpl/menu1.tpl"}>  
+          <{elseif  $WEB.file_name == "menu1.php"}>
+            <{include file="tpl/menu1.tpl"}>  
           <{elseif  $WEB.file_name == "slide.php"}>
             <{include file="tpl/slide.tpl"}>     
           <{elseif  $WEB.file_name == "contact.php"}>
             <{include file="tpl/contact.tpl"}>      
           <{elseif  $WEB.file_name == "order.php"}>
-            <{include file="tpl/order.tpl"}>
+            <{include file="tpl/order.tpl"}>      
+          <{elseif  $WEB.file_name == "news.php"}>
+            <{include file="tpl/news.tpl"}>
           <{/if}> 
           
 
@@ -81,6 +83,9 @@
               </li>
               <li class="list-group-item">
                 <a href="order.php" class="btn-block">訂單管理</a>
+              </li>
+              <li class="list-group-item">
+                <a href="news.php" class="btn-block">新聞管理</a>
               </li>
               <li class="list-group-item">
                 <a href="http://localhost/adminer/adminer.php" class="btn-block" target="_blank">資料庫管理</a>

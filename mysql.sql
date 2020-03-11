@@ -95,3 +95,16 @@ CREATE TABLE `contacts` (
     `date` int(10) unsigned NOT NULL default 0 COMMENT '建立日期',
     PRIMARY KEY  (`sn`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='聯絡我們資料表';
+
+-- 新聞資料表
+CREATE TABLE `news` (
+    `sn` int(10) unsigned NOT NULL auto_increment COMMENT 'news_sn',
+    `kind_sn` smallint(5) unsigned NOT NULL default 0 COMMENT '分類',
+    `title` varchar(255) NOT NULL default '' COMMENT '名稱',
+    `content` text NULL COMMENT '內容',
+    `enable` enum('1','0') NOT NULL default '1' COMMENT '狀態',
+    `date` int(10) unsigned NOT NULL default 0 COMMENT '建立日期',
+    `sort` smallint(5) unsigned NOT NULL default 0 COMMENT '排序',
+    `counter` int(10) unsigned NOT NULL default 0 COMMENT '人氣',
+    PRIMARY KEY  (`sn`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='新聞資料表';
