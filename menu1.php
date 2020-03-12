@@ -24,7 +24,7 @@ $kinds['cartMenu'] = array(
 $kinds['levelMenu'] = array(
   "value" => "levelMenu",
   "title" => "多層選單",
-  "stop_level" => 4
+  "stop_level" => 2
 );
 
 $smarty->assign("kinds", $kinds);
@@ -70,6 +70,10 @@ $smarty->display('admin.tpl');
 
 function op_delete($kind,$sn){
   global $db;
+  
+  #檢查類別層次
+  $downLevel = get_downLevel($kind,$sn);
+  if($downLevel)redirect_header($_SESSION['returnUrl'], "尚有子類別，無法刪除！", 3000);
 
   #刪除選單資料表
   $sql="DELETE FROM `kinds`
@@ -79,38 +83,61 @@ function op_delete($kind,$sn){
   return "選單資料刪除成功";
 }
 
-function get_ofsn_level($kind,$ofsn,$level = 0){
-  global $db,$kinds; 
-  if($ofsn == 0)return $level;
-  $next_level = $level+ 1;
-  
-  $sql = "SELECT *
-					FROM `kinds`
-					WHERE `kind`='{$kind}' and `sn`='{$ofsn}'
+/*===========================
+  確認底下有幾層
+  get_downLevel
+===========================*/
+function get_downLevel($kind,$sn,$downLevel=0) {
+  global $db,$kinds;
+  #層數
+  $stop_level = $kinds[$kind]['stop_level'];
+
+  if ($downLevel > $stop_level) {
+    return $downLevel;
+  }
+  $level = $downLevel+1;
+  $sql = "SELECT sn
+          FROM `kinds`
+          WHERE `ofsn`='{$sn}'
   ";//die($sql);
   $result = $db->query($sql) or die($db->error() . $sql);
-  
-  
-  // echo "ofsn=" . $ofsn . "<br>";
-  // echo "level=" . $level . "<br>";
-  // echo "next_level=" .$next_level . "<br>";
-  // print_r($row);
-  // if($ofsn == 41 ){
-  //   die();
-  // }	   
 
-  while($row = $result->fetch_assoc()){ 
-    $sn = (int)$row['sn'];	
-    $ofsn = (int)$row['ofsn'];
-      
-    $row_level = get_ofsn_option($kind,$sn,$next_level);  
-    $level = ($row_level>$level) ? $row_level : $level;
+  while ($row = $result->fetch_assoc()) {
+    $downLevel_tmp = get_downLevel($kind,$row['sn'], $level);
+    $downLevel = ($downLevel_tmp > $downLevel) ? $downLevel_tmp : $downLevel;
   }
-  return $level;
+  return $downLevel;
 }
 
+/*===========================
+  用流水號 得到自己的層數
+===========================*/
+function get_thisLevel($kind,$sn, $level = 1) {
+  global $db,$kinds;
+  #層數
+  $stop_level = $kinds[$kind]['stop_level'];
+
+  if($sn=="0" and $level == "1")return "0";
+  if ($level > $stop_level)return $level;
+
+  $sql = "select ofsn
+          from `kinds`
+          where sn='{$sn}'"; // die($sql);
+
+  $result = $db->query($sql) or die($db->error() . $sql);        
+  list($ofsn) = $result->fetch_row();  
+
+  if (!$ofsn) {
+    return $level;
+  }
+
+  return get_thisLevel($kind,$ofsn, ++$level);
+}
+  
 function op_insert($kind,$sn=""){
-  global $db;						 
+  global $db,$kinds;
+  #層數
+  $stop_level = $kinds[$kind]['stop_level'];						 
  
   $_POST['sn'] = db_filter($_POST['sn'], '');//流水號
   $_POST['title'] = db_filter($_POST['title'], '標題');//標題
@@ -122,15 +149,18 @@ function op_insert($kind,$sn=""){
   $_POST['ofsn'] = db_filter($_POST['ofsn'], ''); //父層
 
   if($sn){
-    #判斷父層在第幾層
-    $ofsn_level = get_ofsn_level($kind,$_POST['ofsn']);
-    if($_POST['sn']==42){
-      print_r($ofsn_level);
-      die();
-
-    }
+    #
+    $downLevel = get_downLevel($kind,$_POST['sn']);//判斷自已底下有幾層(不含自已)
+    //$thisLevel = get_thisLevel($kind,$_POST['sn']);
+    //$ofsn_downLevel = get_downLevel($kind,$_POST['ofsn']);//父層底下有幾層
+    $ofsn_thisLevel = get_thisLevel($kind,$_POST['ofsn']);//目的自已的層數
     
-    #判斷自已底下有幾層(含自已)
+    
+    
+    if($downLevel + $ofsn_thisLevel >= $stop_level)redirect_header($_SESSION['returnUrl'], "子類別太多，請先將子類別移動，再更新！", 3000);
+    if($_POST['sn'] === $_POST['ofsn'])redirect_header($_SESSION['returnUrl'], "不能設定自己為父類別", 3000);
+    
+    
     $sql="UPDATE  `kinds` SET
                   `title` = '{$_POST['title']}',
                   `enable` = '{$_POST['enable']}',

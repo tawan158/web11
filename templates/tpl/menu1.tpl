@@ -96,7 +96,8 @@
 															<a href="javascript:void(0)" onclick="op_delete('<{$kind}>',<{$sub4.sn}>);"><i class="far fa-trash-alt"></i></a>
 														</td>
 													</tr> 
-												<{/foreach}> 
+                                                <{/foreach}> 
+                                                
 											<{/if}> 
 									<{/foreach}>
 									<{/if}> 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-11 12:04:23
+/* Smarty version 3.1.34-dev-7, created on 2020-03-12 14:18:18
   from 'D:\ugm\xampp\htdocs\web11\templates\tpl\menu1.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e686347a138f1_12077961',
+  'unifunc' => 'content_5e69d42ad1fe58_35038900',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a7737596f038f483c193ea60bf086a1d506781b1' => 
     array (
       0 => 'D:\\ugm\\xampp\\htdocs\\web11\\templates\\tpl\\menu1.tpl',
-      1 => 1583899457,
+      1 => 1583985413,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e686347a138f1_12077961 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e69d42ad1fe58_35038900 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
 
     <div class="row mb-2">
@@ -181,10 +181,11 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sub4']->value) {
 );"><i class="far fa-trash-alt"></i></a>
 														</td>
 													</tr> 
-												<?php
+                                                <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> 
+                                                
 											<?php }?> 
 									<?php
 }
